@@ -2,6 +2,7 @@ import { StrandsClickToReveal } from "@/components/strands/StrandsClickToReveal"
 import { CountdownTimer } from "@/components/strands/CountdownTimer";
 import { GUIDES } from "@/data/guides";
 import { LETTER_GAMES } from "@/data/letter-games";
+import { Locale } from "@/i18n/routing";
 import { getLatestPuzzle, getRecentPuzzles } from "@/lib/strands-data";
 import dayjs from "dayjs";
 import {
@@ -22,6 +23,7 @@ import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 
 const FEATURE_ICONS = [Lightbulb, Grid3X3, Clock, Puzzle, Shield, Sparkles];
+type HomeComponentProps = { locale: Locale };
 
 function FaqAccordionItem({ question, answer }: { question: string; answer: string }) {
   return (
@@ -39,8 +41,8 @@ function FaqAccordionItem({ question, answer }: { question: string; answer: stri
   );
 }
 
-export default async function HomeComponent() {
-  const t = await getTranslations("HomePage");
+export default async function HomeComponent({ locale }: HomeComponentProps) {
+  const t = await getTranslations({ locale, namespace: "HomePage" });
   const latestPuzzle = await getLatestPuzzle();
   const recentPuzzles = await getRecentPuzzles(9);
 

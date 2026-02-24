@@ -168,8 +168,8 @@
   "HomePage": {
     "hero": {
       "badge": "Puzzle #{id}",
-      "title": "Strands Hint Today",
-      "subtitle": "Get progressive hints for today's NYT Strands puzzle without spoiling the answer.",
+      "title": "NYT Strands Hints & Archive",
+      "subtitle": "Find today's hints, browse full archives, and improve with strategy guides.",
       "ctaHints": "Get Today's Hints",
       "ctaArchive": "Browse Archive",
       "countdown": "Next puzzle in"

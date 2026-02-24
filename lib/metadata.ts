@@ -27,6 +27,11 @@ export async function constructMetadata({
   canonicalUrl,
 }: MetadataProps): Promise<Metadata> {
   const t = await getTranslations({ locale, namespace: 'Home' })
+  const resolveAbsoluteUrl = (url: string): string => {
+    if (url.startsWith('http')) return url
+
+    return new URL(url, `${siteConfig.url}/`).toString()
+  }
 
   const pageTitle = title || t(`title`)
   const pageDescription = description || t(`description`)
@@ -37,11 +42,11 @@ export async function constructMetadata({
 
   const imageUrls = images.length > 0
     ? images.map(img => ({
-      url: img.startsWith('http') ? img : `${siteConfig.url}/${img}`,
+      url: resolveAbsoluteUrl(img),
       alt: pageTitle,
     }))
     : [{
-      url: `${siteConfig.url}/og.png`,
+      url: resolveAbsoluteUrl('/og.png'),
       alt: pageTitle,
     }]
 

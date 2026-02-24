@@ -97,16 +97,16 @@ const nextConfig = {
       },
 
       // Locale-prefixed variants (English)
-      { source: "/en/today", destination: "/en/strands-hint-today", permanent: true },
-      { source: "/en/archive", destination: "/en/strands-hint", permanent: true },
-      { source: "/en/hints", destination: "/en/strands-hint", permanent: true },
-      { source: "/en/faq", destination: "/en/strands-hint-faq", permanent: true },
-      { source: "/en/answers", destination: "/en/strands-hint", permanent: true },
-      { source: "/en/strategy", destination: "/en/how-to-play-strands", permanent: true },
-      { source: "/en/tips", destination: "/en/how-to-play-strands", permanent: true },
+      { source: "/en/today", destination: "/strands-hint-today", permanent: true },
+      { source: "/en/archive", destination: "/strands-hint", permanent: true },
+      { source: "/en/hints", destination: "/strands-hint", permanent: true },
+      { source: "/en/faq", destination: "/strands-hint-faq", permanent: true },
+      { source: "/en/answers", destination: "/strands-hint", permanent: true },
+      { source: "/en/strategy", destination: "/how-to-play-strands", permanent: true },
+      { source: "/en/tips", destination: "/how-to-play-strands", permanent: true },
       {
         source: "/en/archive/:date",
-        destination: "/en/strands-hint/:date",
+        destination: "/strands-hint/:date",
         permanent: true,
       },
 

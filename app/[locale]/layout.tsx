@@ -39,7 +39,6 @@ import { Metadata, Viewport } from "next";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import {
   getMessages,
-  getTranslations,
   setRequestLocale,
 } from "next-intl/server";
 import { ThemeProvider } from "next-themes";
@@ -53,12 +52,12 @@ export async function generateMetadata({
   params,
 }: MetadataProps): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "Home" });
 
   return constructMetadata({
     page: "Home",
-    title: t("title"),
-    description: t("description"),
+    title: "NYT Strands Hints Archive",
+    description:
+      "Daily NYT Strands hints, complete answer archive, strategy guides, and extra word games in one place.",
     locale: locale as Locale,
     path: `/`,
     canonicalUrl: `/`,
