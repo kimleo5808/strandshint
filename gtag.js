@@ -1,5 +1,5 @@
-export const GA_TRACKING_ID =
-  process.env.NEXT_PUBLIC_GOOGLE_ID || "G-7WY2NJTG40";
+const sanitizedTrackingId = (process.env.NEXT_PUBLIC_GOOGLE_ID || "").replace(/\s+/g, "");
+export const GA_TRACKING_ID = sanitizedTrackingId || "G-7WY2NJTG40";
 
 export const pageview = (url) => {
   window.gtag("config", GA_TRACKING_ID, {

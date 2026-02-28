@@ -4,6 +4,7 @@ import { DEFAULT_LOCALE, routing } from "./i18n/routing";
 
 const intlMiddleware = createMiddleware(routing);
 const FALLBACK_CANONICAL_HOST = "strandshint.app";
+const PASSTHROUGH_PATHS = new Set(["/robots.txt", "/sitemap.xml"]);
 
 function getCanonicalHost(): string {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
@@ -49,6 +50,11 @@ export default function middleware(request: NextRequest) {
         : url.pathname.slice(DEFAULT_LOCALE.length + 1);
 
     return NextResponse.redirect(url, 308);
+  }
+
+  // Keep Next.js metadata routes out of next-intl middleware rewriting.
+  if (PASSTHROUGH_PATHS.has(url.pathname)) {
+    return NextResponse.next();
   }
 
   return intlMiddleware(request);
