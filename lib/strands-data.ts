@@ -55,3 +55,16 @@ export const getPuzzleCount = cache(async (): Promise<number> => {
 export const getLastUpdated = cache(async (): Promise<string> => {
   return data.lastUpdated;
 });
+
+/** Get the second-to-last puzzle ("yesterday's" puzzle) */
+export const getYesterdayPuzzle = cache(
+  async (): Promise<StrandsPuzzle | undefined> => {
+    if (data.puzzles.length < 2) return undefined;
+    return data.puzzles[data.puzzles.length - 2];
+  }
+);
+
+/** Get all puzzles as raw array (oldest first) for stats computation */
+export const getAllPuzzlesRaw = cache(async (): Promise<StrandsPuzzle[]> => {
+  return data.puzzles;
+});

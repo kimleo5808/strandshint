@@ -148,8 +148,33 @@ export default async function FAQPage({ params }: { params: Params }) {
         ))}
       </div>
 
+      {/* Cross-links to other games */}
+      <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
+        <Link
+          href="/connections-hint-today"
+          className="rounded-xl border border-purple-200 bg-purple-50 p-4 text-center hover:border-purple-400 hover:bg-purple-100 transition-colors"
+        >
+          <p className="text-sm font-bold text-purple-800">NYT Connections</p>
+          <p className="text-xs text-purple-600 mt-1">Today&apos;s hints →</p>
+        </Link>
+        <Link
+          href="/wordle-hint-today"
+          className="rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-center hover:border-emerald-400 hover:bg-emerald-100 transition-colors"
+        >
+          <p className="text-sm font-bold text-emerald-800">NYT Wordle</p>
+          <p className="text-xs text-emerald-600 mt-1">Today&apos;s hints →</p>
+        </Link>
+        <Link
+          href="/word-finder"
+          className="rounded-xl border border-indigo-200 bg-indigo-50 p-4 text-center hover:border-indigo-400 hover:bg-indigo-100 transition-colors"
+        >
+          <p className="text-sm font-bold text-indigo-800">Word Finder Tool</p>
+          <p className="text-xs text-indigo-600 mt-1">Find words free →</p>
+        </Link>
+      </div>
+
       {/* CTA */}
-      <div className="mt-8 rounded-2xl bg-gradient-to-br from-primary to-primary/90 p-6 text-center text-primary-foreground">
+      <div className="mt-6 rounded-2xl bg-gradient-to-br from-primary to-primary/90 p-6 text-center text-primary-foreground">
         <h2 className="font-heading text-xl font-bold">
           Still have questions?
         </h2>

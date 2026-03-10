@@ -282,6 +282,25 @@ export default async function HowToPlayPage({ params }: { params: Params }) {
           </div>
         </section>
 
+        {/* Also Try */}
+        <section className="rounded-xl border border-border bg-card p-6">
+          <h2 className="font-heading text-lg font-bold text-foreground mb-4">Also Try These Puzzles &amp; Tools</h2>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+            <Link href="/connections-hint-today" className="rounded-lg border border-purple-200 bg-purple-50 p-4 hover:border-purple-400 transition-colors">
+              <p className="text-sm font-bold text-purple-800">NYT Connections Hints</p>
+              <p className="text-xs text-purple-600 mt-1">Today&apos;s hints for all 4 categories →</p>
+            </Link>
+            <Link href="/wordle-hint-today" className="rounded-lg border border-emerald-200 bg-emerald-50 p-4 hover:border-emerald-400 transition-colors">
+              <p className="text-sm font-bold text-emerald-800">NYT Wordle Hints</p>
+              <p className="text-xs text-emerald-600 mt-1">Progressive clues for today&apos;s word →</p>
+            </Link>
+            <Link href="/word-finder" className="rounded-lg border border-indigo-200 bg-indigo-50 p-4 hover:border-indigo-400 transition-colors">
+              <p className="text-sm font-bold text-indigo-800">Word Finder Tool</p>
+              <p className="text-xs text-indigo-600 mt-1">Search words by pattern &amp; position →</p>
+            </Link>
+          </div>
+        </section>
+
         {/* CTA */}
         <section className="rounded-2xl bg-gradient-to-br from-primary to-primary/90 p-6 sm:p-8 text-center text-primary-foreground">
           <h2 className="font-heading text-2xl font-bold">

@@ -4,6 +4,8 @@ import { GUIDES } from "@/data/guides";
 import { LETTER_GAMES } from "@/data/letter-games";
 import { Locale } from "@/i18n/routing";
 import { getLatestPuzzle, getRecentPuzzles } from "@/lib/strands-data";
+import { getLatestConnections } from "@/lib/connections-data";
+import { getLatestWordle } from "@/lib/wordle-hints-data";
 import dayjs from "dayjs";
 import {
   ArrowRight,
@@ -18,6 +20,9 @@ import {
   Search,
   Shield,
   Sparkles,
+  Layers,
+  Type,
+  Shuffle,
 } from "lucide-react";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
@@ -45,6 +50,8 @@ export default async function HomeComponent({ locale }: HomeComponentProps) {
   const t = await getTranslations({ locale, namespace: "HomePage" });
   const latestPuzzle = await getLatestPuzzle();
   const recentPuzzles = await getRecentPuzzles(9);
+  const latestConnections = await getLatestConnections();
+  const latestWordle = await getLatestWordle();
 
   const todayDate = latestPuzzle
     ? dayjs(latestPuzzle.printDate).format("MMMM D, YYYY")
@@ -180,6 +187,180 @@ export default async function HomeComponent({ locale }: HomeComponentProps) {
                   View Hints
                   <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
                 </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* NYT Connections & Wordle — Game Teasers */}
+      <section className="py-12 bg-muted/30">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center gap-2 rounded-full bg-purple-100 px-4 py-1.5 text-sm font-medium text-purple-700 mb-4">
+              <Layers className="h-4 w-4" />
+              More Daily Puzzles
+            </div>
+            <h2 className="font-heading text-2xl font-bold text-foreground sm:text-3xl">
+              NYT Connections &amp; Wordle Hints
+            </h2>
+            <p className="mt-2 text-muted-foreground">
+              Progressive hints for all three major NYT word puzzles — updated every day
+            </p>
+          </div>
+
+          <div className="grid gap-5 sm:grid-cols-2">
+            {/* Connections Card */}
+            <div className="rounded-2xl bg-gradient-to-br from-purple-600 to-purple-800 p-6 text-white">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/20">
+                  <Grid3X3 className="h-5 w-5" />
+                </div>
+                <div>
+                  <h3 className="font-heading text-lg font-bold">NYT Connections</h3>
+                  <p className="text-purple-200 text-xs">16 words · 4 groups · daily</p>
+                </div>
+              </div>
+
+              {latestConnections ? (
+                <div className="mb-4 space-y-1.5">
+                  {[...latestConnections.categories]
+                    .sort((a, b) => a.difficulty - b.difficulty)
+                    .slice(0, 2)
+                    .map((cat) => {
+                      const colors = ['bg-yellow-400 text-yellow-900', 'bg-green-500 text-white']
+                      return (
+                        <div key={cat.difficulty} className={`rounded-lg px-3 py-2 ${colors[cat.difficulty]}`}>
+                          <p className="text-xs font-bold">{cat.title}</p>
+                        </div>
+                      )
+                    })}
+                  <p className="text-purple-200 text-xs text-center mt-1">
+                    Puzzle #{latestConnections.id} · {dayjs(latestConnections.printDate).format('MMM D')} · 2 more categories hidden
+                  </p>
+                </div>
+              ) : (
+                <p className="text-purple-200 text-sm mb-4">
+                  Sort 16 words into 4 groups — Yellow (easy) to Purple (hard). Progressive hints available for all four categories.
+                </p>
+              )}
+
+              <Link
+                href="/connections-hint-today"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-white px-5 py-2.5 text-sm font-bold text-purple-700 hover:bg-purple-50 transition-colors"
+              >
+                Today&apos;s Connections Hints
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+
+            {/* Wordle Card */}
+            <div className="rounded-2xl bg-gradient-to-br from-emerald-600 to-emerald-800 p-6 text-white">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/20">
+                  <Type className="h-5 w-5" />
+                </div>
+                <div>
+                  <h3 className="font-heading text-lg font-bold">NYT Wordle</h3>
+                  <p className="text-emerald-200 text-xs">5-letter word · 6 guesses · daily</p>
+                </div>
+              </div>
+
+              {latestWordle ? (
+                <div className="mb-4">
+                  <div className="flex gap-2 justify-center mb-2">
+                    {latestWordle.answer.split('').map((_, i) => (
+                      <div key={i} className="flex h-12 w-12 items-center justify-center rounded-lg bg-white/20 text-xl font-bold text-white border-2 border-white/30">
+                        ?
+                      </div>
+                    ))}
+                  </div>
+                  <p className="text-emerald-200 text-xs text-center">
+                    Puzzle #{latestWordle.id} · {dayjs(latestWordle.printDate).format('MMM D')} · Answer hidden
+                  </p>
+                </div>
+              ) : (
+                <p className="text-emerald-200 text-sm mb-4">
+                  Get 5 progressive hints for today&apos;s Wordle answer — from letter count to full reveal. Never get stuck again.
+                </p>
+              )}
+
+              <Link
+                href="/wordle-hint-today"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-white px-5 py-2.5 text-sm font-bold text-emerald-700 hover:bg-emerald-50 transition-colors"
+              >
+                Today&apos;s Wordle Hints
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Word Tools Section */}
+      <section className="py-12 bg-background">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center gap-2 rounded-full bg-indigo-100 px-4 py-1.5 text-sm font-medium text-indigo-700 mb-4">
+              <Search className="h-4 w-4" />
+              Word Tools
+            </div>
+            <h2 className="font-heading text-2xl font-bold text-foreground sm:text-3xl">
+              Free Word Game Tools
+            </h2>
+            <p className="mt-2 text-muted-foreground">
+              Powerful word-finding tools to help you solve any word puzzle
+            </p>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-3">
+            {[
+              {
+                title: 'Word Finder',
+                desc: 'Find words by length, known letters, position, and pattern. Perfect for Wordle, Strands, Scrabble, and crosswords.',
+                href: '/word-finder',
+                icon: Search,
+                color: 'bg-indigo-50 border-indigo-200 hover:border-indigo-400',
+                badge: 'bg-indigo-600 text-white',
+                iconBg: 'bg-indigo-100 text-indigo-600',
+              },
+              {
+                title: 'Anagram Solver',
+                desc: 'Enter any letters to find every valid word they can form — grouped by length. Ideal for Scrabble and word puzzles.',
+                href: '/anagram-solver',
+                icon: Shuffle,
+                color: 'bg-amber-50 border-amber-200 hover:border-amber-400',
+                badge: 'bg-amber-500 text-white',
+                iconBg: 'bg-amber-100 text-amber-600',
+              },
+              {
+                title: 'Wordle Solver',
+                desc: "Enter your guesses with color feedback and get ranked word suggestions. Includes top starting words and strategy guide.",
+                href: '/wordle-solver',
+                icon: Type,
+                color: 'bg-emerald-50 border-emerald-200 hover:border-emerald-400',
+                badge: 'bg-emerald-600 text-white',
+                iconBg: 'bg-emerald-100 text-emerald-600',
+              },
+            ].map((tool) => (
+              <Link
+                key={tool.href}
+                href={tool.href}
+                className={`group rounded-xl border-2 bg-card p-5 transition-all hover:-translate-y-0.5 hover:shadow-md ${tool.color}`}
+              >
+                <div className={`flex h-10 w-10 items-center justify-center rounded-lg ${tool.iconBg} transition-transform group-hover:scale-110 mb-3`}>
+                  <tool.icon className="h-5 w-5" />
+                </div>
+                <h3 className="font-heading text-base font-bold text-foreground mb-1.5">
+                  {tool.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-muted-foreground mb-3">
+                  {tool.desc}
+                </p>
+                <span className={`inline-flex items-center gap-1 rounded-lg px-3 py-1 text-xs font-bold ${tool.badge}`}>
+                  Try Free
+                  <ArrowRight className="h-3 w-3" />
+                </span>
               </Link>
             ))}
           </div>

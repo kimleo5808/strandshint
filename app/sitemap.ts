@@ -1,5 +1,7 @@
 import { siteConfig } from '@/config/site'
 import { getAllPuzzles } from '@/lib/strands-data'
+import { getAllConnections } from '@/lib/connections-data'
+import { getAllWordles } from '@/lib/wordle-hints-data'
 import { getPosts } from '@/lib/getBlogs'
 import { GUIDE_SLUGS } from '@/data/guides'
 import { MetadataRoute } from 'next'
@@ -9,23 +11,33 @@ const siteUrl = siteConfig.url
 type ChangeFrequency = 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never' | undefined
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const staticPages = [
-    '',
-    '/strands-hint-today',
-    '/how-to-play-strands',
-    '/strands-hint-faq',
-    '/strands-hint',
-    '/about',
-    '/contact',
-    '/privacy-policy',
-    '/terms-of-service',
+  const staticPages: { path: string; freq: ChangeFrequency; priority: number }[] = [
+    { path: '', freq: 'daily', priority: 1.0 },
+    { path: '/strands-hint-today', freq: 'daily', priority: 0.95 },
+    { path: '/strands-hint-yesterday', freq: 'daily', priority: 0.85 },
+    { path: '/strands-hint', freq: 'daily', priority: 0.8 },
+    { path: '/strands-statistics', freq: 'weekly', priority: 0.65 },
+    { path: '/how-to-play-strands', freq: 'weekly', priority: 0.8 },
+    { path: '/how-to-play-connections', freq: 'monthly', priority: 0.7 },
+    { path: '/connections-hint-today', freq: 'daily', priority: 0.9 },
+    { path: '/connections-hint', freq: 'daily', priority: 0.8 },
+    { path: '/wordle-hint-today', freq: 'daily', priority: 0.9 },
+    { path: '/wordle-hint', freq: 'daily', priority: 0.8 },
+    { path: '/word-finder', freq: 'monthly', priority: 0.75 },
+    { path: '/anagram-solver', freq: 'monthly', priority: 0.75 },
+    { path: '/wordle-solver', freq: 'monthly', priority: 0.75 },
+    { path: '/strands-hint-faq', freq: 'weekly', priority: 0.75 },
+    { path: '/about', freq: 'weekly', priority: 0.6 },
+    { path: '/contact', freq: 'weekly', priority: 0.5 },
+    { path: '/privacy-policy', freq: 'monthly', priority: 0.3 },
+    { path: '/terms-of-service', freq: 'monthly', priority: 0.3 },
   ]
 
-  const pages = staticPages.map(page => ({
-    url: `${siteUrl}${page}`,
+  const pages = staticPages.map(({ path, freq, priority }) => ({
+    url: `${siteUrl}${path}`,
     lastModified: new Date(),
-    changeFrequency: (page === '' || page === '/strands-hint-today' ? 'daily' : 'weekly') as ChangeFrequency,
-    priority: page === '' ? 1.0 : page === '/strands-hint-today' ? 0.95 : 0.8,
+    changeFrequency: freq,
+    priority,
   }))
 
   // Letter game pages (4-11 letters)
@@ -55,6 +67,24 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const allPuzzles = await getAllPuzzles()
   const puzzlePages = allPuzzles.map(puzzle => ({
     url: `${siteUrl}/strands-hint/${puzzle.printDate}`,
+    lastModified: new Date(puzzle.printDate),
+    changeFrequency: 'monthly' as ChangeFrequency,
+    priority: 0.6,
+  }))
+
+  // Connections puzzle pages
+  const allConnections = await getAllConnections()
+  const connectionsPuzzlePages = allConnections.map((puzzle) => ({
+    url: `${siteUrl}/connections-hint/${puzzle.printDate}`,
+    lastModified: new Date(puzzle.printDate),
+    changeFrequency: 'monthly' as ChangeFrequency,
+    priority: 0.6,
+  }))
+
+  // Wordle puzzle pages
+  const allWordles = await getAllWordles()
+  const wordlePuzzlePages = allWordles.map((puzzle) => ({
+    url: `${siteUrl}/wordle-hint/${puzzle.printDate}`,
     lastModified: new Date(puzzle.printDate),
     changeFrequency: 'monthly' as ChangeFrequency,
     priority: 0.6,
@@ -92,6 +122,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     guidesIndex,
     ...guidePages,
     ...puzzlePages,
+    ...connectionsPuzzlePages,
+    ...wordlePuzzlePages,
     blogIndex,
     ...postPages,
   ]

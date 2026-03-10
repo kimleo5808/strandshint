@@ -1,25 +1,49 @@
 {
   "Header": {
-    "links": [
+    "groups": [
       {
-        "name": "Strands Hint",
-        "href": "/strands-hint"
+        "name": "Strands",
+        "links": [
+          { "name": "Today's Hints", "href": "/strands-hint-today" },
+          { "name": "Yesterday's Answer", "href": "/strands-hint-yesterday" },
+          { "name": "Full Archive", "href": "/strands-hint" },
+          { "name": "How to Play", "href": "/how-to-play-strands" },
+          { "name": "Statistics", "href": "/strands-statistics" },
+          { "name": "FAQ", "href": "/strands-hint-faq" }
+        ]
       },
       {
-        "name": "Today's Hints",
-        "href": "/strands-hint-today"
+        "name": "Connections",
+        "links": [
+          { "name": "Today's Hints", "href": "/connections-hint-today" },
+          { "name": "Full Archive", "href": "/connections-hint" },
+          { "name": "How to Play", "href": "/how-to-play-connections" }
+        ]
       },
       {
-        "name": "How to Play",
-        "href": "/how-to-play-strands"
+        "name": "Wordle",
+        "links": [
+          { "name": "Today's Hints", "href": "/wordle-hint-today" },
+          { "name": "Full Archive", "href": "/wordle-hint" },
+          { "name": "Wordle Solver", "href": "/wordle-solver" },
+          { "name": "Play Wordle", "href": "/5-letters" }
+        ]
+      },
+      {
+        "name": "Tools",
+        "links": [
+          { "name": "Word Finder", "href": "/word-finder" },
+          { "name": "Anagram Solver", "href": "/anagram-solver" },
+          { "name": "Wordle Solver", "href": "/wordle-solver" }
+        ]
+      },
+      {
+        "name": "Guides",
+        "href": "/guides"
       },
       {
         "name": "FAQ",
         "href": "/strands-hint-faq"
-      },
-{
-        "name": "Guides",
-        "href": "/guides"
       }
     ]
   },
@@ -30,15 +54,82 @@
     "Links": {
       "groups": [
         {
-          "title": "Puzzles",
+          "title": "Strands",
           "links": [
-            {
-              "href": "/",
-              "name": "Strands Hint"
-            },
             {
               "href": "/strands-hint-today",
               "name": "Today's Hints"
+            },
+            {
+              "href": "/strands-hint-yesterday",
+              "name": "Yesterday's Answer"
+            },
+            {
+              "href": "/strands-hint",
+              "name": "Full Archive"
+            },
+            {
+              "href": "/how-to-play-strands",
+              "name": "How to Play"
+            },
+            {
+              "href": "/strands-statistics",
+              "name": "Statistics"
+            },
+            {
+              "href": "/strands-hint-faq",
+              "name": "FAQ"
+            }
+          ]
+        },
+        {
+          "title": "Connections",
+          "links": [
+            {
+              "href": "/connections-hint-today",
+              "name": "Today's Hints"
+            },
+            {
+              "href": "/connections-hint",
+              "name": "Full Archive"
+            },
+            {
+              "href": "/how-to-play-connections",
+              "name": "How to Play"
+            }
+          ]
+        },
+        {
+          "title": "Wordle",
+          "links": [
+            {
+              "href": "/wordle-hint-today",
+              "name": "Today's Hints"
+            },
+            {
+              "href": "/wordle-hint",
+              "name": "Full Archive"
+            },
+            {
+              "href": "/wordle-solver",
+              "name": "Wordle Solver"
+            }
+          ]
+        },
+        {
+          "title": "Tools",
+          "links": [
+            {
+              "href": "/word-finder",
+              "name": "Word Finder"
+            },
+            {
+              "href": "/anagram-solver",
+              "name": "Anagram Solver"
+            },
+            {
+              "href": "/wordle-solver",
+              "name": "Wordle Solver"
             }
           ]
         },
@@ -46,20 +137,12 @@
           "title": "Resources",
           "links": [
             {
-              "href": "/how-to-play-strands",
-              "name": "How to Play"
-            },
-            {
-              "href": "/strands-hint-faq",
-              "name": "FAQ"
+              "href": "/guides",
+              "name": "Strategy Guides"
             },
             {
               "href": "/blog",
-              "name": "Tips & Guides"
-            },
-            {
-              "href": "/guides",
-              "name": "Strategy Guides"
+              "name": "Tips & Articles"
             }
           ]
         },
@@ -152,6 +235,30 @@
   "StrandsHintToday": {
     "title": "Strands Hint Today — NYT Puzzle Hints & Answers",
     "description": "Get progressive hints and answers for today's NYT Strands puzzle. Clues for the Spangram and all theme words without spoiling the fun."
+  },
+  "StrandsYesterday": {
+    "title": "Yesterday's Strands Answer",
+    "description": "See yesterday's complete NYT Strands answer — full Spangram, all theme words, solved grid, puzzle breakdown, and strategy takeaways."
+  },
+  "StrandsStatistics": {
+    "title": "Strands Puzzle Statistics & Trends — Data Analysis",
+    "description": "Explore NYT Strands puzzle data: total puzzle count, average word lengths, letter frequency heatmap, Spangram stats, notable records, and monthly trends."
+  },
+  "HowToPlayConnections": {
+    "title": "How to Play NYT Connections — Complete Guide",
+    "description": "Learn how to play NYT Connections: rules, the four difficulty levels (yellow to purple), common traps, winning strategies, and how it compares to Strands."
+  },
+  "WordFinder": {
+    "title": "Word Finder — Find Words by Letters, Position & Pattern",
+    "description": "Free word finder tool: search words by length, known letter positions, required letters, and exclusions. Perfect for Wordle, NYT Strands, Scrabble, and crosswords."
+  },
+  "AnagramSolver": {
+    "title": "Anagram Solver — Unscramble Any Letters Instantly",
+    "description": "Free anagram solver: enter any letters to find every valid word they can form, grouped by length. Ideal for Scrabble, NYT Strands, crosswords, and word puzzles."
+  },
+  "WordleSolver": {
+    "title": "Wordle Solver — Find the Best Next Guess",
+    "description": "Free Wordle solver: enter your guesses with green/yellow/gray colors to get ranked word suggestions. Includes top starting words, letter frequency chart, and strategy guide."
   },
   "FAQ": {
     "title": "Strands Hint FAQ — Common Questions Answered",

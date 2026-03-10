@@ -11,6 +11,8 @@
     "start": "next start",
     "lint": "eslint .",
     "update:strands": "node scripts/update-strands.mjs",
+    "update:connections": "node scripts/update-connections.mjs",
+    "update:wordle": "node scripts/update-wordle.mjs",
     "fix": "pnpm i fix-react2shell-next@latest && npx fix-react2shell-next",
     "update:next": "pnpm i next@latest react@latest react-dom@latest @next/env@latest @next/bundle-analyzer@latest @types/react@latest @types/react-dom@latest",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
