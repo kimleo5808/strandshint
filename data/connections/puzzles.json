@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-10T17:13:07.669Z",
+  "lastUpdated": "2026-03-11T03:08:56.670Z",
   "puzzles": [
     {
       "id": 1082,
@@ -90,6 +90,101 @@
             {
               "content": "SOCK",
               "position": 7
+            }
+          ],
+          "difficulty": 0
+        }
+      ]
+    },
+    {
+      "id": 1084,
+      "printDate": "2026-03-11",
+      "editor": "Wyna Liu",
+      "categories": [
+        {
+          "title": "STEAL",
+          "cards": [
+            {
+              "content": "LIFT",
+              "position": 5
+            },
+            {
+              "content": "PALM",
+              "position": 2
+            },
+            {
+              "content": "PINCH",
+              "position": 11
+            },
+            {
+              "content": "POCKET",
+              "position": 9
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "MAKE NICER, WITH \"UP\"",
+          "cards": [
+            {
+              "content": "DRESS",
+              "position": 0
+            },
+            {
+              "content": "JAZZ",
+              "position": 3
+            },
+            {
+              "content": "SPIFF",
+              "position": 14
+            },
+            {
+              "content": "SPRUCE",
+              "position": 6
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "KINDS OF CONES",
+          "cards": [
+            {
+              "content": "ICE CREAM",
+              "position": 13
+            },
+            {
+              "content": "PINE",
+              "position": 8
+            },
+            {
+              "content": "SNOW",
+              "position": 1
+            },
+            {
+              "content": "TRAFFIC",
+              "position": 7
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "PRONOUN HOMOPHONES",
+          "cards": [
+            {
+              "content": "HEE",
+              "position": 12
+            },
+            {
+              "content": "MI",
+              "position": 15
+            },
+            {
+              "content": "OUI",
+              "position": 10
+            },
+            {
+              "content": "YEW",
+              "position": 4
             }
           ],
           "difficulty": 0
