@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-12T17:25:51.438Z",
+  "lastUpdated": "2026-03-13T03:12:10.559Z",
   "puzzles": [
     {
       "id": 1082,
@@ -279,6 +279,101 @@
             },
             {
               "content": "WEATHER VANE",
+              "position": 7
+            }
+          ],
+          "difficulty": 0
+        }
+      ]
+    },
+    {
+      "id": 1088,
+      "printDate": "2026-03-13",
+      "editor": "Wyna Liu",
+      "categories": [
+        {
+          "title": "\"NO THANKS\"",
+          "cards": [
+            {
+              "content": "LATER",
+              "position": 15
+            },
+            {
+              "content": "NAH",
+              "position": 9
+            },
+            {
+              "content": "NEXT TIME",
+              "position": 12
+            },
+            {
+              "content": "PASS",
+              "position": 2
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "KINDS OF NUMBERS",
+          "cards": [
+            {
+              "content": "EVEN",
+              "position": 11
+            },
+            {
+              "content": "IRRATIONAL",
+              "position": 14
+            },
+            {
+              "content": "PERFECT",
+              "position": 0
+            },
+            {
+              "content": "PRIME",
+              "position": 6
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "KINDS OF WALLS",
+          "cards": [
+            {
+              "content": "BERLIN",
+              "position": 13
+            },
+            {
+              "content": "BRICK",
+              "position": 1
+            },
+            {
+              "content": "FOURTH",
+              "position": 10
+            },
+            {
+              "content": "GREAT",
+              "position": 4
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "HOMOPHONES OF NON-NUMERIC AMOUNTS",
+          "cards": [
+            {
+              "content": "AWL",
+              "position": 5
+            },
+            {
+              "content": "NUN",
+              "position": 3
+            },
+            {
+              "content": "PHEW",
+              "position": 8
+            },
+            {
+              "content": "SUM",
               "position": 7
             }
           ],
