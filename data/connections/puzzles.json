@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-13T17:04:31.345Z",
+  "lastUpdated": "2026-03-14T03:10:02.298Z",
   "puzzles": [
     {
       "id": 1082,
@@ -375,6 +375,101 @@
             {
               "content": "SUM",
               "position": 7
+            }
+          ],
+          "difficulty": 0
+        }
+      ]
+    },
+    {
+      "id": 1079,
+      "printDate": "2026-03-14",
+      "editor": "Wyna Liu",
+      "categories": [
+        {
+          "title": "HYPNOTIC STATE",
+          "cards": [
+            {
+              "content": "DREAM",
+              "position": 14
+            },
+            {
+              "content": "HAZE",
+              "position": 3
+            },
+            {
+              "content": "SPELL",
+              "position": 8
+            },
+            {
+              "content": "TRANCE",
+              "position": 11
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "STARTING WITH PREFIXES MEANING \"TWO\"",
+          "cards": [
+            {
+              "content": "BINARY",
+              "position": 2
+            },
+            {
+              "content": "DIOXIDE",
+              "position": 12
+            },
+            {
+              "content": "DUOLINGO",
+              "position": 7
+            },
+            {
+              "content": "TWILIGHT",
+              "position": 15
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "FICTIONAL INSPECTORS",
+          "cards": [
+            {
+              "content": "CLOUSEAU",
+              "position": 9
+            },
+            {
+              "content": "GADGET",
+              "position": 1
+            },
+            {
+              "content": "JAVERT",
+              "position": 13
+            },
+            {
+              "content": "MORSE",
+              "position": 6
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "ENDING IN FEMALE ANIMALS",
+          "cards": [
+            {
+              "content": "HOOTENANNY",
+              "position": 4
+            },
+            {
+              "content": "LICHEN",
+              "position": 5
+            },
+            {
+              "content": "MOSCOW",
+              "position": 10
+            },
+            {
+              "content": "NIGHTMARE",
+              "position": 0
             }
           ],
           "difficulty": 0
