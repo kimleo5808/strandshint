@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-14T16:54:27.001Z",
+  "lastUpdated": "2026-03-15T03:38:24.510Z",
   "puzzles": [
     {
       "id": 1082,
@@ -470,6 +470,101 @@
             {
               "content": "NIGHTMARE",
               "position": 0
+            }
+          ],
+          "difficulty": 0
+        }
+      ]
+    },
+    {
+      "id": 1089,
+      "printDate": "2026-03-15",
+      "editor": "Wyna Liu",
+      "categories": [
+        {
+          "title": "GREEDILY CONTROL",
+          "cards": [
+            {
+              "content": "BOGART",
+              "position": 14
+            },
+            {
+              "content": "CORNER",
+              "position": 10
+            },
+            {
+              "content": "HOG",
+              "position": 1
+            },
+            {
+              "content": "MONOPOLIZE",
+              "position": 12
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "TOOTHED WHEELS",
+          "cards": [
+            {
+              "content": "COG",
+              "position": 4
+            },
+            {
+              "content": "GEAR",
+              "position": 9
+            },
+            {
+              "content": "PINION",
+              "position": 13
+            },
+            {
+              "content": "SPROCKET",
+              "position": 15
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "PORTMANTEAUX",
+          "cards": [
+            {
+              "content": "BLOG",
+              "position": 5
+            },
+            {
+              "content": "MOTEL",
+              "position": 11
+            },
+            {
+              "content": "SMOG",
+              "position": 6
+            },
+            {
+              "content": "SPORK",
+              "position": 3
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "BULL___",
+          "cards": [
+            {
+              "content": "DOG",
+              "position": 0
+            },
+            {
+              "content": "DOZE",
+              "position": 7
+            },
+            {
+              "content": "FROG",
+              "position": 2
+            },
+            {
+              "content": "HORN",
+              "position": 8
             }
           ],
           "difficulty": 0
