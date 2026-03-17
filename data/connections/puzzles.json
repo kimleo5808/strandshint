@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-16T17:32:54.600Z",
+  "lastUpdated": "2026-03-17T03:16:54.390Z",
   "puzzles": [
     {
       "id": 1082,
@@ -660,6 +660,101 @@
             {
               "content": "OKAY",
               "position": 0
+            }
+          ],
+          "difficulty": 0
+        }
+      ]
+    },
+    {
+      "id": 1094,
+      "printDate": "2026-03-17",
+      "editor": "Wyna Liu",
+      "categories": [
+        {
+          "title": "METAPHORS FOR TROUBLE",
+          "cards": [
+            {
+              "content": "BIND",
+              "position": 10
+            },
+            {
+              "content": "HOT WATER",
+              "position": 2
+            },
+            {
+              "content": "JAM",
+              "position": 7
+            },
+            {
+              "content": "PICKLE",
+              "position": 15
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "MUSIC THEORY CONCEPTS",
+          "cards": [
+            {
+              "content": "KEY",
+              "position": 3
+            },
+            {
+              "content": "PITCH",
+              "position": 8
+            },
+            {
+              "content": "SCALE",
+              "position": 11
+            },
+            {
+              "content": "TONE",
+              "position": 13
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "THINGS WITH STRINGS",
+          "cards": [
+            {
+              "content": "BALLOON",
+              "position": 6
+            },
+            {
+              "content": "KITE",
+              "position": 0
+            },
+            {
+              "content": "TEA BAG",
+              "position": 4
+            },
+            {
+              "content": "YO-YO",
+              "position": 12
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "METAPHORS FOR QUICKNESS",
+          "cards": [
+            {
+              "content": "ARROW",
+              "position": 9
+            },
+            {
+              "content": "LIGHTNING",
+              "position": 5
+            },
+            {
+              "content": "ROCKET",
+              "position": 14
+            },
+            {
+              "content": "WIND",
+              "position": 1
             }
           ],
           "difficulty": 0
