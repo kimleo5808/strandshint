@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-03-17T17:34:01.425Z",
+  "lastUpdated": "2026-03-18T03:23:56.684Z",
   "puzzles": [
     {
       "id": 1082,
@@ -755,6 +755,101 @@
             {
               "content": "WIND",
               "position": 1
+            }
+          ],
+          "difficulty": 0
+        }
+      ]
+    },
+    {
+      "id": 1093,
+      "printDate": "2026-03-18",
+      "editor": "Wyna Liu",
+      "categories": [
+        {
+          "title": "INTERVAL",
+          "cards": [
+            {
+              "content": "PATCH",
+              "position": 10
+            },
+            {
+              "content": "PERIOD",
+              "position": 15
+            },
+            {
+              "content": "SPELL",
+              "position": 0
+            },
+            {
+              "content": "STRETCH",
+              "position": 5
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "REACT TO A STUBBED TOE",
+          "cards": [
+            {
+              "content": "CURSE",
+              "position": 6
+            },
+            {
+              "content": "HOP",
+              "position": 11
+            },
+            {
+              "content": "WINCE",
+              "position": 8
+            },
+            {
+              "content": "YELL",
+              "position": 1
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "GUITAR EFFECTS PEDALS",
+          "cards": [
+            {
+              "content": "DELAY",
+              "position": 12
+            },
+            {
+              "content": "REVERB",
+              "position": 14
+            },
+            {
+              "content": "WAH",
+              "position": 7
+            },
+            {
+              "content": "WHAMMY",
+              "position": 4
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "___ CHECK",
+          "cards": [
+            {
+              "content": "BLANK",
+              "position": 9
+            },
+            {
+              "content": "COAT",
+              "position": 3
+            },
+            {
+              "content": "RAIN",
+              "position": 2
+            },
+            {
+              "content": "REALITY",
+              "position": 13
             }
           ],
           "difficulty": 0
