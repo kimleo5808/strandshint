@@ -1,12 +1,11 @@
-import type { WordleDataFile, WordlePuzzle } from '@/types/wordle-hint'
-import puzzlesData from '@/data/wordle/puzzles.json'
+import type { WordlePuzzle } from '@/types/wordle-hint'
+import { getWordleData } from '@/lib/puzzle-kv'
 import { cache } from 'react'
-
-const data = puzzlesData as unknown as WordleDataFile
 
 /** Get a puzzle by its date string (YYYY-MM-DD) */
 export const getWordleByDate = cache(
   async (date: string): Promise<WordlePuzzle | undefined> => {
+    const data = await getWordleData()
     return data.puzzles.find((p) => p.printDate === date)
   }
 )
@@ -14,6 +13,7 @@ export const getWordleByDate = cache(
 /** Get the latest/today's puzzle */
 export const getLatestWordle = cache(
   async (): Promise<WordlePuzzle | undefined> => {
+    const data = await getWordleData()
     if (data.puzzles.length === 0) return undefined
     return data.puzzles[data.puzzles.length - 1]
   }
@@ -22,6 +22,7 @@ export const getLatestWordle = cache(
 /** Get yesterday's puzzle (second-to-last) */
 export const getYesterdayWordle = cache(
   async (): Promise<WordlePuzzle | undefined> => {
+    const data = await getWordleData()
     if (data.puzzles.length < 2) return undefined
     return data.puzzles[data.puzzles.length - 2]
   }
@@ -29,12 +30,14 @@ export const getYesterdayWordle = cache(
 
 /** Get all puzzles, newest first */
 export const getAllWordles = cache(async (): Promise<WordlePuzzle[]> => {
+  const data = await getWordleData()
   return [...data.puzzles].reverse()
 })
 
 /** Get recent N puzzles, newest first */
 export const getRecentWordles = cache(
   async (count: number = 7): Promise<WordlePuzzle[]> => {
+    const data = await getWordleData()
     return [...data.puzzles].reverse().slice(0, count)
   }
 )
@@ -42,6 +45,7 @@ export const getRecentWordles = cache(
 /** Get puzzles for a specific month (YYYY-MM) */
 export const getWordlesByMonth = cache(
   async (yearMonth: string): Promise<WordlePuzzle[]> => {
+    const data = await getWordleData()
     return data.puzzles
       .filter((p) => p.printDate.startsWith(yearMonth))
       .reverse()
@@ -50,11 +54,13 @@ export const getWordlesByMonth = cache(
 
 /** Get all unique year-month strings available */
 export const getWordleAvailableMonths = cache(async (): Promise<string[]> => {
+  const data = await getWordleData()
   const months = new Set(data.puzzles.map((p) => p.printDate.slice(0, 7)))
   return Array.from(months).sort().reverse()
 })
 
 /** Get total puzzle count */
 export const getWordleCount = cache(async (): Promise<number> => {
+  const data = await getWordleData()
   return data.puzzles.length
 })

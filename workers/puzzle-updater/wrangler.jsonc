@@ -1,0 +1,21 @@
+{
+	"$schema": "../../node_modules/wrangler/config-schema.json",
+	"name": "puzzle-updater",
+	"main": "src/index.ts",
+	"compatibility_date": "2026-02-10",
+	"compatibility_flags": ["nodejs_compat"],
+
+	// Cron triggers — runs 3x daily (same schedule as old GitHub Actions)
+	// UTC 00:30, 08:30, 16:30
+	"triggers": {
+		"crons": ["30 0 * * *", "30 8 * * *", "30 16 * * *"]
+	},
+
+	// KV namespace for puzzle data — shared with main app
+	"kv_namespaces": [
+		{
+			"binding": "PUZZLE_DATA",
+			"id": "9b7808dbde8a403abe06c6c14a5b5a37"
+		}
+	]
+}

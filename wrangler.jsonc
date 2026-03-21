@@ -16,6 +16,13 @@
 			"service": "strandshint-app"
 		}
 	],
+	"kv_namespaces": [
+		{
+			// Shared KV for puzzle data — written by puzzle-updater worker, read by this app
+			"binding": "PUZZLE_DATA",
+			"id": "9b7808dbde8a403abe06c6c14a5b5a37"
+		}
+	],
 	"r2_buckets": [
 		// Use R2 incremental cache
 		// See https://opennext.js.org/cloudflare/caching
