@@ -6,8 +6,9 @@ import {
   getFirstTwoLetters,
   getSpangramDirection,
 } from "@/lib/strands-hints";
-import { Eye, Lightbulb } from "lucide-react";
-import { useId, useRef, useState, type ReactNode } from "react";
+import { track } from "@/lib/track";
+import { Eye, Lightbulb, ThumbsDown, ThumbsUp } from "lucide-react";
+import { useEffect, useId, useRef, useState, type ReactNode } from "react";
 import { StrandsGridStatic } from "./StrandsGrid";
 
 /**
@@ -144,9 +145,18 @@ export function StrandsHintLadder({
   );
   const revealedCount = revealed.filter(Boolean).length;
 
-  const reveal = (i: number) =>
+  const reveal = (i: number) => {
     setRevealed((prev) => prev.map((v, idx) => (idx === i ? true : v)));
-  const revealAll = () => setRevealed(rungs.map(() => true));
+    track("strands_hint_reveal", {
+      rung_index: i + 1,
+      rung_label: rungs[i].label,
+      variant,
+    });
+  };
+  const revealAll = () => {
+    setRevealed(rungs.map(() => true));
+    track("strands_hint_reveal_all", { variant });
+  };
 
   return (
     <div className="w-full text-left">
@@ -191,6 +201,70 @@ export function StrandsHintLadder({
           />
         ))}
       </ol>
+
+      {variant === "full" && (
+        <HintFeedback puzzleDate={puzzle.printDate} muted={p.muted} />
+      )}
+    </div>
+  );
+}
+
+function HintFeedback({
+  puzzleDate,
+  muted,
+}: {
+  puzzleDate: string;
+  muted: string;
+}) {
+  const storageKey = `strands_hint_feedback_${puzzleDate}`;
+  const [voted, setVoted] = useState<"up" | "down" | null>(null);
+
+  useEffect(() => {
+    try {
+      const v = window.localStorage.getItem(storageKey);
+      if (v === "up" || v === "down") setVoted(v);
+    } catch {
+      // localStorage unavailable — ignore
+    }
+  }, [storageKey]);
+
+  const vote = (value: "up" | "down") => {
+    setVoted(value);
+    try {
+      window.localStorage.setItem(storageKey, value);
+    } catch {
+      // ignore
+    }
+    track("strands_hint_feedback", { value, puzzle_date: puzzleDate });
+  };
+
+  if (voted) {
+    return (
+      <p className={`mt-5 text-center text-xs ${muted}`}>
+        Thanks for the feedback! 🙌
+      </p>
+    );
+  }
+
+  return (
+    <div className="mt-5 flex items-center justify-center gap-3">
+      <span className={`text-xs ${muted}`}>Were these hints helpful?</span>
+      <button
+        type="button"
+        onClick={() => vote("up")}
+        aria-label="These hints were helpful"
+        className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-border text-muted-foreground transition-colors hover:border-emerald-500/50 hover:text-emerald-500"
+      >
+        <ThumbsUp className="h-4 w-4" aria-hidden="true" />
+      </button>
+      <button
+        type="button"
+        onClick={() => vote("down")}
+        aria-label="These hints were not helpful"
+        className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-border text-muted-foreground transition-colors hover:border-rose-500/50 hover:text-rose-500"
+      >
+        <ThumbsDown className="h-4 w-4" aria-hidden="true" />
+      </button>
     </div>
   );
 }
