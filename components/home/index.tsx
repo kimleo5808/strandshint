@@ -1,9 +1,14 @@
-import { StrandsClickToReveal } from "@/components/strands/StrandsClickToReveal";
+import { StrandsHintLadder } from "@/components/strands/StrandsHintLadder";
 import { CountdownTimer } from "@/components/strands/CountdownTimer";
 import { GUIDES } from "@/data/guides";
 import { LETTER_GAMES } from "@/data/letter-games";
 import { Locale } from "@/i18n/routing";
-import { getLatestPuzzle, getRecentPuzzles } from "@/lib/strands-data";
+import {
+  getLatestPuzzle,
+  getRecentPuzzles,
+  getYesterdayPuzzle,
+} from "@/lib/strands-data";
+import { getDifficulty } from "@/lib/strands-hints";
 import { getLatestConnections } from "@/lib/connections-data";
 import { getLatestWordle } from "@/lib/wordle-hints-data";
 import dayjs from "dayjs";
@@ -52,10 +57,12 @@ export default async function HomeComponent({ locale }: HomeComponentProps) {
   const recentPuzzles = await getRecentPuzzles(9);
   const latestConnections = await getLatestConnections();
   const latestWordle = await getLatestWordle();
+  const yesterdayPuzzle = await getYesterdayPuzzle();
 
   const todayDate = latestPuzzle
     ? dayjs(latestPuzzle.printDate).format("MMMM D, YYYY")
     : "";
+  const difficulty = latestPuzzle ? getDifficulty(latestPuzzle) : null;
 
   return (
     <div className="w-full grid-bg">
@@ -105,24 +112,51 @@ export default async function HomeComponent({ locale }: HomeComponentProps) {
               <p className="text-lg font-bold text-primary">
                 &ldquo;{latestPuzzle.clue}&rdquo;
               </p>
-              <p className="mt-2 text-sm text-slate-400">
-                {latestPuzzle.themeWords.length} theme words + 1 Spangram
-              </p>
+              <div className="mt-2 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm text-slate-400">
+                <span>{latestPuzzle.themeWords.length} theme words + 1 Spangram</span>
+                {difficulty && (
+                  <>
+                    <span className="text-slate-600">&middot;</span>
+                    <span className="inline-flex items-center gap-1.5">
+                      Difficulty:
+                      <span
+                        className={`rounded-md px-2 py-0.5 text-xs font-bold ${
+                          difficulty.level === 1
+                            ? "bg-emerald-500/15 text-emerald-400"
+                            : difficulty.level === 2
+                              ? "bg-amber-500/15 text-amber-400"
+                              : "bg-rose-500/15 text-rose-400"
+                        }`}
+                      >
+                        {difficulty.label}
+                      </span>
+                    </span>
+                  </>
+                )}
+              </div>
             </div>
 
-            {/* Click to reveal */}
-            <div className="mt-8 flex justify-center">
-              <StrandsClickToReveal puzzle={latestPuzzle} />
+            {/* Progressive hint ladder */}
+            <div className="mx-auto mt-8 max-w-xl rounded-2xl border border-slate-700 bg-slate-900/50 p-5">
+              <StrandsHintLadder puzzle={latestPuzzle} variant="compact" onDark />
             </div>
 
-            {/* Link to full hints */}
-            <div className="mt-4 text-center">
+            {/* Yesterday's answer + full hint page links */}
+            <div className="mt-5 flex flex-col items-center gap-2 text-center">
               <Link
                 href="/strands-hint-today"
-                className="text-sm text-primary hover:text-primary/80 transition-colors"
+                className="text-sm font-medium text-primary transition-colors hover:text-primary/80"
               >
-                Need progressive hints? Click here for step-by-step clues →
+                Open the full hint page with the interactive grid →
               </Link>
+              {yesterdayPuzzle && (
+                <Link
+                  href={`/strands-hint/${yesterdayPuzzle.printDate}`}
+                  className="text-xs text-slate-400 transition-colors hover:text-slate-200"
+                >
+                  Missed yesterday? See puzzle #{yesterdayPuzzle.id} answers →
+                </Link>
+              )}
             </div>
           </div>
         </section>
