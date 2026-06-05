@@ -49,6 +49,9 @@ const FAQ_ITEMS = [
   },
 ];
 
+// Revalidate every 30 min so this page picks up new puzzle data from KV
+export const revalidate = 1800;
+
 export async function generateMetadata({
   params,
 }: {

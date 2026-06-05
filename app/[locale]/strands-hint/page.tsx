@@ -25,6 +25,9 @@ const TAG_LINKS = [
   { label: "FAQ", href: "/strands-hint-faq" },
 ];
 
+// Revalidate every 30 min so this page picks up new puzzle data from KV
+export const revalidate = 1800;
+
 export async function generateMetadata({
   params,
 }: {

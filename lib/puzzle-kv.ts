@@ -10,6 +10,7 @@
  * the static JSON files so everything still works offline.
  */
 
+import { getCloudflareContext } from "@opennextjs/cloudflare";
 import type { StrandsDataFile } from "@/types/strands";
 import type { ConnectionsDataFile } from "@/types/connections";
 import type { WordleDataFile } from "@/types/wordle-hint";
@@ -29,27 +30,25 @@ interface KVLike {
 
 /**
  * Get the KV namespace from the Cloudflare execution context.
- * Returns null when running outside Cloudflare (dev, build time).
+ *
+ * OpenNext exposes bindings on `getCloudflareContext().env`, NOT on
+ * `process.env` — `process.env` only ever receives *string* vars, never
+ * object bindings like a KV namespace. We use the async form so this also
+ * resolves during ISR / SSG (where the context is fetched via wrangler's
+ * platform proxy — empty KV locally, which falls back to static JSON).
+ *
+ * Returns null when no Cloudflare context is available (e.g. build time
+ * without wrangler), so callers fall back to the bundled static JSON.
  */
-function getKV(): KVLike | null {
+async function getKV(): Promise<KVLike | null> {
   try {
-    // OpenNext exposes Cloudflare bindings via process.env at runtime
-    const env = process.env as unknown as Record<string, unknown>;
-    if (env.PUZZLE_DATA && typeof (env.PUZZLE_DATA as KVLike).get === "function") {
-      return env.PUZZLE_DATA as KVLike;
+    const { env } = await getCloudflareContext({ async: true });
+    const kv = (env as unknown as Record<string, unknown>).PUZZLE_DATA;
+    if (kv && typeof (kv as KVLike).get === "function") {
+      return kv as KVLike;
     }
   } catch {
-    // Not in Cloudflare runtime
-  }
-
-  // Try globalThis approach (some OpenNext versions)
-  try {
-    const g = globalThis as unknown as Record<string, Record<string, unknown>>;
-    if (g.__env?.PUZZLE_DATA) {
-      return g.__env.PUZZLE_DATA as KVLike;
-    }
-  } catch {
-    // Not available
+    // No Cloudflare context (build time / outside Cloudflare runtime)
   }
 
   return null;
@@ -92,7 +91,7 @@ async function getStaticWordle(): Promise<WordleDataFile> {
 /* ------------------------------------------------------------------ */
 
 export async function getStrandsData(): Promise<StrandsDataFile> {
-  const kv = getKV();
+  const kv = await getKV();
   if (kv) {
     try {
       const data = await kv.get<StrandsDataFile>("puzzles:strands", "json");
@@ -105,7 +104,7 @@ export async function getStrandsData(): Promise<StrandsDataFile> {
 }
 
 export async function getConnectionsData(): Promise<ConnectionsDataFile> {
-  const kv = getKV();
+  const kv = await getKV();
   if (kv) {
     try {
       const data = await kv.get<ConnectionsDataFile>("puzzles:connections", "json");
@@ -118,7 +117,7 @@ export async function getConnectionsData(): Promise<ConnectionsDataFile> {
 }
 
 export async function getWordleData(): Promise<WordleDataFile> {
-  const kv = getKV();
+  const kv = await getKV();
   if (kv) {
     try {
       const data = await kv.get<WordleDataFile>("puzzles:wordle", "json");
