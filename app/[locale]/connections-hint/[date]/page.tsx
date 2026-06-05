@@ -32,8 +32,11 @@ export const revalidate = 60;
 
 export async function generateStaticParams() {
   const allPuzzles = await getAllConnections()
+  // Prerender only the 60 most recent dates; older archive dates render
+  // on-demand via ISR + dynamicParams. Keeps the build-time R2 cache upload
+  // bounded instead of growing by one page per day forever.
   return LOCALES.flatMap((locale) =>
-    allPuzzles.map((puzzle) => ({ locale, date: puzzle.printDate }))
+    allPuzzles.slice(0, 60).map((puzzle) => ({ locale, date: puzzle.printDate }))
   )
 }
 
