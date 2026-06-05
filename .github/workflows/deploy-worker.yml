@@ -1,0 +1,36 @@
+name: Deploy puzzle-updater Worker
+
+# Deploys the standalone cron Worker that writes puzzle data to KV.
+# The main app workflow does NOT cover this Worker, so without this it would
+# only ever deploy by hand — and a forgotten deploy means KV silently stops
+# updating.
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "workers/puzzle-updater/**"
+      - ".github/workflows/deploy-worker.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-worker-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy with Wrangler
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: workers/puzzle-updater
+          command: deploy
