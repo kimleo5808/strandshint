@@ -27,8 +27,8 @@ import { notFound } from 'next/navigation'
 
 type Params = Promise<{ locale: string; date: string }>
 
-// Revalidate every 30 min so this page picks up new puzzle data from KV
-export const revalidate = 1800;
+// Revalidate every 60s so this page picks up new puzzle data from KV
+export const revalidate = 60;
 
 export async function generateStaticParams() {
   const allPuzzles = await getAllConnections()

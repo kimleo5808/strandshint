@@ -3,8 +3,8 @@ import { Locale, LOCALES } from "@/i18n/routing";
 
 type Params = Promise<{ locale: string }>;
 
-// Revalidate every 30 min so this page picks up new puzzle data from KV
-export const revalidate = 1800;
+// Revalidate every 60s so this page picks up new puzzle data from KV
+export const revalidate = 60;
 
 export async function generateStaticParams() {
   return LOCALES.map((locale) => ({ locale }));
