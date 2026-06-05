@@ -137,3 +137,10 @@ package-lock.json
 # OpenNext
 .open-next
 .dev.vars
+
+# Cloudflare Wrangler local state
+.wrangler
+workers/*/.wrangler
+
+# Windows accidental redirect artifact
+nul

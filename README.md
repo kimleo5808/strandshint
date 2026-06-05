@@ -1,293 +1,79 @@
----
-Ship your SaaS faster with Nexty
+# StrandsHint.app
 
-NEXTY.DEV is a comprehensive Next.js SaaS boilerplate that provides everything developers need to rapidly build and launch modern AI web applications
+Daily hints, answers, and archives for NYT word puzzles — **Strands**, **Connections**, and **Wordle** — plus word tools (anagram solver, word finder, Wordle solver) and N-letter word lists.
 
-Try [NEXTY.DEV today](https://nexty.dev?utm_source=github-nextjs-starter)
----
+Live: <https://strandshint.app>
 
-[<img src="/public/try-nexty.webp">](https://nexty.dev?utm_source=github-nextjs-starter)
+## Tech Stack
 
+| Layer | Tech |
+|-------|------|
+| Framework | Next.js 16 (App Router) + React 19, TypeScript (strict) |
+| Styling | Tailwind CSS 3 + shadcn/ui (CVA + clsx + tailwind-merge) |
+| i18n | next-intl v4 (`en` only today; `[locale]` routing kept for future langs) |
+| State | Zustand |
+| Content | MDX blog + static guides |
+| Hosting | **Cloudflare Workers** via `@opennextjs/cloudflare` (R2 incremental cache) |
+| Puzzle data | **Cloudflare KV** (`PUZZLE_DATA`), updated by a separate cron Worker |
+| Package manager | pnpm |
 
-🌍 *[English](README.md) ∙ [简体中文](README_zh.md) ∙ [日本語](README_ja.md)*
+## How puzzle data flows
 
-# Next.js Starter - Multilingual Next.js 16 Starter
-
-A feature-rich Next.js 16 multilingual starter template to help you quickly build globally-ready websites.
-
-- [👉 Source Code](https://github.com/weijunext/nextjs-starter)
-- [👉 Live Demo](https://nextjsstarter.io/)
-
-**🚀 Looking for a full-featured SaaS Starter Template? [Check out the complete version](https://nexty.dev)**
-
-## ✨ Features
-
-- 🌐 Built-in i18n support (English, Chinese, Japanese)
-- 🎨 Modern UI design with Tailwind CSS
-- 🌙 Dark/Light theme toggle
-- 📱 Responsive layout
-- 📝 MDX blog system 
-- 🔍 SEO optimization
-- 📊 Integrated analytics tools
-  - Google Analytics
-  - Baidu Analytics
-  - Google Adsense
-  - Vercel Analytics
-
-## 🚀 Quick Start
-
-### Prerequisites
-
-- Node.js 20.9 or higher
-- pnpm 9.0 or higher (recommended)
-
-> **Note**: The project has configured `packageManager` field, we recommend using pnpm for the best experience.
-
-### Installation
-
-1. Clone the repository:
-```bash
-git clone https://github.com/weijunext/nextjs-starter.git
-cd nextjs-starter
+```
+┌─────────────────────┐   cron 3×/day    ┌──────────────┐   read at runtime   ┌──────────────┐
+│ workers/             │ ───────────────▶ │ Cloudflare   │ ◀───────────────────│ Next.js app  │
+│ puzzle-updater       │  fetch NYT API   │ KV           │  getCloudflareContext│ (ISR pages)  │
+│ (Worker, own deploy) │  write JSON      │ PUZZLE_DATA  │  .env.PUZZLE_DATA    │              │
+└─────────────────────┘                  └──────────────┘                     └──────────────┘
 ```
 
-2. Enable Corepack (recommended):
-```bash
-corepack enable
-```
+- **Writer** — `workers/puzzle-updater/` is a standalone Worker on a cron schedule (UTC 00:30 / 08:30 / 16:30). It fetches the NYT Strands/Connections/Wordle APIs and writes the full data files to the shared KV namespace `PUZZLE_DATA`. Health/manual trigger: `GET /health`, `POST /trigger?batch=N`.
+- **Reader** — `lib/puzzle-kv.ts` reads KV at request time via `getCloudflareContext({async:true}).env.PUZZLE_DATA`. **KV bindings are objects and are NOT exposed on `process.env`** (OpenNext only copies string vars there). If no Cloudflare context is available (build time / local), it falls back to the bundled `data/*/puzzles.json` snapshots.
+- **ISR is required** — every page that reads puzzle data declares `export const revalidate = <seconds>`. Without it the page is statically prerendered at build time (when KV is empty) and would freeze on the static fallback. Archive `[date]` pages render new dates on-demand via `dynamicParams`.
+- `data/*/puzzles.json` are committed **fallback snapshots only**; the live source of truth is KV. Refresh them with `pnpm run update:strands` / `:connections` / `:wordle`.
 
-3. Install dependencies:
+> Note: a fresh deploy briefly serves the build-time fallback until the first request after the `revalidate` window regenerates the page from KV. This is expected.
+
+## Local development
+
 ```bash
 pnpm install
-# or use other package managers
-npm install
-yarn
+cp .dev.vars.example .dev.vars   # local runtime vars
+pnpm dev                         # http://localhost:3000
 ```
 
-4. Copy environment variables:
-```bash
-cp .env.example .env
-```
+`next.config.mjs` calls `initOpenNextCloudflareForDev()`, so `getCloudflareContext()` works in `next dev` (KV is the local miniflare namespace — empty unless seeded, so dev uses the static fallback).
 
-5. Start the development server:
-```bash
-pnpm dev
-# or npm run dev
-```
+## Deploy
 
-Visit http://localhost:3000 to view your application.
-
-## ⚙️ Configuration
-
-1. Basic Setup
-   - Edit `config/site.ts` for website information
-   - Update icons and logo in `public/`
-   - Configure `app/sitemap.ts` for sitemap
-   - Update `app/robots.ts` for robots.txt
-
-2. i18n Setup
-   - Add/modify language files in `i18n/messages/`
-   - Configure supported languages in `i18n/routing.ts`
-   - Set up i18n routing in `middleware.ts`
-   - Create pages under `app/[locale]/`
-   - Use the `Link` component from `i18n/routing.ts` instead of Next.js default
-
-## 📝 Content Management
-
-### Blog Posts
-Create MDX files in `blog/[locale]` with the following format:
-
-```markdown
----
-title: Post Title
-description: Post Description
-image: /image.png
-slug: /url-path
-tags: tag1,tag2
-date: 2025-02-20
-visible: published
-pin: true
----
-
-Post content...
-```
-
-Reference `types/blog.ts` for supported fields.
-
-### Static Pages
-Manage static page content in `content/[page]/[locale].mdx`.
-
-## 🔍 SEO Optimization
-
-Built-in comprehensive SEO features:
-   - Server-side rendering and static generation
-   - Automatic sitemap.xml generation
-   - robots.txt configuration
-   - Optimized metadata
-   - Open Graph support
-   - Multilingual SEO support
-
-## 📊 Analytics
-
-Enable analytics by adding IDs in `.env`:
-```
-NEXT_PUBLIC_GOOGLE_ANALYTICS=
-NEXT_PUBLIC_BAIDU_TONGJI=
-NEXT_PUBLIC_GOOGLE_ADSENSE=
-```
-
-## 📁 Project Structure
-
-```
-nextjs-starter/
-├── app/                      # App directory
-│   ├── [locale]/            # Internationalized routes
-│   │   ├── about/           # About page
-│   │   ├── blog/           # Blog pages
-│   │   └── ...              # Other pages
-│   ├── api/                 # API routes
-│   └── globals/             # Global components
-├── blog/                   # Blog content (MDX)
-│   ├── en/                  # English blog
-│   ├── ja/                  # Japanese blog
-│   └── zh/                  # Chinese blog
-├── components/              # Reusable components
-│   ├── ui/                  # Base UI components
-│   ├── header/              # Header components
-│   ├── footer/              # Footer components
-│   └── ...                  # Other components
-├── config/                  # Configuration files
-├── content/                 # Static content (MDX)
-├── i18n/                    # Internationalization
-│   ├── messages/            # Translation files
-│   ├── routing.ts           # Routing configuration
-│   └── request.ts           # Request configuration
-├── lib/                     # Utility functions
-├── public/                  # Static assets
-└── types/                   # Type definitions
-```
-
-## 🛠️ Tech Stack
-
-- **Framework**: Next.js 16 (App Router)
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS + Shadcn/ui
-- **Internationalization**: next-intl
-- **Content**: MDX
-- **State Management**: Zustand
-- **Deployment**: Vercel
-- **Package Manager**: pnpm (recommended)
-
-## 🚀 Deployment
-
-### One-Click Deploy
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/weijunext/nextjs-starter&project-name=&repository-name=nextjs-starter&demo-title=NextjsStarter&demo-description=Nextjs%2015%20starter.&demo-url=https://nextjsstarter.io&demo-image=https://nextjsstarter.io/og.png)
-
-### Manual Deployment to Vercel
-
-1. Push your code to GitHub
-2. Import project in Vercel
-3. Configure environment variables
-4. Deploy
-
-### Other Platforms
+The main app deploys to Cloudflare Workers automatically on push to `main` (`.github/workflows/deploy-cloudflare.yml` → `pnpm run deploy`).
 
 ```bash
-# Build for production
-pnpm build
+# Main app (also runs in CI)
+pnpm run preview   # build + local Cloudflare runtime preview
+pnpm run deploy    # build + deploy to Cloudflare
 
-# Start production server
-pnpm start
+# Puzzle-updater Worker — deployed separately, NOT covered by the main CI
+cd workers/puzzle-updater
+wrangler deploy
 ```
 
-## 💡 Development Best Practices
+Required secrets for the deploy workflow: `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`, plus the `NEXT_PUBLIC_*` analytics IDs.
 
-### Package Manager
+## Project structure
 
-- Project configured with `packageManager: "pnpm@10.12.4"`
-- Enable Corepack: `corepack enable`
-- Team members should use the same pnpm version
-
-### Code Quality
-
-```bash
-# Lint code
-pnpm lint
-
-# Type checking
-pnpm type-check
+```
+app/[locale]/              All page routes (strands/connections/wordle hint, today, archive, tools)
+components/                strands/ connections/ wordle/ tools/ home/ header/ footer/ ui/
+lib/                       puzzle-kv.ts (KV reader) + per-game data accessors, metadata, jsonld
+data/                      committed fallback puzzle snapshots + game config
+workers/puzzle-updater/    standalone cron Worker that writes puzzle data to KV
+i18n/                      next-intl routing + messages (en)
+blogs/, content/           MDX blog posts and static page content
+config/site.ts             site metadata (BASE_URL, siteConfig)
+scripts/                   update-*.mjs (refresh fallback snapshots), screenshot tools
 ```
 
-### Internationalization Development
-
-1. Adding new language support:
-   - Add new language files in `i18n/messages/`
-   - Update `i18n/routing.ts` configuration
-   - Create corresponding language directories in `blog/` and `content/`
-
-2. Using translations:
-```tsx
-import { useTranslations } from 'next-intl';
-
-export default function MyComponent() {
-  const t = useTranslations('namespace');
-  return <h1>{t('title')}</h1>;
-}
-```
-
-## 🔧 Troubleshooting
-
-### Common Issues
-
-**1. Package manager version mismatch**
-```bash
-# Remove node_modules and lockfile
-rm -rf node_modules pnpm-lock.yaml
-# Reinstall
-pnpm install
-```
-
-**2. MDX files not displaying**
-- Check file path is correct
-- Verify frontmatter format
-- Ensure `visible` field is set to `published`
-
-**3. Internationalization routing issues**
-- Use `Link` component from `i18n/routing.ts`
-- Check `middleware.ts` configuration
-
-**4. Styles not working**
-- Verify Tailwind CSS class names are correct
-- Try restarting development server
-
-### Environment Variables
-
-Ensure `.env` file contains necessary configuration:
-```bash
-# Copy example config
-cp .env.example .env
-# Modify as needed
-```
-
-## 📄 License
+## License
 
 MIT
-
-## 🤝 Contributing
-
-Issues and Pull Requests are welcome!
-
-## About the Author
-
-Next.js full-stack specialist providing expert services in project development, performance optimization, and SEO improvement.
-
-For consulting and training opportunities, reach out at weijunext@gmail.com
-
-- [Github](https://github.com/weijunext)
-- [Bento](https://bento.me/weijunext)
-- [Twitter/X](https://twitter.com/judewei_dev)
-
-<a href="https://www.buymeacoffee.com/weijunext" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
-
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/G2G6TWWMG)
