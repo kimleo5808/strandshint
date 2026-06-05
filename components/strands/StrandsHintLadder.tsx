@@ -7,7 +7,7 @@ import {
   getSpangramDirection,
 } from "@/lib/strands-hints";
 import { Eye, Lightbulb } from "lucide-react";
-import { useState, type ReactNode } from "react";
+import { useId, useRef, useState, type ReactNode } from "react";
 import { StrandsGridStatic } from "./StrandsGrid";
 
 /**
@@ -153,16 +153,20 @@ export function StrandsHintLadder({
       {/* Header */}
       <div className="mb-3 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Lightbulb className="h-5 w-5 text-amber-500" />
+          <Lightbulb className="h-5 w-5 text-amber-500" aria-hidden="true" />
           <span className={`font-heading text-sm font-bold ${p.title}`}>
             Need a hint?
           </span>
-          <span className="rounded-full bg-primary/15 px-2 py-0.5 text-xs font-medium text-primary">
+          <span
+            className="rounded-full bg-primary/15 px-2 py-0.5 text-xs font-medium text-primary"
+            aria-label={`${revealedCount} of ${rungs.length} hints revealed`}
+          >
             {revealedCount}/{rungs.length}
           </span>
         </div>
         {revealedCount < rungs.length && (
           <button
+            type="button"
             onClick={revealAll}
             className={`text-xs font-medium transition-colors hover:opacity-80 ${p.muted}`}
           >
@@ -204,6 +208,9 @@ function RungRow({
   onReveal: () => void;
   p: Record<string, string>;
 }) {
+  const contentId = useId();
+  const contentRef = useRef<HTMLDivElement>(null);
+
   const accent =
     rung.tone === "answer"
       ? p.rowAnswer
@@ -211,11 +218,21 @@ function RungRow({
         ? p.rowSpangram
         : p.rowNormal;
 
+  const handleReveal = () => {
+    onReveal();
+    // Content is always mounted (only visually gated), so we can move focus
+    // to it right away — the reveal button unmounts on the next render.
+    contentRef.current?.focus();
+  };
+
   return (
     <li className={`relative overflow-hidden rounded-xl border ${accent}`}>
       <div className="px-4 py-3">
         <p className={`mb-1.5 flex items-center gap-2 text-xs font-bold ${p.title}`}>
-          <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-primary/15 text-[10px] font-bold text-primary">
+          <span
+            className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-primary/15 text-[10px] font-bold text-primary"
+            aria-hidden="true"
+          >
             {index + 1}
           </span>
           {rung.label}
@@ -230,7 +247,10 @@ function RungRow({
 
         {/* Content is always in the DOM (crawlable); only visually gated. */}
         <div
-          className={`text-sm leading-relaxed ${p.content} ${
+          id={contentId}
+          ref={contentRef}
+          tabIndex={-1}
+          className={`text-sm leading-relaxed outline-none ${p.content} ${
             revealed ? "" : "pointer-events-none select-none blur-[6px]"
           }`}
           aria-hidden={!revealed}
@@ -242,11 +262,13 @@ function RungRow({
       {/* Reveal overlay */}
       {!revealed && (
         <button
-          onClick={onReveal}
+          type="button"
+          onClick={handleReveal}
           aria-expanded={false}
+          aria-controls={contentId}
           className={`absolute inset-0 flex items-center justify-center gap-2 text-sm font-semibold backdrop-blur-[2px] transition-colors ${p.overlay}`}
         >
-          <Eye className="h-4 w-4" />
+          <Eye className="h-4 w-4" aria-hidden="true" />
           Reveal {rung.label.toLowerCase()}
         </button>
       )}

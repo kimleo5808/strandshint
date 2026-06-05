@@ -108,7 +108,9 @@ export function StrandsGrid({
           {/* Spangram button */}
           <div className="flex justify-center">
             <button
+              type="button"
               onClick={() => toggleWord(puzzle.spangram)}
+              aria-pressed={revealedWords.has(puzzle.spangram)}
               className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-bold uppercase tracking-wide transition-all duration-200 ${
                 revealedWords.has(puzzle.spangram)
                   ? "bg-strands-spangram text-amber-950 shadow-md shadow-strands-spangram/30"
@@ -116,9 +118,9 @@ export function StrandsGrid({
               }`}
             >
               {revealedWords.has(puzzle.spangram) ? (
-                <EyeOff className="h-3 w-3" />
+                <EyeOff className="h-3 w-3" aria-hidden="true" />
               ) : (
-                <Eye className="h-3 w-3" />
+                <Eye className="h-3 w-3" aria-hidden="true" />
               )}
               Spangram ({puzzle.spangram.length} letters)
             </button>
@@ -129,7 +131,9 @@ export function StrandsGrid({
             {puzzle.themeWords.map((word) => (
               <button
                 key={word}
+                type="button"
                 onClick={() => toggleWord(word)}
+                aria-pressed={revealedWords.has(word)}
                 className={`inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-bold uppercase tracking-wide transition-all duration-200 ${
                   revealedWords.has(word)
                     ? "bg-strands-theme text-white shadow-md shadow-strands-theme/30"
@@ -137,9 +141,9 @@ export function StrandsGrid({
                 }`}
               >
                 {revealedWords.has(word) ? (
-                  <EyeOff className="h-3 w-3" />
+                  <EyeOff className="h-3 w-3" aria-hidden="true" />
                 ) : (
-                  <Eye className="h-3 w-3" />
+                  <Eye className="h-3 w-3" aria-hidden="true" />
                 )}
                 {word}
               </button>
