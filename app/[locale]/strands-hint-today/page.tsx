@@ -1,11 +1,11 @@
-import { StrandsAnswerReveal } from "@/components/strands/StrandsAnswerReveal";
 import { StrandsGrid } from "@/components/strands/StrandsGrid";
-import { StrandsHintCard, WordHintList } from "@/components/strands/StrandsHintCard";
+import { StrandsHintLadder } from "@/components/strands/StrandsHintLadder";
 import { BASE_URL } from "@/config/site";
 import { GUIDES } from "@/data/guides";
 import { Locale, LOCALES } from "@/i18n/routing";
 import { Link as I18nLink } from "@/i18n/routing";
 import { getLatestPuzzle, getRecentPuzzles } from "@/lib/strands-data";
+import { getDifficulty } from "@/lib/strands-hints";
 import {
   breadcrumbSchema,
   faqPageSchema,
@@ -18,7 +18,6 @@ import {
   BookOpen,
   Calendar,
   Grid3X3,
-  Lightbulb,
   Target,
   Zap,
 } from "lucide-react";
@@ -141,6 +140,7 @@ export default async function StrandsHintTodayPage({
 
   const formattedDate = dayjs(puzzle.printDate).format("MMMM D, YYYY");
   const dayOfWeek = dayjs(puzzle.printDate).format("dddd");
+  const difficulty = getDifficulty(puzzle);
 
   const guides = GUIDES.slice(0, 6);
 
@@ -166,6 +166,18 @@ export default async function StrandsHintTodayPage({
           </span>
           <span className="mx-1">&middot;</span>
           <span>Puzzle #{puzzle.id}</span>
+          <span className="mx-1">&middot;</span>
+          <span
+            className={`rounded-md px-2 py-0.5 text-xs font-bold ${
+              difficulty.level === 1
+                ? "bg-emerald-500/15 text-emerald-600 dark:text-emerald-400"
+                : difficulty.level === 2
+                  ? "bg-amber-500/15 text-amber-600 dark:text-amber-400"
+                  : "bg-rose-500/15 text-rose-600 dark:text-rose-400"
+            }`}
+          >
+            {difficulty.label}
+          </span>
         </div>
         <h1 className="font-heading text-3xl font-bold text-foreground sm:text-4xl">
           Strands Hint Today
@@ -193,29 +205,9 @@ export default async function StrandsHintTodayPage({
       <div className="flex flex-col gap-8 lg:flex-row">
         {/* Main content */}
         <div className="flex-1 space-y-6">
-          {/* Progressive hints */}
+          {/* Progressive hint ladder */}
           <section className="rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-sm">
-            <StrandsHintCard puzzle={puzzle} />
-          </section>
-
-          {/* Individual word hints */}
-          <section className="rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-sm">
-            <div className="flex items-center gap-2 mb-5">
-              <Lightbulb className="h-5 w-5 text-amber-500" />
-              <h2 className="font-heading text-xl font-bold text-foreground">
-                Word-by-Word Hints
-              </h2>
-            </div>
-            <p className="mb-5 text-sm text-muted-foreground">
-              Reveal hints for individual words. Each shows the word length and
-              first letter before revealing the full answer.
-            </p>
-            <WordHintList puzzle={puzzle} />
-          </section>
-
-          {/* Full answers */}
-          <section className="rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-sm">
-            <StrandsAnswerReveal puzzle={puzzle} />
+            <StrandsHintLadder puzzle={puzzle} variant="full" />
           </section>
         </div>
 

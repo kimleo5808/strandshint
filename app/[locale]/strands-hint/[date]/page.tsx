@@ -1,6 +1,5 @@
-import { StrandsAnswerReveal } from "@/components/strands/StrandsAnswerReveal";
 import { StrandsGrid } from "@/components/strands/StrandsGrid";
-import { StrandsHintCard, WordHintList } from "@/components/strands/StrandsHintCard";
+import { StrandsHintLadder } from "@/components/strands/StrandsHintLadder";
 import { BASE_URL } from "@/config/site";
 import { Locale, LOCALES } from "@/i18n/routing";
 import {
@@ -17,7 +16,6 @@ import {
   Calendar,
   BookOpen,
   Lightbulb,
-  Puzzle,
   Target,
   Zap,
 } from "lucide-react";
@@ -273,34 +271,9 @@ export default async function DailyPuzzlePage({
       <div className="flex flex-col gap-8 lg:flex-row">
         {/* Main content */}
         <div className="flex-1 space-y-6 min-w-0">
-          {/* Spoiler / answer reveal */}
+          {/* Progressive hint ladder */}
           <section className="rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-sm">
-            <StrandsAnswerReveal puzzle={puzzle} />
-          </section>
-
-          {/* Progressive hints */}
-          <section className="rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-sm">
-            <div className="flex items-center gap-2 mb-5">
-              <Lightbulb className="h-5 w-5 text-amber-500" />
-              <h2 className="font-heading text-xl font-bold text-foreground">
-                Progressive Hints
-              </h2>
-            </div>
-            <StrandsHintCard puzzle={puzzle} />
-          </section>
-
-          {/* Individual word hints */}
-          <section className="rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-sm">
-            <div className="flex items-center gap-2 mb-5">
-              <Puzzle className="h-5 w-5 text-primary" />
-              <h2 className="font-heading text-xl font-bold text-foreground">
-                Individual Word Hints
-              </h2>
-            </div>
-            <p className="text-sm text-muted-foreground mb-4">
-              Click to reveal hints and answers for each word individually.
-            </p>
-            <WordHintList puzzle={puzzle} />
+            <StrandsHintLadder puzzle={puzzle} variant="full" />
           </section>
 
           {/* ── Answer & Full Analysis ────────────────────── */}
