@@ -147,6 +147,19 @@
           ]
         },
         {
+          "title": "More Puzzle Help",
+          "links": [
+            {
+              "href": "https://wordlehint.info/",
+              "name": "WordleHint"
+            },
+            {
+              "href": "https://connectionshint.app/",
+              "name": "ConnectionsHint"
+            }
+          ]
+        },
+        {
           "title": "Word Games",
           "links": [
             {
