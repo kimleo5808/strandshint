@@ -21,6 +21,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: '/how-to-play-connections', freq: 'monthly', priority: 0.7 },
     { path: '/connections-hint-today', freq: 'daily', priority: 0.9 },
     { path: '/connections-hint', freq: 'daily', priority: 0.8 },
+    { path: '/connections-purple-group', freq: 'monthly', priority: 0.75 },
     { path: '/wordle-hint-today', freq: 'daily', priority: 0.9 },
     { path: '/wordle-hint', freq: 'daily', priority: 0.8 },
     { path: '/word-finder', freq: 'monthly', priority: 0.75 },
