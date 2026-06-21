@@ -18,8 +18,8 @@ import {
   Calendar,
   Lightbulb,
   Target,
-  Trophy,
 } from 'lucide-react'
+import { analyzeWord, generateFAQ } from '@/lib/wordle-analysis'
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -65,57 +65,18 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   })
 }
 
-function analyzeWord(word: string) {
-  const upper = word.toUpperCase()
-  const vowelLetters = upper.split('').filter((l) => 'AEIOU'.includes(l))
-  const vowels = vowelLetters.length
-  const unique = new Set(upper).size
-  const hasDouble = unique < upper.length
-  const repeatedLetters = upper
-    .split('')
-    .filter((l, i, arr) => arr.indexOf(l) !== i)
-  return { vowels, consonants: upper.length - vowels, unique, hasDouble, repeatedLetters: [...new Set(repeatedLetters)] }
-}
-
-function generateFAQ(puzzle: NonNullable<Awaited<ReturnType<typeof getWordleByDate>>>) {
-  const word = puzzle.answer.toUpperCase()
-  const analysis = analyzeWord(word)
-  const formattedDate = dayjs(puzzle.printDate).format('MMMM D, YYYY')
-
-  return [
-    {
-      question: `What is the Wordle answer for ${formattedDate}?`,
-      answer: `The Wordle answer for ${formattedDate} (Puzzle #${puzzle.id}) is ${word}. Use the "Reveal Answer" button above to see it with the tile display.`,
-    },
-    {
-      question: `How many vowels are in the ${formattedDate} Wordle answer?`,
-      answer: `The word ${word} has ${analysis.vowels} vowel${analysis.vowels !== 1 ? 's' : ''} and ${analysis.consonants} consonant${analysis.consonants !== 1 ? 's' : ''}. ${analysis.hasDouble ? `It also contains a repeated letter (${analysis.repeatedLetters.join(', ')}), which can be tricky.` : 'All letters in this word are unique.'}`,
-    },
-    {
-      question: 'What is the best first guess for Wordle?',
-      answer:
-        'Top starting words include CRANE, SLATE, TRACE, RAISE, and ADIEU. The best openers cover common letters (E, A, R, T, S, O, I, N) without repeating any letter, maximizing the information you gain from the first guess.',
-    },
-    {
-      question: 'How does the color-coded feedback work in Wordle?',
-      answer:
-        'Green means the letter is in the correct position. Yellow means the letter is in the word but in the wrong position. Gray means the letter is not in the word at all. Use this feedback to narrow down the answer.',
-    },
-    {
-      question: 'Can I browse other past Wordle answers?',
-      answer:
-        'Yes — visit the Wordle archive to browse all past answers organized by date, each with full hints and word analysis.',
-    },
-  ]
-}
-
-const COMMON_PATTERNS = [
-  { pattern: '-IGHT', examples: 'LIGHT, NIGHT, TIGHT, FIGHT, MIGHT' },
-  { pattern: '-OUND', examples: 'FOUND, ROUND, SOUND, BOUND, MOUND' },
-  { pattern: '-ATCH', examples: 'CATCH, HATCH, MATCH, PATCH, WATCH' },
-  { pattern: '-TION', examples: 'ATION (in longer words), not common in 5-letter Wordle' },
-  { pattern: 'SH---', examples: 'SHARE, SHADE, SHAKE, SHAME, SHAPE' },
-  { pattern: '-OUSE', examples: 'HOUSE, LOUSE, MOUSE, GROUSE' },
+// Evergreen Wordle questions, merged with the per-word FAQ generated below.
+const WORDLE_GENERAL_FAQ = [
+  {
+    question: 'What is the best first guess for Wordle?',
+    answer:
+      'Top starting words include CRANE, SLATE, TRACE, RAISE, and ADIEU. The best openers cover common letters (E, A, R, T, S, O, I, N) without repeating any letter, maximizing the information you gain from the first guess.',
+  },
+  {
+    question: 'How does the color-coded feedback work in Wordle?',
+    answer:
+      'Green means the letter is in the correct position. Yellow means the letter is in the word but in the wrong position. Gray means the letter is not in the word at all. Use this feedback to narrow down the answer.',
+  },
 ]
 
 export default async function WordleHintDatePage({ params }: { params: Params }) {
@@ -127,7 +88,7 @@ export default async function WordleHintDatePage({ params }: { params: Params })
   const formattedDate = dayjs(date).format('MMMM D, YYYY')
   const word = puzzle.answer.toUpperCase()
   const analysis = analyzeWord(word)
-  const faqItems = generateFAQ(puzzle)
+  const faqItems = [...generateFAQ(puzzle), ...WORDLE_GENERAL_FAQ]
   const recentPuzzles = await getRecentWordles(6)
 
   const allPuzzles = await getAllWordles() // newest first
@@ -365,36 +326,6 @@ export default async function WordleHintDatePage({ params }: { params: Params })
                     <p className="text-sm text-muted-foreground">{tip.desc}</p>
                   </div>
                 ))}
-              </div>
-            </section>
-
-            {/* Common Patterns Table */}
-            <section className="rounded-xl border border-border bg-card overflow-hidden">
-              <div className="px-6 py-4 border-b border-border">
-                <h2 className="font-heading text-lg font-bold text-foreground flex items-center gap-2">
-                  <Trophy className="h-5 w-5 text-amber-500" />
-                  Common 5-Letter Word Patterns
-                </h2>
-              </div>
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="bg-muted/50">
-                      <th className="px-4 py-3 text-left font-semibold text-foreground">Pattern</th>
-                      <th className="px-4 py-3 text-left font-semibold text-foreground">Example Words</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {COMMON_PATTERNS.map((row, i) => (
-                      <tr key={i} className="border-t border-border hover:bg-muted/30">
-                        <td className="px-4 py-3">
-                          <span className="font-mono font-bold text-emerald-700">{row.pattern}</span>
-                        </td>
-                        <td className="px-4 py-3 text-muted-foreground">{row.examples}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
               </div>
             </section>
 

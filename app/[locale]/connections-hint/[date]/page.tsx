@@ -10,6 +10,7 @@ import {
   getRecentConnections,
 } from '@/lib/connections-data'
 import { articleSchema, breadcrumbSchema, faqPageSchema, JsonLd } from '@/lib/jsonld'
+import { generateStrategies, generateFAQ } from '@/lib/connections-analysis'
 import { constructMetadata } from '@/lib/metadata'
 import dayjs from 'dayjs'
 import {
@@ -73,33 +74,6 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   })
 }
 
-function generateFAQ(puzzle: NonNullable<Awaited<ReturnType<typeof getConnectionsByDate>>>) {
-  const sorted = [...puzzle.categories].sort((a, b) => a.difficulty - b.difficulty)
-  return [
-    {
-      question: `How many categories are in Connections Puzzle #${puzzle.id}?`,
-      answer: `Like all NYT Connections puzzles, Puzzle #${puzzle.id} has exactly 4 categories with 4 words each, for a total of 16 words to sort.`,
-    },
-    {
-      question: 'What is the Yellow category in this puzzle?',
-      answer: `The Yellow (easiest) category in this puzzle is themed: "${sorted[0].title}". The four words are: ${sorted[0].cards.map((c) => c.content).join(', ')}.`,
-    },
-    {
-      question: 'What is the Purple (hardest) category?',
-      answer: `The Purple category is: "${sorted[3].title}". These are the trickiest words in the puzzle: ${sorted[3].cards.map((c) => c.content).join(', ')}.`,
-    },
-    {
-      question: 'How do I find the answers without spoilers?',
-      answer:
-        'Use the Progressive Hints section above — each level reveals a bit more, from category themes to full answers. Click "Reveal" buttons one at a time to get just the help you need.',
-    },
-    {
-      question: 'Can I browse other Connections puzzles?',
-      answer: `Yes — visit the Connections archive to browse all past puzzles organized by date, each with full hints and answers.`,
-    },
-  ]
-}
-
 export default async function ConnectionsHintDatePage({ params }: { params: Params }) {
   const { date } = await params
   const puzzle = await getConnectionsByDate(date)
@@ -109,6 +83,7 @@ export default async function ConnectionsHintDatePage({ params }: { params: Para
   const formattedDate = dayjs(date).format('MMMM D, YYYY')
   const sorted = [...puzzle.categories].sort((a, b) => a.difficulty - b.difficulty)
   const faqItems = generateFAQ(puzzle)
+  const strategies = generateStrategies(puzzle)
   const recentPuzzles = await getRecentConnections(6)
 
   // Prev/next date navigation
@@ -316,26 +291,12 @@ export default async function ConnectionsHintDatePage({ params }: { params: Para
                 Solving Strategies for This Puzzle
               </h2>
               <ul className="space-y-3 text-sm text-muted-foreground">
-                <li className="flex items-start gap-2">
-                  <span className="mt-1 h-1.5 w-1.5 rounded-full bg-purple-600 shrink-0" />
-                  Start with the Yellow category (&quot;{sorted[0].title}&quot;) — it&apos;s the most straightforward connection.
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="mt-1 h-1.5 w-1.5 rounded-full bg-purple-600 shrink-0" />
-                  The Purple group (&quot;{sorted[3].title}&quot;) is the trickiest — look for unexpected or lateral connections.
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="mt-1 h-1.5 w-1.5 rounded-full bg-purple-600 shrink-0" />
-                  Each word belongs to exactly one category. If a word seems to fit two groups, it&apos;s probably a red herring for the easier one.
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="mt-1 h-1.5 w-1.5 rounded-full bg-purple-600 shrink-0" />
-                  Once you&apos;ve correctly identified two categories, the remaining 8 words split into the other two — making them easier to solve.
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="mt-1 h-1.5 w-1.5 rounded-full bg-purple-600 shrink-0" />
-                  Look for patterns: words that all follow a common word, precede a word, or belong to a hidden category (e.g., all types of something).
-                </li>
+                {strategies.map((tip, i) => (
+                  <li key={i} className="flex items-start gap-2">
+                    <span className="mt-1 h-1.5 w-1.5 rounded-full bg-purple-600 shrink-0" />
+                    {tip}
+                  </li>
+                ))}
               </ul>
             </section>
 

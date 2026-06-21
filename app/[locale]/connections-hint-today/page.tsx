@@ -9,6 +9,7 @@ import {
   getRecentConnections,
 } from '@/lib/connections-data'
 import { breadcrumbSchema, faqPageSchema, JsonLd } from '@/lib/jsonld'
+import { generateStrategies, generateFAQ } from '@/lib/connections-analysis'
 import { constructMetadata } from '@/lib/metadata'
 import dayjs from 'dayjs'
 import {
@@ -53,31 +54,18 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   })
 }
 
-const FAQ_ITEMS = [
+// Evergreen questions about the game itself. Puzzle-specific Q&A is generated
+// per request and merged in below so the list changes day to day.
+const GENERAL_FAQ_ITEMS = [
   {
     question: 'What is NYT Connections?',
     answer:
       'NYT Connections is a daily word puzzle by The New York Times. You are given 16 words and must sort them into 4 groups of 4 that share a common connection. Categories are color-coded by difficulty: Yellow (easiest), Green, Blue, and Purple (hardest).',
   },
   {
-    question: 'How do I use these hints without spoiling the puzzle?',
-    answer:
-      'Our hints are revealed progressively. Each hint button reveals only one level at a time. Start with Hint 1 (category count) and reveal more only when you need help. The full answers are always behind a reveal button.',
-  },
-  {
     question: 'What time does the daily Connections puzzle reset?',
     answer:
       'A new NYT Connections puzzle is released every day at midnight Eastern Time (ET). Our hints are published shortly after the new puzzle goes live.',
-  },
-  {
-    question: 'What makes a category Purple difficulty?',
-    answer:
-      "Purple (difficulty 3) is the hardest category in each Connections puzzle. These groups typically involve tricky wordplay, unusual associations, or words that seem to belong to other categories — they're designed to trip you up.",
-  },
-  {
-    question: 'Can I see yesterday\'s Connections answer?',
-    answer:
-      "Yes — visit our Connections archive page to browse past puzzles with full answers, or check the archive for yesterday's specific date.",
   },
 ]
 
@@ -89,6 +77,10 @@ export default async function ConnectionsHintTodayPage({ params }: { params: Par
   const formattedDate = puzzle ? dayjs(puzzle.printDate).format('MMMM D, YYYY') : 'Today'
   const sorted = puzzle
     ? [...puzzle.categories].sort((a, b) => a.difficulty - b.difficulty)
+    : []
+  const strategies = puzzle ? generateStrategies(puzzle) : []
+  const faqItems = puzzle
+    ? [...generateFAQ(puzzle), ...GENERAL_FAQ_ITEMS]
     : []
 
   return (
@@ -103,7 +95,7 @@ export default async function ConnectionsHintTodayPage({ params }: { params: Par
         {puzzle && (
           <JsonLd
             data={faqPageSchema(
-              FAQ_ITEMS.map((f) => ({ question: f.question, answer: f.answer }))
+              faqItems.map((f) => ({ question: f.question, answer: f.answer }))
             )}
           />
         )}
@@ -206,31 +198,14 @@ export default async function ConnectionsHintTodayPage({ params }: { params: Par
                 <h2 className="font-heading text-xl font-bold text-foreground mb-4">
                   How to Solve Today&apos;s Puzzle
                 </h2>
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                  {[
-                    {
-                      title: 'Start with Yellow',
-                      desc: "The Yellow category is always the easiest. Identify it first to reduce the remaining 12 words you need to sort.",
-                    },
-                    {
-                      title: 'Watch for Traps',
-                      desc: "Some words could fit multiple categories. The Purple group often contains words that seem to belong elsewhere — this is intentional misdirection.",
-                    },
-                    {
-                      title: 'Look for Patterns',
-                      desc: "Categories often follow patterns: things that follow a word, things preceded by a word, or items in a hidden category (e.g., all types of a specific thing).",
-                    },
-                    {
-                      title: 'Use Process of Elimination',
-                      desc: "Once you've identified Yellow and Green confidently, the remaining 8 words split into Blue and Purple — making the harder ones more manageable.",
-                    },
-                  ].map((tip) => (
-                    <div key={tip.title} className="rounded-lg bg-purple-50 p-4">
-                      <h3 className="text-sm font-bold text-purple-900 mb-1">{tip.title}</h3>
-                      <p className="text-sm text-muted-foreground">{tip.desc}</p>
-                    </div>
+                <ul className="space-y-3 text-sm text-muted-foreground">
+                  {strategies.map((tip, i) => (
+                    <li key={i} className="flex items-start gap-2">
+                      <span className="mt-1 h-1.5 w-1.5 rounded-full bg-purple-600 shrink-0" />
+                      {tip}
+                    </li>
                   ))}
-                </div>
+                </ul>
               </section>
 
               {/* Category Breakdown Table */}
@@ -281,7 +256,7 @@ export default async function ConnectionsHintTodayPage({ params }: { params: Par
                   Frequently Asked Questions
                 </h2>
                 <div className="divide-y divide-border">
-                  {FAQ_ITEMS.map((item, i) => (
+                  {faqItems.map((item, i) => (
                     <details key={i} className="group py-4 first:pt-0 last:pb-0">
                       <summary className="flex cursor-pointer items-center justify-between gap-3 text-sm font-semibold text-foreground hover:text-purple-600 list-none">
                         {item.question}

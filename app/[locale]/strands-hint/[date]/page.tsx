@@ -7,6 +7,13 @@ import {
   getPuzzleByDate,
   getRecentPuzzles,
 } from "@/lib/strands-data";
+import {
+  generateOverview,
+  generateStrategyTips,
+  generateFAQ,
+  getWordStats,
+  coordLabel,
+} from "@/lib/strands-analysis";
 import { articleSchema, breadcrumbSchema, faqPageSchema, JsonLd } from "@/lib/jsonld";
 import { constructMetadata } from "@/lib/metadata";
 import dayjs from "dayjs";
@@ -24,64 +31,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 type Params = Promise<{ locale: string; date: string }>;
-
-/* ── auto-generated analysis helpers ────────────────────── */
-function generateOverview(
-  id: number,
-  date: string,
-  clue: string,
-  spangram: string,
-  themeWords: string[]
-) {
-  const formattedDate = dayjs(date).format("MMMM D, YYYY");
-  return `NYT Strands puzzle #${id} (${formattedDate}) has the theme clue "${clue}". The Spangram is "${spangram}" (${spangram.length} letters), and there are ${themeWords.length} theme words to find on the 6×8 letter grid. Below you'll find progressive hints, the complete solution with the solved grid, and strategies to help you solve similar puzzles.`;
-}
-
-function generateStrategyTips(spangram: string, themeWords: string[]) {
-  const tips = [
-    "Start by reading the theme clue carefully — it often contains wordplay or a double meaning that hints at the connection between all words.",
-    `Look for the Spangram first. It's ${spangram.length} letters long and spans from one edge of the board to the other. Finding it reveals the overarching theme.`,
-    "Scan for shorter words (4-5 letters) before tackling longer ones. Shorter words are usually easier to spot on the grid.",
-    "Remember that every letter on the board belongs to exactly one word. If you've found some words, the remaining letters narrow down where other words can be.",
-    "Words are formed by connecting adjacent letters — horizontally, vertically, and diagonally. Letters don't need to be in a straight line.",
-  ];
-
-  if (themeWords.some((w) => w.length >= 7)) {
-    tips.push(
-      "This puzzle has some longer theme words. Try identifying common prefixes or suffixes on the grid to spot them."
-    );
-  }
-
-  return tips;
-}
-
-function generateFAQ(
-  id: number,
-  date: string,
-  clue: string,
-  spangram: string,
-  themeWords: string[]
-) {
-  const formattedDate = dayjs(date).format("MMMM D, YYYY");
-  return [
-    {
-      q: `What is the Spangram for Strands #${id}?`,
-      a: `The Spangram for Strands #${id} (${formattedDate}) is "${spangram}". It's ${spangram.length} letters long and spans the entire board from one side to the other.`,
-    },
-    {
-      q: `What are the theme words in Strands #${id}?`,
-      a: `Strands #${id} has ${themeWords.length} theme words: ${themeWords.join(", ")}. All of these words relate to the theme clue "${clue}".`,
-    },
-    {
-      q: `What is the theme clue for Strands #${id}?`,
-      a: `The theme clue for Strands #${id} is "${clue}". This clue hints at the connection between all theme words and the Spangram on the puzzle grid.`,
-    },
-    {
-      q: "How do I play NYT Strands?",
-      a: "NYT Strands presents a 6×8 letter grid where you find theme words by connecting adjacent letters (horizontally, vertically, or diagonally). Each puzzle has a theme clue, several theme words (highlighted in blue), and one Spangram (highlighted in yellow/gold) that spans the entire board. Every letter on the grid belongs to exactly one word.",
-    },
-  ];
-}
 
 /* ── metadata ───────────────────────────────────────────── */
 // Revalidate every 60s so this page picks up new puzzle data from KV
@@ -141,9 +90,10 @@ export default async function DailyPuzzlePage({
   const formattedDate = dayjs(puzzle.printDate).format("MMMM D, YYYY");
   const dayOfWeek = dayjs(puzzle.printDate).format("dddd");
 
-  const faqItems = generateFAQ(puzzle.id, puzzle.printDate, puzzle.clue, puzzle.spangram, puzzle.themeWords);
-  const strategyTips = generateStrategyTips(puzzle.spangram, puzzle.themeWords);
-  const overview = generateOverview(puzzle.id, puzzle.printDate, puzzle.clue, puzzle.spangram, puzzle.themeWords);
+  const faqItems = generateFAQ(puzzle);
+  const strategyTips = generateStrategyTips(puzzle);
+  const overview = generateOverview(puzzle);
+  const wordStats = getWordStats(puzzle);
 
   // Related puzzles (3 closest, excluding current)
   const relatedPuzzles = recentPuzzles
@@ -349,6 +299,9 @@ export default async function DailyPuzzlePage({
                     <th className="px-4 py-2.5 text-left font-heading font-bold text-foreground">
                       Length
                     </th>
+                    <th className="px-4 py-2.5 text-left font-heading font-bold text-foreground">
+                      Starts at
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -365,14 +318,17 @@ export default async function DailyPuzzlePage({
                     <td className="px-4 py-2.5 text-muted-foreground">
                       {puzzle.spangram.length} letters
                     </td>
+                    <td className="px-4 py-2.5 text-muted-foreground">
+                      {coordLabel(puzzle.spangramCoords?.[0])}
+                    </td>
                   </tr>
-                  {puzzle.themeWords.map((word) => (
+                  {wordStats.map((stat) => (
                     <tr
-                      key={word}
+                      key={stat.word}
                       className="border-b border-border/50 hover:bg-muted/30 transition-colors"
                     >
                       <td className="px-4 py-2.5 font-mono font-bold text-foreground uppercase">
-                        {word}
+                        {stat.word}
                       </td>
                       <td className="px-4 py-2.5">
                         <span className="inline-flex items-center gap-1.5">
@@ -381,7 +337,10 @@ export default async function DailyPuzzlePage({
                         </span>
                       </td>
                       <td className="px-4 py-2.5 text-muted-foreground">
-                        {word.length} letters
+                        {stat.length} letters
+                      </td>
+                      <td className="px-4 py-2.5 text-muted-foreground">
+                        {stat.startLabel}
                       </td>
                     </tr>
                   ))}

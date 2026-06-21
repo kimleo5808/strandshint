@@ -5,7 +5,13 @@ import { GUIDES } from "@/data/guides";
 import { Locale, LOCALES } from "@/i18n/routing";
 import { Link as I18nLink } from "@/i18n/routing";
 import { getLatestPuzzle, getRecentPuzzles } from "@/lib/strands-data";
-import { getDifficulty } from "@/lib/strands-hints";
+import { getDifficulty, getSpangramDirection } from "@/lib/strands-hints";
+import {
+  generateOverview,
+  generateStrategyTips,
+  generateFAQ,
+  getWordSetFacts,
+} from "@/lib/strands-analysis";
 import {
   breadcrumbSchema,
   faqPageSchema,
@@ -27,58 +33,21 @@ import Link from "next/link";
 
 type Params = Promise<{ locale: string }>;
 
-const STRATEGY_TIPS = [
-  {
-    title: "Read the Theme Clue",
-    description:
-      "The theme clue is your biggest advantage. Think about what words could relate to it before scanning the grid.",
-    icon: Target,
-  },
-  {
-    title: "Find the Spangram First",
-    description:
-      "The Spangram spans the entire board and relates directly to the theme. Finding it first helps you understand what other words to look for.",
-    icon: Zap,
-  },
-  {
-    title: "Look for Short Words",
-    description:
-      "Shorter theme words (3-5 letters) are often easier to spot. Start with these to build momentum and narrow down remaining letters.",
-    icon: Grid3X3,
-  },
-  {
-    title: "Use Hint Letters Wisely",
-    description:
-      "After 3 incorrect guesses you earn a hint that highlights a letter. Use these strategically to confirm words you're unsure about.",
-    icon: BookOpen,
-  },
-];
+// Icons rotated across the per-puzzle strategy tips generated at request time.
+const TIP_ICONS = [Target, Zap, Grid3X3, BookOpen];
 
-const FAQ_ITEMS = [
+// Evergreen "how the game works" questions. Puzzle-specific Q&A is generated
+// per request and merged in below, so this list stays general.
+const GENERAL_FAQ_ITEMS = [
   {
     question: "When does the new Strands puzzle come out?",
     answer:
       "The new NYT Strands puzzle is released every day at midnight Eastern Time. We update our hints page shortly after, ensuring you have access to fresh hints as soon as the new puzzle goes live.",
   },
   {
-    question: "What is the Spangram in Strands?",
-    answer:
-      "The Spangram is a special word that spans the entire board from one side to the other (left-to-right or top-to-bottom). It directly relates to the puzzle's theme and is highlighted in yellow/gold when found. Every Strands puzzle has exactly one Spangram.",
-  },
-  {
-    question: "How many theme words are in each Strands puzzle?",
-    answer:
-      "Each Strands puzzle contains a varying number of theme words (typically 6-8) plus one Spangram. All theme words relate to the clue given at the top of the puzzle. Every letter on the board is used by either a theme word or the Spangram.",
-  },
-  {
     question: "What happens when I make wrong guesses in Strands?",
     answer:
       "In Strands, after every 3 incorrect word guesses, you earn a hint that highlights one letter of a theme word on the board. This helps you narrow down where the remaining words are hidden.",
-  },
-  {
-    question: "How do I play NYT Strands?",
-    answer:
-      "NYT Strands presents a 6×8 letter grid with a theme clue. Your goal is to find all the theme words hidden in the grid by connecting adjacent letters (horizontally, vertically, or diagonally). You also need to find the Spangram — a special word that spans the entire board. Every letter on the board is part of either a theme word or the Spangram.",
   },
 ];
 
@@ -141,6 +110,14 @@ export default async function StrandsHintTodayPage({
   const formattedDate = dayjs(puzzle.printDate).format("MMMM D, YYYY");
   const dayOfWeek = dayjs(puzzle.printDate).format("dddd");
   const difficulty = getDifficulty(puzzle);
+  const dir = getSpangramDirection(puzzle);
+  const facts = getWordSetFacts(puzzle);
+  const overview = generateOverview(puzzle);
+  const strategyTips = generateStrategyTips(puzzle);
+  const faqItems = [
+    ...generateFAQ(puzzle).map((f) => ({ question: f.q, answer: f.a })),
+    ...GENERAL_FAQ_ITEMS,
+  ];
 
   const guides = GUIDES.slice(0, 6);
 
@@ -155,7 +132,7 @@ export default async function StrandsHintTodayPage({
           },
         ])}
       />
-      <JsonLd data={faqPageSchema(FAQ_ITEMS)} />
+      <JsonLd data={faqPageSchema(faqItems)} />
 
       {/* Title */}
       <header className="text-center mb-8">
@@ -254,25 +231,23 @@ export default async function StrandsHintTodayPage({
           Today&apos;s Strategy Tips
         </h2>
         <p className="mt-2 text-muted-foreground">
-          Master today&apos;s Strands puzzle with these expert strategies:
+          Tips tailored to puzzle #{puzzle.id} — its grid, its words, today only:
         </p>
         <div className="mt-6 grid gap-4 sm:grid-cols-2">
-          {STRATEGY_TIPS.map((tip) => (
-            <div
-              key={tip.title}
-              className="rounded-xl border border-primary/20 bg-card p-5"
-            >
-              <div className="flex items-center gap-2 mb-2">
-                <tip.icon className="h-4 w-4 text-primary" />
-                <h3 className="font-heading text-sm font-bold text-foreground">
-                  {tip.title}
-                </h3>
+          {strategyTips.map((tip, i) => {
+            const Icon = TIP_ICONS[i % TIP_ICONS.length];
+            return (
+              <div
+                key={i}
+                className="rounded-xl border border-primary/20 bg-card p-5"
+              >
+                <Icon className="h-4 w-4 text-primary mb-2" />
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  {tip}
+                </p>
               </div>
-              <p className="text-sm leading-relaxed text-muted-foreground">
-                {tip.description}
-              </p>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 
@@ -315,9 +290,10 @@ export default async function StrandsHintTodayPage({
               The Spangram
             </h3>
             <p className="text-sm leading-relaxed text-muted-foreground">
-              The Spangram is often the key to unlocking the puzzle. Once you
-              identify it, the theme becomes clearer and the remaining words are
-              easier to spot on the grid.
+              Today&apos;s Spangram is {puzzle.spangram.length} letters and{" "}
+              {dir.description}. Tracing it early from the {dir.startEdge} splits
+              the board in two and locks in the theme &ldquo;{puzzle.clue}&rdquo;,
+              which makes the remaining words far easier to place.
             </p>
           </div>
           <div className="rounded-xl border-l-4 border-l-strands-theme border border-border bg-card p-5">
@@ -325,9 +301,12 @@ export default async function StrandsHintTodayPage({
               Theme Word Difficulty
             </h3>
             <p className="text-sm leading-relaxed text-muted-foreground">
-              Some theme words may use less common vocabulary or have unexpected
-              letter paths on the grid. Look for words that connect diagonally
-              — these are often the trickiest to spot.
+              This board hides {facts.count} theme words ranging from{" "}
+              {facts.shortest} to {facts.longest} letters (averaging{" "}
+              {facts.avgLength}).{" "}
+              {facts.sharedFirstLetters.length
+                ? `Watch the repeated starting letters (${facts.sharedFirstLetters.join(", ")}) — more than one word begins the same way, so the first match you spot may not be the only one.`
+                : `Every theme word starts with a different letter (${facts.firstLetters.join(", ")}), so first-letter scanning is a dependable way to tell them apart.`}
             </p>
           </div>
           <div className="rounded-xl border-l-4 border-l-emerald-500 border border-border bg-card p-5">
@@ -335,10 +314,11 @@ export default async function StrandsHintTodayPage({
               Recommended Approach
             </h3>
             <p className="text-sm leading-relaxed text-muted-foreground">
-              Start by reading the theme clue carefully. Scan the grid for
-              obvious words that match the theme. Once you find a few, the
-              remaining words become easier to locate through the process of
-              elimination — remember, every letter must be used!
+              By our heuristic, puzzle #{puzzle.id} plays as{" "}
+              {difficulty.label.toLowerCase()}. Read the clue, find the Spangram
+              from the {dir.startEdge}, then work outward — every letter on the
+              board belongs to exactly one word, so each word you confirm tightens
+              where the rest can hide.
             </p>
           </div>
         </div>
@@ -408,7 +388,7 @@ export default async function StrandsHintTodayPage({
           Frequently Asked Questions
         </h2>
         <div className="mt-6 space-y-4 max-w-3xl mx-auto">
-          {FAQ_ITEMS.map((item) => (
+          {faqItems.map((item) => (
             <div
               key={item.question}
               className="rounded-xl border border-border bg-card p-5 shadow-sm"
@@ -430,12 +410,7 @@ export default async function StrandsHintTodayPage({
           About Today&apos;s Strands Puzzle
         </h2>
         <div className="space-y-4 text-sm leading-relaxed text-muted-foreground">
-          <p>
-            Today&apos;s NYT Strands puzzle challenges you to find hidden words
-            in a 6×8 letter grid. Every puzzle features a unique theme clue that
-            ties all the words together, plus a special Spangram that stretches
-            across the entire board.
-          </p>
+          <p>{overview}</p>
           <p>
             Strands combines the satisfaction of word search puzzles with the
             thematic depth of crosswords. The beauty of the game is that every

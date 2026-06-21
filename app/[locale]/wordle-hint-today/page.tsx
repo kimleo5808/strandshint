@@ -4,6 +4,7 @@ import { WordlePuzzleCardCompact } from '@/components/wordle-hints/WordlePuzzleC
 import { BASE_URL } from '@/config/site'
 import { Locale, LOCALES } from '@/i18n/routing'
 import { getLatestWordle, getRecentWordles } from '@/lib/wordle-hints-data'
+import { analyzeWord, generateStrategyTips, generateFAQ } from '@/lib/wordle-analysis'
 import { breadcrumbSchema, faqPageSchema, JsonLd } from '@/lib/jsonld'
 import { constructMetadata } from '@/lib/metadata'
 import dayjs from 'dayjs'
@@ -61,12 +62,9 @@ const TOP_STARTING_WORDS = [
   { word: 'TEARS', reason: 'T, E, A, R, S — all very frequent in 5-letter words' },
 ]
 
-const FAQ_ITEMS = [
-  {
-    question: 'What is the Wordle hint for today?',
-    answer:
-      "Use our progressive hint system above — it reveals clues one level at a time, starting with letter count and ending with the full answer. Click 'Reveal Hint 1' to begin.",
-  },
+// Evergreen questions about the game. Today's word-specific Q&A is generated
+// per request and merged in below, so the list changes with each answer.
+const GENERAL_FAQ_ITEMS = [
   {
     question: 'What time does the daily Wordle reset?',
     answer:
@@ -82,25 +80,7 @@ const FAQ_ITEMS = [
     answer:
       "Popular starting words include CRANE, SLATE, TRACE, and RAISE. The best opener covers common letters (E, A, R, T, S, O, I, N) without repeating any. Avoid words with double letters on your first guess.",
   },
-  {
-    question: 'Can I see past Wordle answers?',
-    answer:
-      'Yes — visit our Wordle archive to browse all past daily answers organized by date, each with hints and word analysis.',
-  },
-  {
-    question: 'Is there a trick to winning Wordle every day?',
-    answer:
-      "The best strategy: start with a word covering common letters (like CRANE), use yellow tiles to eliminate positions, and save guesses by thinking logically about remaining possibilities. Never repeat a gray letter.",
-  },
 ]
-
-function analyzeWord(word: string) {
-  const upper = word.toUpperCase()
-  const vowels = (upper.match(/[AEIOU]/g) || []).length
-  const unique = new Set(upper).size
-  const hasDouble = unique < upper.length
-  return { vowels, consonants: upper.length - vowels, unique, hasDouble }
-}
 
 export default async function WordleHintTodayPage({ params }: { params: Params }) {
   await params
@@ -109,6 +89,10 @@ export default async function WordleHintTodayPage({ params }: { params: Params }
 
   const formattedDate = puzzle ? dayjs(puzzle.printDate).format('MMMM D, YYYY') : 'Today'
   const analysis = puzzle ? analyzeWord(puzzle.answer) : null
+  const strategyTips = puzzle ? generateStrategyTips(puzzle.answer) : []
+  const faqItems = puzzle
+    ? [...generateFAQ(puzzle), ...GENERAL_FAQ_ITEMS]
+    : []
 
   const letterVariants = [4, 5, 6, 7, 8, 9, 10, 11]
 
@@ -123,7 +107,7 @@ export default async function WordleHintTodayPage({ params }: { params: Params }
         />
         <JsonLd
           data={faqPageSchema(
-            FAQ_ITEMS.map((f) => ({ question: f.question, answer: f.answer }))
+            faqItems.map((f) => ({ question: f.question, answer: f.answer }))
           )}
         />
 
@@ -276,39 +260,14 @@ export default async function WordleHintTodayPage({ params }: { params: Params }
                 <h2 className="font-heading text-xl font-bold text-foreground mb-4">
                   Strategy Tips for Today
                 </h2>
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                  {[
-                    {
-                      title: 'Start Strong',
-                      desc: "Use a word like CRANE or SLATE as your opener to cover the most common letters in Wordle answers.",
-                    },
-                    {
-                      title: 'Use Yellow Tiles Wisely',
-                      desc: "Yellow means the letter is in the word but not in that position. Move it to a different spot in your next guess.",
-                    },
-                    {
-                      title: "Don't Repeat Gray Letters",
-                      desc: "Gray letters are not in the word at all. Never include them in a future guess — it wastes a turn.",
-                    },
-                    {
-                      title: 'Think in Patterns',
-                      desc: "Common endings like -IGHT, -OUND, -ATCH appear frequently. If you have some letters, think about what patterns they could complete.",
-                    },
-                    {
-                      title: 'Count Your Guesses',
-                      desc: "With 6 guesses, you can afford to use early guesses to gather information rather than trying to guess the word immediately.",
-                    },
-                    {
-                      title: 'Avoid Double Letters Early',
-                      desc: "On your first 1-2 guesses, avoid words with double letters. Use all unique letters to maximize the information you get.",
-                    },
-                  ].map((tip) => (
-                    <div key={tip.title} className="rounded-lg bg-emerald-50 p-4">
-                      <h3 className="text-sm font-bold text-emerald-900 mb-1">{tip.title}</h3>
-                      <p className="text-sm text-muted-foreground">{tip.desc}</p>
-                    </div>
+                <ul className="space-y-3 text-sm text-muted-foreground">
+                  {strategyTips.map((tip, i) => (
+                    <li key={i} className="flex items-start gap-2">
+                      <span className="mt-1 h-1.5 w-1.5 rounded-full bg-emerald-600 shrink-0" />
+                      {tip}
+                    </li>
                   ))}
-                </div>
+                </ul>
               </section>
 
               {/* Best Starting Words */}
@@ -351,7 +310,7 @@ export default async function WordleHintTodayPage({ params }: { params: Params }
                   Frequently Asked Questions
                 </h2>
                 <div className="divide-y divide-border">
-                  {FAQ_ITEMS.map((item, i) => (
+                  {faqItems.map((item, i) => (
                     <details key={i} className="group py-4 first:pt-0 last:pb-0">
                       <summary className="flex cursor-pointer items-center justify-between gap-3 text-sm font-semibold text-foreground hover:text-emerald-600 list-none">
                         {item.question}
