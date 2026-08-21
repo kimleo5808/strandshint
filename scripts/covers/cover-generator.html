@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #1a1a2e; font-family: 'Segoe UI', sans-serif; }
+
+  .cover {
+    width: 1200px;
+    height: 630px;
+    position: relative;
+    overflow: hidden;
+    margin: 40px auto;
+    display: flex;
+  }
+
+  /* === COVER 1: Strategies === */
+  .cover-1 {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+  }
+  .cover-1 .left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px;
+    z-index: 2;
+  }
+  .cover-1 .badge {
+    display: inline-block;
+    background: #3b82f6;
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 6px 16px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    width: fit-content;
+  }
+  .cover-1 .title {
+    color: white;
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 1.15;
+    max-width: 580px;
+  }
+  .cover-1 .title span {
+    color: #f59e0b;
+  }
+  .cover-1 .subtitle {
+    color: #94a3b8;
+    font-size: 20px;
+    margin-top: 20px;
+    max-width: 480px;
+    line-height: 1.5;
+  }
+  .cover-1 .right {
+    width: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  /* Grid component */
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(6, 52px);
+    grid-template-rows: repeat(8, 52px);
+    gap: 4px;
+    transform: rotate(-5deg);
+  }
+  .grid-cell {
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 8px;
+    color: #e2e8f0;
+    background: #334155;
+  }
+  .grid-cell.theme {
+    background: #3b82f6;
+    color: white;
+    box-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
+  }
+  .grid-cell.spangram {
+    background: #f59e0b;
+    color: #1a1a2e;
+    box-shadow: 0 0 12px rgba(245, 158, 11, 0.4);
+  }
+
+  /* Glow effects */
+  .glow-blue {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.15), transparent 70%);
+    border-radius: 50%;
+    top: 50%;
+    right: 10%;
+    transform: translateY(-50%);
+  }
+  .glow-amber {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(245, 158, 11, 0.12), transparent 70%);
+    border-radius: 50%;
+    bottom: 10%;
+    right: 30%;
+  }
+
+  /* === COVER 2: Patterns === */
+  .cover-2 {
+    background: linear-gradient(135deg, #0c1220 0%, #162032 50%, #0c1220 100%);
+  }
+  .cover-2 .left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px;
+    z-index: 2;
+  }
+  .cover-2 .badge {
+    display: inline-block;
+    background: #8b5cf6;
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 6px 16px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    width: fit-content;
+  }
+  .cover-2 .title {
+    color: white;
+    font-size: 46px;
+    font-weight: 800;
+    line-height: 1.15;
+    max-width: 540px;
+  }
+  .cover-2 .title span {
+    color: #a78bfa;
+  }
+  .cover-2 .subtitle {
+    color: #94a3b8;
+    font-size: 19px;
+    margin-top: 20px;
+    max-width: 460px;
+    line-height: 1.5;
+  }
+  .cover-2 .right {
+    width: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+  }
+  .pattern-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transform: rotate(-3deg);
+  }
+  .pattern-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 14px 20px;
+    backdrop-filter: blur(10px);
+  }
+  .pattern-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .pattern-card .label {
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .pattern-card .desc {
+    color: #94a3b8;
+    font-size: 12px;
+    margin-top: 2px;
+  }
+  .pi-1 { background: rgba(59, 130, 246, 0.2); }
+  .pi-2 { background: rgba(245, 158, 11, 0.2); }
+  .pi-3 { background: rgba(16, 185, 129, 0.2); }
+  .pi-4 { background: rgba(139, 92, 246, 0.2); }
+  .pi-5 { background: rgba(244, 63, 94, 0.2); }
+
+  /* === COVER 3: Beginner === */
+  .cover-3 {
+    background: linear-gradient(135deg, #0f172a 0%, #1a2740 50%, #0f172a 100%);
+  }
+  .cover-3 .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px;
+    z-index: 2;
+  }
+  .cover-3 .badge {
+    display: inline-block;
+    background: #10b981;
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 6px 16px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .cover-3 .title {
+    color: white;
+    font-size: 52px;
+    font-weight: 800;
+    line-height: 1.15;
+    max-width: 800px;
+  }
+  .cover-3 .title span {
+    color: #34d399;
+  }
+  .cover-3 .subtitle {
+    color: #94a3b8;
+    font-size: 20px;
+    margin-top: 20px;
+    max-width: 600px;
+    line-height: 1.5;
+  }
+  .cover-3 .mini-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 44px);
+    gap: 3px;
+    margin-top: 36px;
+  }
+  .cover-3 .mini-cell {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 6px;
+    color: #94a3b8;
+    background: #1e293b;
+  }
+  .cover-3 .mini-cell.t {
+    background: #3b82f6;
+    color: white;
+  }
+  .cover-3 .mini-cell.s {
+    background: #f59e0b;
+    color: #1a1a2e;
+  }
+  .cover-3 .arrows {
+    display: flex;
+    gap: 40px;
+    margin-top: 16px;
+  }
+  .cover-3 .arrow-label {
+    color: #64748b;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .cover-3 .dot-blue {
+    width: 12px; height: 12px; border-radius: 3px; background: #3b82f6;
+  }
+  .cover-3 .dot-gold {
+    width: 12px; height: 12px; border-radius: 3px; background: #f59e0b;
+  }
+
+  /* Brand watermark */
+  .brand {
+    position: absolute;
+    bottom: 24px;
+    right: 30px;
+    color: rgba(255,255,255,0.3);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    z-index: 10;
+  }
+
+  h2.label {
+    color: #64748b;
+    text-align: center;
+    margin-top: 60px;
+    margin-bottom: -20px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+</style>
+</head>
+<body>
+
+<h2 class="label">Cover 1: Strategies Guide</h2>
+<div class="cover cover-1" id="cover1">
+  <div class="left">
+    <div class="badge">Strategy Guide</div>
+    <div class="title">10 Proven <span>Strategies</span> to Solve NYT Strands</div>
+    <div class="subtitle">Master the grid, find the Spangram, and solve every puzzle faster.</div>
+  </div>
+  <div class="right">
+    <div class="glow-blue"></div>
+    <div class="glow-amber"></div>
+    <div class="grid-container">
+      <div class="grid-cell">r</div><div class="grid-cell">o</div><div class="grid-cell theme">a</div><div class="grid-cell theme">p</div><div class="grid-cell theme">p</div><div class="grid-cell theme">l</div>
+      <div class="grid-cell">t</div><div class="grid-cell">n</div><div class="grid-cell theme">e</div><div class="grid-cell">k</div><div class="grid-cell">w</div><div class="grid-cell theme">e</div>
+      <div class="grid-cell spangram">f</div><div class="grid-cell spangram">r</div><div class="grid-cell spangram">u</div><div class="grid-cell spangram">i</div><div class="grid-cell spangram">t</div><div class="grid-cell spangram">s</div>
+      <div class="grid-cell">m</div><div class="grid-cell">g</div><div class="grid-cell">h</div><div class="grid-cell theme">p</div><div class="grid-cell theme">e</div><div class="grid-cell">d</div>
+      <div class="grid-cell theme">g</div><div class="grid-cell theme">r</div><div class="grid-cell theme">a</div><div class="grid-cell theme">p</div><div class="grid-cell">s</div><div class="grid-cell">l</div>
+      <div class="grid-cell theme">e</div><div class="grid-cell">v</div><div class="grid-cell">j</div><div class="grid-cell">q</div><div class="grid-cell theme">c</div><div class="grid-cell">b</div>
+      <div class="grid-cell">i</div><div class="grid-cell theme">m</div><div class="grid-cell theme">a</div><div class="grid-cell theme">n</div><div class="grid-cell theme">g</div><div class="grid-cell theme">o</div>
+      <div class="grid-cell">u</div><div class="grid-cell">x</div><div class="grid-cell theme">h</div><div class="grid-cell theme">e</div><div class="grid-cell theme">r</div><div class="grid-cell theme">r</div>
+    </div>
+  </div>
+  <div class="brand">strandshint.app</div>
+</div>
+
+<h2 class="label">Cover 2: Theme Patterns</h2>
+<div class="cover cover-2" id="cover2">
+  <div class="left">
+    <div class="badge">Theme Analysis</div>
+    <div class="title">NYT Strands <span>Theme Patterns</span> Decoded</div>
+    <div class="subtitle">7 theme types you'll encounter in every puzzle — and how to crack them.</div>
+  </div>
+  <div class="right">
+    <div class="pattern-cards">
+      <div class="pattern-card">
+        <div class="pattern-icon pi-1">📋</div>
+        <div><div class="label">Category Themes</div><div class="desc">Fruits, Animals, Colors...</div></div>
+      </div>
+      <div class="pattern-card">
+        <div class="pattern-icon pi-2">🔤</div>
+        <div><div class="label">Pun-Based Clues</div><div class="desc">"On a roll" → Types of rolls</div></div>
+      </div>
+      <div class="pattern-card">
+        <div class="pattern-icon pi-3">🔍</div>
+        <div><div class="label">Hidden Words</div><div class="desc">beCAMEL, enCOWrage</div></div>
+      </div>
+      <div class="pattern-card">
+        <div class="pattern-icon pi-4">🔗</div>
+        <div><div class="label">Compound Words</div><div class="desc">SUN + flower, burn, rise</div></div>
+      </div>
+      <div class="pattern-card">
+        <div class="pattern-icon pi-5">🎬</div>
+        <div><div class="label">Pop Culture</div><div class="desc">Movies, TV, Games...</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="brand">strandshint.app</div>
+</div>
+
+<h2 class="label">Cover 3: Beginner's Guide</h2>
+<div class="cover cover-3" id="cover3">
+  <div class="content">
+    <div class="badge">Beginner's Guide</div>
+    <div class="title">How to Play <span>NYT Strands</span></div>
+    <div class="subtitle">Rules, tips, and everything you need to start solving today.</div>
+    <div class="mini-grid">
+      <div class="mini-cell">s</div><div class="mini-cell">h</div><div class="mini-cell t">w</div><div class="mini-cell t">a</div><div class="mini-cell t">v</div><div class="mini-cell t">e</div>
+      <div class="mini-cell s">b</div><div class="mini-cell s">e</div><div class="mini-cell s">a</div><div class="mini-cell s">c</div><div class="mini-cell s">h</div><div class="mini-cell">n</div>
+      <div class="mini-cell t">s</div><div class="mini-cell t">a</div><div class="mini-cell t">n</div><div class="mini-cell t">d</div><div class="mini-cell">r</div><div class="mini-cell">p</div>
+    </div>
+    <div class="arrows">
+      <div class="arrow-label"><div class="dot-blue"></div> Theme Words</div>
+      <div class="arrow-label"><div class="dot-gold"></div> Spangram</div>
+    </div>
+  </div>
+  <div class="brand">strandshint.app</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0f172a; font-family: 'Segoe UI', sans-serif; }
+
+  .og {
+    width: 1200px;
+    height: 630px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #0f172a 100%);
+  }
+
+  .left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 50px 60px 70px;
+    z-index: 2;
+  }
+
+  .site-name {
+    color: #94a3b8;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .title {
+    color: white;
+    font-size: 54px;
+    font-weight: 800;
+    line-height: 1.1;
+    max-width: 560px;
+  }
+  .title .blue { color: #3b82f6; }
+  .title .gold { color: #f59e0b; }
+
+  .subtitle {
+    color: #94a3b8;
+    font-size: 20px;
+    margin-top: 20px;
+    max-width: 480px;
+    line-height: 1.5;
+  }
+
+  .tags {
+    display: flex;
+    gap: 10px;
+    margin-top: 28px;
+  }
+  .tag {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .tag-blue { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
+  .tag-gold { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+  .tag-green { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+
+  .right {
+    width: 440px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(6, 50px);
+    grid-template-rows: repeat(8, 50px);
+    gap: 4px;
+    transform: rotate(-5deg);
+  }
+  .cell {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 19px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 7px;
+    color: #64748b;
+    background: #1e293b;
+  }
+  .cell.t {
+    background: #3b82f6;
+    color: white;
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+  }
+  .cell.s {
+    background: #f59e0b;
+    color: #1a1a2e;
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.3);
+  }
+
+  .glow-1 {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.12), transparent 70%);
+    border-radius: 50%;
+    top: 20%;
+    right: 5%;
+  }
+  .glow-2 {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(245, 158, 11, 0.1), transparent 70%);
+    border-radius: 50%;
+    bottom: 15%;
+    right: 25%;
+  }
+
+  .brand {
+    position: absolute;
+    bottom: 24px;
+    right: 30px;
+    color: rgba(255,255,255,0.25);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    z-index: 10;
+  }
+</style>
+</head>
+<body>
+
+<div class="og" id="og">
+  <div class="left">
+    <div class="site-name">StrandsHint.app</div>
+    <div class="title">
+      Daily <span class="blue">Hints</span> & <span class="gold">Answers</span> for NYT Strands
+    </div>
+    <div class="subtitle">
+      Progressive hints, Spangram clues, full archive, and strategy guides.
+    </div>
+    <div class="tags">
+      <span class="tag tag-blue">Theme Hints</span>
+      <span class="tag tag-gold">Spangram</span>
+      <span class="tag tag-green">Daily Puzzle</span>
+    </div>
+  </div>
+  <div class="right">
+    <div class="glow-1"></div>
+    <div class="glow-2"></div>
+    <div class="grid-container">
+      <div class="cell">r</div><div class="cell">o</div><div class="cell t">w</div><div class="cell t">a</div><div class="cell t">v</div><div class="cell t">e</div>
+      <div class="cell">t</div><div class="cell">n</div><div class="cell t">s</div><div class="cell">k</div><div class="cell">p</div><div class="cell t">s</div>
+      <div class="cell s">b</div><div class="cell s">e</div><div class="cell s">a</div><div class="cell s">c</div><div class="cell s">h</div><div class="cell">d</div>
+      <div class="cell">m</div><div class="cell">g</div><div class="cell">h</div><div class="cell t">s</div><div class="cell t">h</div><div class="cell t">e</div>
+      <div class="cell t">s</div><div class="cell t">a</div><div class="cell t">n</div><div class="cell t">d</div><div class="cell">j</div><div class="cell t">l</div>
+      <div class="cell">v</div><div class="cell">x</div><div class="cell">q</div><div class="cell">i</div><div class="cell t">l</div><div class="cell">b</div>
+      <div class="cell t">t</div><div class="cell t">o</div><div class="cell t">w</div><div class="cell t">e</div><div class="cell t">l</div><div class="cell">u</div>
+      <div class="cell">f</div><div class="cell">y</div><div class="cell t">s</div><div class="cell t">u</div><div class="cell t">r</div><div class="cell t">f</div>
+    </div>
+  </div>
+  <div class="brand">strandshint.app</div>
+</div>
+
+</body>
+</html>
