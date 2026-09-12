@@ -32,6 +32,15 @@ const COVERS = [
     tiles: ['#10b981', '#f59e0b', '#334155', '#10b981'],
   },
   {
+    file: 'sharing-puzzle-results-cover.svg',
+    eyebrow: 'PUZZLE CULTURE',
+    title: 'Sharing Your\nResults',
+    subtitle: 'How the emoji grid took over.',
+    accent: '#34d399',
+    accent2: '#3b82f6',
+    tiles: ['#10b981', '#f59e0b', '#334155', '#10b981'],
+  },
+  {
     file: 'strands-spangram-guide-cover.svg',
     eyebrow: 'NYT STRANDS',
     title: 'The Spangram,\nExplained',
