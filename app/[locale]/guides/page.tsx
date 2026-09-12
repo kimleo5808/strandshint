@@ -18,16 +18,17 @@ export async function generateMetadata({
 
   return constructMetadata({
     page: "Guides",
-    title: "Strands Guides - Master NYT Strands Puzzles",
+    title: "Puzzle Guides - NYT Strands and Wordle Strategy",
     description:
-      "Comprehensive guides for NYT Strands puzzle. From beginner basics to advanced expert techniques, learn strategies, find Spangrams, and master every theme.",
+      "In-depth guides for NYT Strands and Wordle. Spangram tactics, theme types, Hard Mode rules, and the endgame decisions that cost most players a guess.",
     keywords: [
       "strands guides",
       "strands strategy guide",
+      "wordle strategy guide",
+      "wordle hard mode",
       "how to play strands",
       "strands tips",
-      "strands tutorial",
-      "strands help",
+      "puzzle guides",
     ],
     locale: locale as Locale,
     path: `/guides`,
@@ -68,11 +69,11 @@ export default async function GuidesPage({ params }: { params: Params }) {
             </span>
           </div>
           <h1 className="mt-2 font-heading text-3xl font-bold text-foreground sm:text-4xl">
-            Strands Puzzle Guides
+            Puzzle Guides
           </h1>
           <p className="mt-2 max-w-2xl text-muted-foreground">
-            From beginner basics to advanced expert techniques. Master NYT
-            Strands with our comprehensive guide collection.
+            Strategy guides for NYT Strands and Wordle, from the basic rules
+            through Spangram tactics, Hard Mode, and endgame decisions.
           </p>
         </div>
       </header>

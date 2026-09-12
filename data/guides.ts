@@ -1,3 +1,5 @@
+import { WORDLE_GUIDES } from "./guides-wordle";
+
 export type GuideSection = {
   id: string;
   icon: string;
@@ -23,7 +25,7 @@ export type Guide = {
   sections: GuideSection[];
 };
 
-export const GUIDES: Guide[] = [
+const STRANDS_GUIDES: Guide[] = [
   {
     slug: "beginner-guide",
     title: "Strands Beginner's Guide",
@@ -1054,6 +1056,8 @@ export const GUIDES: Guide[] = [
     ],
   },
 ];
+
+export const GUIDES: Guide[] = [...STRANDS_GUIDES, ...WORDLE_GUIDES];
 
 export function getGuideBySlug(slug: string): Guide | undefined {
   return GUIDES.find((g) => g.slug === slug);
