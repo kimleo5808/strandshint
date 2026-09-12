@@ -3,6 +3,7 @@ import { WordleAnswerReveal } from '@/components/wordle-hints/WordleAnswerReveal
 import { WordlePuzzleCardCompact } from '@/components/wordle-hints/WordlePuzzleCard'
 import { BASE_URL } from '@/config/site'
 import { Locale, LOCALES } from '@/i18n/routing'
+import { Link as I18nLink } from '@/i18n/routing'
 import {
   getAllWordles,
   getWordleByDate,
@@ -20,6 +21,12 @@ import {
   Target,
 } from 'lucide-react'
 import { analyzeWord, generateFAQ } from '@/lib/wordle-analysis'
+import {
+  describeFamily,
+  getDefinition,
+  getWordFamily,
+  WORDNET_LICENCE,
+} from '@/lib/wordle-word-info'
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -66,19 +73,6 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 }
 
 // Evergreen Wordle questions, merged with the per-word FAQ generated below.
-const WORDLE_GENERAL_FAQ = [
-  {
-    question: 'What is the best first guess for Wordle?',
-    answer:
-      'Top starting words include CRANE, SLATE, TRACE, RAISE, and ADIEU. The best openers cover common letters (E, A, R, T, S, O, I, N) without repeating any letter, maximizing the information you gain from the first guess.',
-  },
-  {
-    question: 'How does the color-coded feedback work in Wordle?',
-    answer:
-      'Green means the letter is in the correct position. Yellow means the letter is in the word but in the wrong position. Gray means the letter is not in the word at all. Use this feedback to narrow down the answer.',
-  },
-]
-
 export default async function WordleHintDatePage({ params }: { params: Params }) {
   const { date } = await params
   const puzzle = await getWordleByDate(date)
@@ -88,7 +82,22 @@ export default async function WordleHintDatePage({ params }: { params: Params })
   const formattedDate = dayjs(date).format('MMMM D, YYYY')
   const word = puzzle.answer.toUpperCase()
   const analysis = analyzeWord(word)
-  const faqItems = [...generateFAQ(puzzle), ...WORDLE_GENERAL_FAQ]
+  const definition = getDefinition(word)
+  const family = getWordFamily(word)
+  const familyNote = describeFamily(family)
+
+  const faqItems = generateFAQ(puzzle)
+
+  // Page-specific, unlike the general Wordle questions this page used to
+  // repeat on all 300-odd archive entries.
+  if (definition) {
+    faqItems.push({
+      question: `What does ${word} mean?`,
+      answer: `${word} is a ${definition.pos}. ${definition.definition}.${
+        definition.example ? ` For example: "${definition.example}".` : ''
+      }`,
+    })
+  }
   const recentPuzzles = await getRecentWordles(6)
 
   const allPuzzles = await getAllWordles() // newest first
@@ -172,7 +181,7 @@ export default async function WordleHintDatePage({ params }: { params: Params })
                 Progressive Hints
               </h2>
               <p className="text-sm text-muted-foreground mb-4">
-                Reveal clues one at a time. Each hint gives a little more away — stop when you have enough to solve it yourself.
+                Reveal clues one at a time, and stop as soon as you are unstuck.
               </p>
               <WordleHintCard puzzle={puzzle} />
             </section>
@@ -297,6 +306,73 @@ export default async function WordleHintDatePage({ params }: { params: Params })
               </div>
             </section>
 
+            {/* Definition — the one thing on this page that is not derived
+                from the puzzle data, and what most readers search for. */}
+            {definition && (
+              <section className="rounded-xl border border-border bg-card p-6">
+                <h2 className="font-heading text-xl font-bold text-foreground mb-4">
+                  What does {word} mean?
+                </h2>
+                <div className="rounded-lg bg-muted/50 p-4">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                    {definition.pos}
+                  </p>
+                  <p className="mt-1 text-base text-foreground">
+                    {definition.definition}
+                  </p>
+                  {definition.example && (
+                    <p className="mt-3 border-l-2 border-emerald-500 pl-3 text-sm italic text-muted-foreground">
+                      &ldquo;{definition.example}&rdquo;
+                    </p>
+                  )}
+                </div>
+                <p className="mt-3 text-xs text-muted-foreground">
+                  {WORDNET_LICENCE}
+                </p>
+              </section>
+            )}
+
+            {/* Word family — whether this answer was a genuine trap. */}
+            {family && familyNote && (
+              <section className="rounded-xl border border-border bg-card p-6">
+                <h2 className="font-heading text-xl font-bold text-foreground mb-4">
+                  Words that look like {word}
+                </h2>
+                <p className="text-sm text-muted-foreground">
+                  {familyNote}
+                </p>
+                {family.siblings.length > 0 && (
+                  <div className="mt-4">
+                    <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                      Also ending in -{family.suffix}
+                    </p>
+                    <div className="mt-2 flex flex-wrap gap-2">
+                      {family.siblings.map((sibling) => (
+                        <span
+                          key={sibling}
+                          className="rounded-md bg-muted px-2.5 py-1 font-mono text-sm text-foreground"
+                        >
+                          {sibling}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                {family.siblings.length >= 5 && (
+                  <p className="mt-4 text-sm text-muted-foreground">
+                    Boards like this one are covered in more detail in the{' '}
+                    <I18nLink
+                      href="/guides/wordle-endgame"
+                      className="font-medium text-emerald-600 hover:underline"
+                    >
+                      Wordle endgame guide
+                    </I18nLink>
+                    .
+                  </p>
+                )}
+              </section>
+            )}
+
             {/* Solving Strategy */}
             <section className="rounded-xl border border-border bg-card p-6">
               <h2 className="font-heading text-xl font-bold text-foreground mb-4">
@@ -311,14 +387,6 @@ export default async function WordleHintDatePage({ params }: { params: Params })
                   {
                     title: 'Vowel Strategy',
                     desc: `${word} has ${analysis.vowels} vowel${analysis.vowels !== 1 ? 's' : ''}. ${analysis.vowels >= 3 ? 'With 3+ vowels, a vowel-heavy guess like ADIEU helps early.' : 'With fewer vowels, focus on consonant-rich guesses after your opener.'}`,
-                  },
-                  {
-                    title: 'Pattern Recognition',
-                    desc: `Once you know ${word[0]} is the starting letter, think of all common 5-letter words beginning with ${word[0]}. This narrows the field significantly.`,
-                  },
-                  {
-                    title: 'Elimination Method',
-                    desc: `Each green or yellow tile eliminates hundreds of possibilities. After 2-3 good guesses, the remaining candidates are usually manageable to work through logically.`,
                   },
                 ].map((tip) => (
                   <div key={tip.title} className="rounded-lg bg-emerald-50 p-4">
