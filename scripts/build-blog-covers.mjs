@@ -59,6 +59,15 @@ const COVERS = [
     tiles: ['#f59e0b', '#fb7185', '#3b82f6', '#10b981'],
   },
   {
+    file: 'zodiac-words-cover.svg',
+    eyebrow: 'VOCABULARY',
+    title: 'Zodiac Words\nin Word Games',
+    subtitle: 'Only three signs fit in Wordle.',
+    accent: '#c084fc',
+    accent2: '#60a5fa',
+    tiles: ['#8b5cf6', '#3b82f6', '#f59e0b', '#8b5cf6'],
+  },
+  {
     file: 'strands-spangram-guide-cover.svg',
     eyebrow: 'NYT STRANDS',
     title: 'The Spangram,\nExplained',
