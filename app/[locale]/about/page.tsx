@@ -1,13 +1,12 @@
 import MDXComponents from "@/components/mdx/MDXComponents";
+import { getStaticPageContent } from "@/lib/getStaticPage";
 import { BASE_URL } from "@/config/site";
 import { Locale, LOCALES } from "@/i18n/routing";
 import { breadcrumbSchema, JsonLd } from "@/lib/jsonld";
 import { constructMetadata } from "@/lib/metadata";
-import fs from "fs/promises";
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { MDXRemote } from "next-mdx-remote-client/rsc";
-import path from "path";
 import remarkGfm from "remark-gfm";
 
 const options = {
@@ -18,21 +17,6 @@ const options = {
   },
 };
 
-async function getMDXContent(locale: string) {
-  const filePath = path.join(
-    process.cwd(),
-    "content",
-    "about",
-    `${locale}.mdx`
-  );
-  try {
-    const content = await fs.readFile(filePath, "utf-8");
-    return content;
-  } catch (error) {
-    console.error(`Error reading MDX file: ${error}`);
-    return "";
-  }
-}
 
 type Params = Promise<{
   locale: string;
@@ -63,7 +47,7 @@ export async function generateMetadata({
 
 export default async function AboutPage({ params }: { params: Params }) {
   const { locale } = await params;
-  const content = await getMDXContent(locale);
+  const content = getStaticPageContent("about", locale);
 
   return (
     <div className="mx-auto w-full max-w-4xl space-y-6 px-4 py-10 sm:px-6 lg:px-8">
