@@ -50,6 +50,15 @@ const COVERS = [
     tiles: ['#f59e0b', '#3b82f6', '#f59e0b', '#3b82f6'],
   },
   {
+    file: 'puzzle-recap-channels-cover.svg',
+    eyebrow: 'DAILY PUBLISHING',
+    title: 'The Daily\nRecap',
+    subtitle: 'Ship before they solve it.',
+    accent: '#fb7185',
+    accent2: '#f59e0b',
+    tiles: ['#f59e0b', '#fb7185', '#3b82f6', '#10b981'],
+  },
+  {
     file: 'strands-spangram-guide-cover.svg',
     eyebrow: 'NYT STRANDS',
     title: 'The Spangram,\nExplained',
