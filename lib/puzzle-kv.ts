@@ -14,6 +14,7 @@ import { getCloudflareContext } from "@opennextjs/cloudflare";
 import type { StrandsDataFile } from "@/types/strands";
 import type { ConnectionsDataFile } from "@/types/connections";
 import type { WordleDataFile } from "@/types/wordle-hint";
+import { puzzleNumberFor, type PuzzleGame } from "@/lib/puzzle-number";
 
 /* ------------------------------------------------------------------ */
 /*  Minimal KV type (avoids dependency on @cloudflare/workers-types)   */
@@ -87,6 +88,38 @@ async function getStaticWordle(): Promise<WordleDataFile> {
 }
 
 /* ------------------------------------------------------------------ */
+/*  Puzzle number correction                                           */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Replace NYT's internal `id` with the number players actually see.
+ *
+ * Everything downstream renders `id` as "Puzzle #N" — the type comments have
+ * always described it as the sequential puzzle number — but the updater stored
+ * the API's internal database key instead, so every archive page advertised a
+ * number that matched nothing in the game. Correcting it here covers KV and the
+ * static fallback at once, and keeps the original under `nytId` for tracing.
+ */
+function withPuzzleNumbers<T extends { id: number; printDate: string }>(
+  game: PuzzleGame,
+  puzzles: T[]
+): T[] {
+  return puzzles.map((puzzle) => {
+    // Wordle publishes its own counter; trust it over the date arithmetic so a
+    // skipped or doubled day upstream cannot drift the whole archive.
+    const published = (puzzle as { daysSinceLaunch?: number }).daysSinceLaunch;
+    const number =
+      typeof published === "number" && published > 0
+        ? published
+        : puzzleNumberFor(game, puzzle.printDate);
+
+    if (number === null || number === puzzle.id) return puzzle;
+
+    return { ...puzzle, id: number, nytId: puzzle.id };
+  });
+}
+
+/* ------------------------------------------------------------------ */
 /*  Public API — KV-first, static fallback                             */
 /* ------------------------------------------------------------------ */
 
@@ -95,12 +128,15 @@ export async function getStrandsData(): Promise<StrandsDataFile> {
   if (kv) {
     try {
       const data = await kv.get<StrandsDataFile>("puzzles:strands", "json");
-      if (data && data.puzzles.length > 0) return data;
+      if (data && data.puzzles.length > 0) {
+        return { ...data, puzzles: withPuzzleNumbers("strands", data.puzzles) };
+      }
     } catch (e) {
       console.error("[puzzle-kv] Failed to read strands from KV:", e);
     }
   }
-  return getStaticStrands();
+  const fallback = await getStaticStrands();
+  return { ...fallback, puzzles: withPuzzleNumbers("strands", fallback.puzzles) };
 }
 
 export async function getConnectionsData(): Promise<ConnectionsDataFile> {
@@ -108,12 +144,15 @@ export async function getConnectionsData(): Promise<ConnectionsDataFile> {
   if (kv) {
     try {
       const data = await kv.get<ConnectionsDataFile>("puzzles:connections", "json");
-      if (data && data.puzzles.length > 0) return data;
+      if (data && data.puzzles.length > 0) {
+        return { ...data, puzzles: withPuzzleNumbers("connections", data.puzzles) };
+      }
     } catch (e) {
       console.error("[puzzle-kv] Failed to read connections from KV:", e);
     }
   }
-  return getStaticConnections();
+  const fallback = await getStaticConnections();
+  return { ...fallback, puzzles: withPuzzleNumbers("connections", fallback.puzzles) };
 }
 
 export async function getWordleData(): Promise<WordleDataFile> {
@@ -121,10 +160,13 @@ export async function getWordleData(): Promise<WordleDataFile> {
   if (kv) {
     try {
       const data = await kv.get<WordleDataFile>("puzzles:wordle", "json");
-      if (data && data.puzzles.length > 0) return data;
+      if (data && data.puzzles.length > 0) {
+        return { ...data, puzzles: withPuzzleNumbers("wordle", data.puzzles) };
+      }
     } catch (e) {
       console.error("[puzzle-kv] Failed to read wordle from KV:", e);
     }
   }
-  return getStaticWordle();
+  const fallback = await getStaticWordle();
+  return { ...fallback, puzzles: withPuzzleNumbers("wordle", fallback.puzzles) };
 }

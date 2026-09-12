@@ -69,6 +69,13 @@ interface WordlePuzzle {
   printDate: string;
   answer: string;
   editor: string;
+  /**
+   * The number players see in the game. NYT's `id` is an internal key that
+   * jumps around (4774 on 2026-09-01, 2349 eleven days later), so it must not
+   * be shown. Only Wordle publishes the real number; Strands and Connections
+   * are derived from the print date in lib/puzzle-number.ts.
+   */
+  daysSinceLaunch?: number;
 }
 
 interface DataFile<T> {
@@ -272,11 +279,16 @@ function normalizeWordle(raw: Record<string, unknown>): WordlePuzzle | null {
 
   if (!id || !printDate || !answer) return null;
 
+  const daysSinceLaunch = (raw.days_since_launch ?? raw.daysSinceLaunch) as
+    | number
+    | undefined;
+
   return {
     id,
     printDate,
     answer,
     editor: (raw.editor as string) || "",
+    ...(typeof daysSinceLaunch === "number" ? { daysSinceLaunch } : {}),
   };
 }
 

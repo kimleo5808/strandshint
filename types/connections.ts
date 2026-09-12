@@ -25,8 +25,14 @@ export interface ConnectionsCategory {
 
 /** A complete Connections puzzle for a single day */
 export interface ConnectionsPuzzle {
-  /** Puzzle number (sequential) */
+  /**
+   * Puzzle number as shown in the game (sequential from launch day).
+   * Derived in lib/puzzle-number.ts — NYT's API returns an internal key
+   * here, not this number.
+   */
   id: number;
+  /** NYT's internal API id, kept for tracing when it differs from `id`. */
+  nytId?: number;
   /** Date string in YYYY-MM-DD format */
   printDate: string;
   /** Editor name */
