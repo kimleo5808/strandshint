@@ -190,7 +190,7 @@
             },
             {
               "href": "/blog",
-              "name": "Puzzle Tips & Articles"
+              "name": "Blog"
             }
           ]
         },
@@ -272,9 +272,7 @@
       ]
     },
     "BlogCta": {
-      "title": "Read the puzzle guides",
-      "description": "Long-form strategy articles for Strands, Connections and Wordle.",
-      "button": "Browse all articles"
+      "button": "Blog"
     }
   },
   "Home": {
