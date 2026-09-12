@@ -4,37 +4,85 @@
       {
         "name": "Strands",
         "links": [
-          { "name": "Today's Hints", "href": "/strands-hint-today" },
-          { "name": "Yesterday's Answer", "href": "/strands-hint-yesterday" },
-          { "name": "Full Archive", "href": "/strands-hint" },
-          { "name": "How to Play", "href": "/how-to-play-strands" },
-          { "name": "Statistics", "href": "/strands-statistics" },
-          { "name": "FAQ", "href": "/strands-hint-faq" }
+          {
+            "name": "Today's Hints",
+            "href": "/strands-hint-today"
+          },
+          {
+            "name": "Yesterday's Answer",
+            "href": "/strands-hint-yesterday"
+          },
+          {
+            "name": "Full Archive",
+            "href": "/strands-hint"
+          },
+          {
+            "name": "How to Play",
+            "href": "/how-to-play-strands"
+          },
+          {
+            "name": "Statistics",
+            "href": "/strands-statistics"
+          },
+          {
+            "name": "FAQ",
+            "href": "/strands-hint-faq"
+          }
         ]
       },
       {
         "name": "Connections",
         "links": [
-          { "name": "Today's Hints", "href": "/connections-hint-today" },
-          { "name": "Full Archive", "href": "/connections-hint" },
-          { "name": "How to Play", "href": "/how-to-play-connections" }
+          {
+            "name": "Today's Hints",
+            "href": "/connections-hint-today"
+          },
+          {
+            "name": "Full Archive",
+            "href": "/connections-hint"
+          },
+          {
+            "name": "How to Play",
+            "href": "/how-to-play-connections"
+          }
         ]
       },
       {
         "name": "Wordle",
         "links": [
-          { "name": "Today's Hints", "href": "/wordle-hint-today" },
-          { "name": "Full Archive", "href": "/wordle-hint" },
-          { "name": "Wordle Solver", "href": "/wordle-solver" },
-          { "name": "Play Wordle", "href": "/5-letters" }
+          {
+            "name": "Today's Hints",
+            "href": "/wordle-hint-today"
+          },
+          {
+            "name": "Full Archive",
+            "href": "/wordle-hint"
+          },
+          {
+            "name": "Wordle Solver",
+            "href": "/wordle-solver"
+          },
+          {
+            "name": "Play Wordle",
+            "href": "/5-letters"
+          }
         ]
       },
       {
         "name": "Tools",
         "links": [
-          { "name": "Word Finder", "href": "/word-finder" },
-          { "name": "Anagram Solver", "href": "/anagram-solver" },
-          { "name": "Wordle Solver", "href": "/wordle-solver" }
+          {
+            "name": "Word Finder",
+            "href": "/word-finder"
+          },
+          {
+            "name": "Anagram Solver",
+            "href": "/anagram-solver"
+          },
+          {
+            "name": "Wordle Solver",
+            "href": "/wordle-solver"
+          }
         ]
       },
       {
@@ -142,7 +190,7 @@
             },
             {
               "href": "/blog",
-              "name": "Tips & Articles"
+              "name": "Puzzle Tips & Articles"
             }
           ]
         },
@@ -222,6 +270,11 @@
           ]
         }
       ]
+    },
+    "BlogCta": {
+      "title": "Read the puzzle guides",
+      "description": "Long-form strategy articles for Strands, Connections and Wordle.",
+      "button": "Browse all articles"
     }
   },
   "Home": {
@@ -230,8 +283,9 @@
     "description": "Get today's NYT Strands hints and answers with progressive clues — from vague nudges to full solutions. Find the Spangram, solve all theme words, and browse our complete puzzle archive. Updated daily, 100% free."
   },
   "Blog": {
-    "title": "Tips & Guides",
-    "description": "Strategies, tips, and insights for solving NYT Strands puzzles"
+    "title": "Puzzle Tips & Articles",
+    "description": "In-depth articles on NYT Strands, Connections and Wordle — solving methods, theme patterns, Spangram tactics and opening-word theory, written out in full.",
+    "empty": "No articles published yet. Check back soon."
   },
   "About": {
     "title": "About StrandsHint",

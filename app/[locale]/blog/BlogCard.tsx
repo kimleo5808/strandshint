@@ -15,6 +15,10 @@ export function BlogCard({ post, locale }: { post: BlogPost; locale: string }) {
           src={post.image || "/placeholder.svg"}
           alt={`Cover image for ${post.title}`}
           fill
+          // Without sizes, fill requests the 3840px variant for a card that is
+          // never wider than a third of the grid.
+          sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+          unoptimized={post.image?.endsWith('.svg')}
           className="object-cover shadow-sm w-full rounded hover:shadow-lg transition-shadow duration-200 h-[200p]"
         />
       </div>

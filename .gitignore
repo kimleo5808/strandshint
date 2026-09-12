@@ -144,3 +144,4 @@ workers/*/.wrangler
 
 # Windows accidental redirect artifact
 nul
+.gstack/

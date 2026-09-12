@@ -6,8 +6,8 @@
     "node": "20.x"
   },
   "scripts": {
-    "build": "next build",
-    "dev": "next dev",
+    "build": "node scripts/build-blogs.mjs && next build",
+    "dev": "node scripts/build-blogs.mjs && next dev",
     "start": "next start",
     "lint": "eslint .",
     "update:strands": "node scripts/update-strands.mjs",
@@ -15,10 +15,11 @@
     "update:wordle": "node scripts/update-wordle.mjs",
     "fix": "pnpm i fix-react2shell-next@latest && npx fix-react2shell-next",
     "update:next": "pnpm i next@latest react@latest react-dom@latest @next/env@latest @next/bundle-analyzer@latest @types/react@latest @types/react-dom@latest",
-    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
-    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
-    "upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
-    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
+    "preview": "node scripts/build-blogs.mjs && opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "deploy": "node scripts/build-blogs.mjs && opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "upload": "node scripts/build-blogs.mjs && opennextjs-cloudflare build && opennextjs-cloudflare upload",
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
+    "build:blogs": "node scripts/build-blogs.mjs"
   },
   "dependencies": {
     "@next/bundle-analyzer": "^16.1.5",

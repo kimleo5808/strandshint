@@ -14,3 +14,9 @@ export type BlogPost = {
     [key: string]: any
   },
 }
+
+// Shape emitted by scripts/build-blogs.mjs. Identical to BlogPost except the
+// date is an ISO string, since JSON cannot carry a Date.
+export type RawBlogPost = Omit<BlogPost, 'date'> & {
+  date: string
+}

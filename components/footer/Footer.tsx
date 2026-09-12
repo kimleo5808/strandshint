@@ -1,4 +1,5 @@
 import SocialShare from "@/components/footer/SocialShare";
+import { ArrowRight } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import { Link as I18nLink } from "@/i18n/routing";
 import { FooterLink } from "@/types/common";
@@ -61,6 +62,30 @@ export default async function Footer() {
             </ul>
           </div>
         ))}
+      </div>
+
+      {/* Blog entry point — the long-form articles are easy to miss among the
+          link columns, so they get a dedicated call to action. */}
+      <div className="border-t border-slate-800">
+        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-4 px-4 py-8 sm:px-6 md:flex-row md:items-center lg:px-8">
+          <div>
+            <h3 className="font-heading text-lg font-semibold text-white">
+              {tFooter("BlogCta.title")}
+            </h3>
+            <p className="mt-1 text-sm text-slate-400">
+              {tFooter("BlogCta.description")}
+            </p>
+          </div>
+          <I18nLink
+            href="/blog"
+            title={tFooter("BlogCta.button")}
+            prefetch={false}
+            className="inline-flex shrink-0 items-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+          >
+            {tFooter("BlogCta.button")}
+            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          </I18nLink>
+        </div>
       </div>
 
       {/* Bottom bar */}
