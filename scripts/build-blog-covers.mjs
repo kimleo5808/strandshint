@@ -41,6 +41,15 @@ const COVERS = [
     tiles: ['#10b981', '#f59e0b', '#334155', '#10b981'],
   },
   {
+    file: 'puzzle-accessibility-cover.svg',
+    eyebrow: 'ACCESSIBILITY',
+    title: 'Puzzles You\nCannot See',
+    subtitle: 'Colour, grids and screen readers.',
+    accent: '#60a5fa',
+    accent2: '#a78bfa',
+    tiles: ['#f59e0b', '#3b82f6', '#f59e0b', '#3b82f6'],
+  },
+  {
     file: 'strands-spangram-guide-cover.svg',
     eyebrow: 'NYT STRANDS',
     title: 'The Spangram,\nExplained',
