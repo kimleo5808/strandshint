@@ -8,6 +8,12 @@ import { MetadataRoute } from 'next'
 
 const siteUrl = siteConfig.url
 
+// Puzzle rows come from KV, which is unreachable at build time — the build
+// only sees the bundled JSON fallback. Without a revalidate window the sitemap
+// stayed pinned to that build output (x-nextjs-cache: HIT forever), so a fresh
+// deploy published 537 URLs instead of the ~950 that actually exist.
+export const revalidate = 3600
+
 type ChangeFrequency = 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never' | undefined
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
