@@ -40,5 +40,21 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build and deploy with OpenNext
-        run: pnpm run deploy
+      # Same as `pnpm run deploy`, split so only the upload is retried.
+      # (`opennextjs-cloudflare build` runs `pnpm build`, which includes
+      # scripts/build-content.mjs.)
+      - name: Build with OpenNext
+        run: pnpm exec opennextjs-cloudflare build
+
+      # `wrangler r2 bulk put` (the R2 cache upload) fails the whole deploy
+      # when a single object gets a transient 502 from Cloudflare's API. A
+      # retry re-uploads 233-ish objects, well under the account's
+      # 1,200-requests-per-5-minutes limit.
+      - name: Deploy with OpenNext
+        run: |
+          for attempt in 1 2 3; do
+            pnpm exec opennextjs-cloudflare deploy && exit 0
+            echo "::warning::Deploy attempt $attempt failed; retrying in 30s"
+            [ "$attempt" -lt 3 ] && sleep 30
+          done
+          exit 1
