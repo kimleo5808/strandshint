@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-05T13:43:30.058Z",
+  "lastUpdated": "2026-11-03T08:08:24.905Z",
   "puzzles": [
     {
       "id": 2030,
@@ -749,6 +749,912 @@
       "id": 1353,
       "printDate": "2026-06-05",
       "answer": "NOBLY",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1616,
+      "printDate": "2026-06-06",
+      "answer": "MORPH",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 4375,
+      "printDate": "2026-06-07",
+      "answer": "THUMB",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1093,
+      "printDate": "2026-06-08",
+      "answer": "MAFIA",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 4552,
+      "printDate": "2026-06-09",
+      "answer": "WHARF",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1114,
+      "printDate": "2026-06-10",
+      "answer": "ALIGN",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 2077,
+      "printDate": "2026-06-11",
+      "answer": "TESTY",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 2664,
+      "printDate": "2026-06-12",
+      "answer": "BREAK",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 758,
+      "printDate": "2026-06-13",
+      "answer": "QUELL",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 999,
+      "printDate": "2026-06-14",
+      "answer": "SEPIA",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1230,
+      "printDate": "2026-06-15",
+      "answer": "BROIL",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 856,
+      "printDate": "2026-06-16",
+      "answer": "AMAZE",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1735,
+      "printDate": "2026-06-17",
+      "answer": "TOKEN",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1736,
+      "printDate": "2026-06-18",
+      "answer": "ENTRY",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 2354,
+      "printDate": "2026-06-19",
+      "answer": "EMOJI",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1467,
+      "printDate": "2026-06-20",
+      "answer": "DRAKE",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 2190,
+      "printDate": "2026-06-21",
+      "answer": "ALIBI",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1557,
+      "printDate": "2026-06-22",
+      "answer": "OVATE",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 2082,
+      "printDate": "2026-06-23",
+      "answer": "CURRY",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 673,
+      "printDate": "2026-06-24",
+      "answer": "QUEER",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1609,
+      "printDate": "2026-06-25",
+      "answer": "UNITY",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 2416,
+      "printDate": "2026-06-26",
+      "answer": "ACUTE",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1653,
+      "printDate": "2026-06-27",
+      "answer": "SCOOP",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1094,
+      "printDate": "2026-06-28",
+      "answer": "EMCEE",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1665,
+      "printDate": "2026-06-29",
+      "answer": "CRUDE",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1184,
+      "printDate": "2026-06-30",
+      "answer": "PUPPY",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 937,
+      "printDate": "2026-07-01",
+      "answer": "DEMUR",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 2395,
+      "printDate": "2026-07-02",
+      "answer": "MAVEN",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 2559,
+      "printDate": "2026-07-03",
+      "answer": "BATON",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1212,
+      "printDate": "2026-07-04",
+      "answer": "PIZZA",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1108,
+      "printDate": "2026-07-05",
+      "answer": "SWAMI",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1910,
+      "printDate": "2026-07-06",
+      "answer": "TODDY",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1967,
+      "printDate": "2026-07-07",
+      "answer": "SLING",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1620,
+      "printDate": "2026-07-08",
+      "answer": "DEMON",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1137,
+      "printDate": "2026-07-09",
+      "answer": "AMEND",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1506,
+      "printDate": "2026-07-10",
+      "answer": "CANAL",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1945,
+      "printDate": "2026-07-11",
+      "answer": "AVIAN",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1760,
+      "printDate": "2026-07-12",
+      "answer": "CLACK",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 4269,
+      "printDate": "2026-07-13",
+      "answer": "STOUT",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1180,
+      "printDate": "2026-07-14",
+      "answer": "STEAK",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 2372,
+      "printDate": "2026-07-15",
+      "answer": "PSHAW",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1799,
+      "printDate": "2026-07-16",
+      "answer": "BUTTE",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1719,
+      "printDate": "2026-07-17",
+      "answer": "LEGAL",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1737,
+      "printDate": "2026-07-18",
+      "answer": "BOOTH",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1575,
+      "printDate": "2026-07-19",
+      "answer": "CHURN",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 880,
+      "printDate": "2026-07-20",
+      "answer": "DIVER",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 2350,
+      "printDate": "2026-07-21",
+      "answer": "SHILL",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 2124,
+      "printDate": "2026-07-22",
+      "answer": "LORRY",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1529,
+      "printDate": "2026-07-23",
+      "answer": "ORBIT",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 913,
+      "printDate": "2026-07-24",
+      "answer": "PUTTY",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 2357,
+      "printDate": "2026-07-25",
+      "answer": "ALOHA",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 907,
+      "printDate": "2026-07-26",
+      "answer": "GRAPE",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 881,
+      "printDate": "2026-07-27",
+      "answer": "POSER",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1841,
+      "printDate": "2026-07-28",
+      "answer": "SONAR",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 527,
+      "printDate": "2026-07-29",
+      "answer": "VALVE",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 3148,
+      "printDate": "2026-07-30",
+      "answer": "FLUME",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 665,
+      "printDate": "2026-07-31",
+      "answer": "PURSE",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1445,
+      "printDate": "2026-08-01",
+      "answer": "SLUSH",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1185,
+      "printDate": "2026-08-02",
+      "answer": "PENAL",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 628,
+      "printDate": "2026-08-03",
+      "answer": "REPLY",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1228,
+      "printDate": "2026-08-04",
+      "answer": "MOTIF",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1011,
+      "printDate": "2026-08-05",
+      "answer": "POSIT",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 3281,
+      "printDate": "2026-08-06",
+      "answer": "GRIPE",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 3091,
+      "printDate": "2026-08-07",
+      "answer": "FEIGN",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 830,
+      "printDate": "2026-08-08",
+      "answer": "PRIVY",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 2371,
+      "printDate": "2026-08-09",
+      "answer": "CLUNK",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 4898,
+      "printDate": "2026-08-10",
+      "answer": "SNIPE",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1863,
+      "printDate": "2026-08-11",
+      "answer": "FENCE",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1580,
+      "printDate": "2026-08-12",
+      "answer": "WIMPY",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1043,
+      "printDate": "2026-08-13",
+      "answer": "CRASH",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 5159,
+      "printDate": "2026-08-14",
+      "answer": "GEODE",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 587,
+      "printDate": "2026-08-15",
+      "answer": "LOOSE",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 4958,
+      "printDate": "2026-08-16",
+      "answer": "ASPIC",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1751,
+      "printDate": "2026-08-17",
+      "answer": "TRIBE",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1766,
+      "printDate": "2026-08-18",
+      "answer": "STRIP",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1348,
+      "printDate": "2026-08-19",
+      "answer": "GRILL",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 978,
+      "printDate": "2026-08-20",
+      "answer": "MURKY",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 4413,
+      "printDate": "2026-08-21",
+      "answer": "TRACE",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1889,
+      "printDate": "2026-08-22",
+      "answer": "PRAWN",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1656,
+      "printDate": "2026-08-23",
+      "answer": "OLDEN",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 4778,
+      "printDate": "2026-08-24",
+      "answer": "RUNNY",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 2799,
+      "printDate": "2026-08-25",
+      "answer": "CLICK",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 5089,
+      "printDate": "2026-08-26",
+      "answer": "CAPON",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1764,
+      "printDate": "2026-08-27",
+      "answer": "UNCUT",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 4815,
+      "printDate": "2026-08-28",
+      "answer": "TWEEN",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1606,
+      "printDate": "2026-08-29",
+      "answer": "BLOOD",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 4835,
+      "printDate": "2026-08-30",
+      "answer": "INTEL",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 558,
+      "printDate": "2026-08-31",
+      "answer": "MOUND",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 4774,
+      "printDate": "2026-09-01",
+      "answer": "REMIX",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 814,
+      "printDate": "2026-09-02",
+      "answer": "RULER",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1186,
+      "printDate": "2026-09-03",
+      "answer": "JOIST",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1238,
+      "printDate": "2026-09-04",
+      "answer": "WAGER",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 4792,
+      "printDate": "2026-09-05",
+      "answer": "SOUPY",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 4670,
+      "printDate": "2026-09-06",
+      "answer": "BEIGE",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1477,
+      "printDate": "2026-09-07",
+      "answer": "BLIND",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 4736,
+      "printDate": "2026-09-08",
+      "answer": "LIVEN",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1361,
+      "printDate": "2026-09-09",
+      "answer": "BURST",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1126,
+      "printDate": "2026-09-10",
+      "answer": "DRYLY",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 5121,
+      "printDate": "2026-09-11",
+      "answer": "ASTER",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 2349,
+      "printDate": "2026-09-12",
+      "answer": "NIFTY",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 3156,
+      "printDate": "2026-09-13",
+      "answer": "FOCUS",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 2029,
+      "printDate": "2026-09-14",
+      "answer": "RINSE",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1966,
+      "printDate": "2026-09-15",
+      "answer": "DEALT",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1391,
+      "printDate": "2026-09-16",
+      "answer": "WISPY",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1130,
+      "printDate": "2026-09-17",
+      "answer": "THETA",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 2228,
+      "printDate": "2026-09-18",
+      "answer": "SNOWY",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 5231,
+      "printDate": "2026-09-19",
+      "answer": "WAKEN",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1453,
+      "printDate": "2026-09-20",
+      "answer": "SHONE",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 4763,
+      "printDate": "2026-09-21",
+      "answer": "PAGER",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1527,
+      "printDate": "2026-09-22",
+      "answer": "STOKE",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 3166,
+      "printDate": "2026-09-23",
+      "answer": "FORTH",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 4741,
+      "printDate": "2026-09-24",
+      "answer": "MESSY",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1028,
+      "printDate": "2026-09-25",
+      "answer": "COPSE",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1498,
+      "printDate": "2026-09-26",
+      "answer": "ELEGY",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1848,
+      "printDate": "2026-09-27",
+      "answer": "SLOOP",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1336,
+      "printDate": "2026-09-28",
+      "answer": "TRUNK",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 763,
+      "printDate": "2026-09-29",
+      "answer": "SCUBA",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 829,
+      "printDate": "2026-09-30",
+      "answer": "RIVER",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 4848,
+      "printDate": "2026-10-01",
+      "answer": "RITZY",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 4927,
+      "printDate": "2026-10-02",
+      "answer": "USURY",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 4872,
+      "printDate": "2026-10-03",
+      "answer": "PEEVE",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1421,
+      "printDate": "2026-10-04",
+      "answer": "SHACK",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 550,
+      "printDate": "2026-10-05",
+      "answer": "MOCHA",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 985,
+      "printDate": "2026-10-06",
+      "answer": "DIMLY",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 3830,
+      "printDate": "2026-10-07",
+      "answer": "PROVE",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 5133,
+      "printDate": "2026-10-08",
+      "answer": "STREW",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 3543,
+      "printDate": "2026-10-09",
+      "answer": "MAJOR",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 4684,
+      "printDate": "2026-10-10",
+      "answer": "BUMPY",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 5261,
+      "printDate": "2026-10-11",
+      "answer": "UNCAP",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 5014,
+      "printDate": "2026-10-12",
+      "answer": "YODEL",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1308,
+      "printDate": "2026-10-13",
+      "answer": "WIDER",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 2392,
+      "printDate": "2026-10-14",
+      "answer": "PSYCH",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 889,
+      "printDate": "2026-10-15",
+      "answer": "DUNCE",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1001,
+      "printDate": "2026-10-16",
+      "answer": "SHADY",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1267,
+      "printDate": "2026-10-17",
+      "answer": "GAFFE",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1084,
+      "printDate": "2026-10-18",
+      "answer": "ADORN",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 4253,
+      "printDate": "2026-10-19",
+      "answer": "STINK",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 549,
+      "printDate": "2026-10-20",
+      "answer": "WREST",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1938,
+      "printDate": "2026-10-21",
+      "answer": "PENNY",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 662,
+      "printDate": "2026-10-22",
+      "answer": "RESET",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 4645,
+      "printDate": "2026-10-23",
+      "answer": "TRILL",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 5139,
+      "printDate": "2026-10-24",
+      "answer": "HOLEY",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1773,
+      "printDate": "2026-10-25",
+      "answer": "DRESS",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 921,
+      "printDate": "2026-10-26",
+      "answer": "GEEKY",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1390,
+      "printDate": "2026-10-27",
+      "answer": "BINGO",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 4821,
+      "printDate": "2026-10-28",
+      "answer": "GRIST",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 3616,
+      "printDate": "2026-10-29",
+      "answer": "MOTOR",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 672,
+      "printDate": "2026-10-30",
+      "answer": "SLIDE",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 4992,
+      "printDate": "2026-10-31",
+      "answer": "YAHOO",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1730,
+      "printDate": "2026-11-01",
+      "answer": "VIPER",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 4843,
+      "printDate": "2026-11-02",
+      "answer": "SCOOT",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 1031,
+      "printDate": "2026-11-03",
+      "answer": "POUCH",
       "editor": "Tracy Bennett"
     }
   ]
