@@ -4,6 +4,13 @@ on:
   push:
     branches:
       - main
+  # Daily rebuild, so the build-time puzzle snapshot (see "Update … puzzle
+  # data" below) never drifts far behind KV. 01:15 UTC is after the
+  # puzzle-updater Worker's 00:30 run. Keep it off the sister sites' 08:30:
+  # GitHub starts identical cron strings together, and every site shares this
+  # account's Cloudflare API limit.
+  schedule:
+    - cron: "15 1 * * *"
   workflow_dispatch:
 
 concurrency:
@@ -14,7 +21,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
     env:
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -39,6 +46,38 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      # The build can't reach KV, so every page it prerenders comes from the
+      # bundled data/*/puzzles.json, and a fresh deploy serves those pages
+      # until each one's first revalidation. Refresh the snapshot first, or
+      # the first visitor after a deploy gets whatever puzzle it last held.
+      # A failed fetch just keeps the old snapshot, so it doesn't block the
+      # deploy.
+      - name: Update Strands puzzle data
+        run: pnpm run update:strands
+        continue-on-error: true
+
+      - name: Update Connections puzzle data
+        run: pnpm run update:connections
+        continue-on-error: true
+
+      - name: Update Wordle puzzle data
+        run: pnpm run update:wordle
+        continue-on-error: true
+
+      # Scheduled/manual runs of main commit the snapshot back, so the next
+      # run only fetches what's new. The daily commit also counts as repo
+      # activity, which stops GitHub from disabling this schedule after 60
+      # idle days. A push race (main moved mid-run) shouldn't block the deploy.
+      - name: Commit updated data
+        if: (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main'
+        continue-on-error: true
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/strands/puzzles.json data/connections/puzzles.json data/wordle/puzzles.json
+          git diff --staged --quiet || git commit -m "chore: update puzzle data [skip ci]"
+          git push origin HEAD:main
 
       # Same as `pnpm run deploy`, split so only the upload is retried.
       # (`opennextjs-cloudflare build` runs `pnpm build`, which includes

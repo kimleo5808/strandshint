@@ -30,9 +30,9 @@ Live: <https://strandshint.app>
 - **Writer** — `workers/puzzle-updater/` is a standalone Worker on a cron schedule (UTC 00:30 / 08:30 / 16:30). It fetches the NYT Strands/Connections/Wordle APIs and writes the full data files to the shared KV namespace `PUZZLE_DATA`. Health/manual trigger: `GET /health`, `POST /trigger?batch=N`.
 - **Reader** — `lib/puzzle-kv.ts` reads KV at request time via `getCloudflareContext({async:true}).env.PUZZLE_DATA`. **KV bindings are objects and are NOT exposed on `process.env`** (OpenNext only copies string vars there). If no Cloudflare context is available (build time / local), it falls back to the bundled `data/*/puzzles.json` snapshots.
 - **ISR is required** — every page that reads puzzle data declares `export const revalidate = <seconds>`. Without it the page is statically prerendered at build time (when KV is empty) and would freeze on the static fallback. Archive `[date]` pages render new dates on-demand via `dynamicParams`.
-- `data/*/puzzles.json` are committed **fallback snapshots only**; the live source of truth is KV. Refresh them with `pnpm run update:strands` / `:connections` / `:wordle`.
+- `data/*/puzzles.json` are committed **fallback snapshots only**; the live source of truth is KV. Refresh them with `pnpm run update:strands` / `:connections` / `:wordle` (each fetches every missing date from its newest stored puzzle through today, and re-checks the last 30 days so a one-off failed fetch gets retried). The deploy workflow runs all three before every build, and its daily scheduled run commits the result back to `main`.
 
-> Note: a fresh deploy briefly serves the build-time fallback until the first request after the `revalidate` window regenerates the page from KV. This is expected.
+> Note: a fresh deploy briefly serves the build-time fallback until the first request after the `revalidate` window regenerates the page from KV. This is expected, and it's why the snapshots are refreshed before each build.
 
 ## Local development
 
@@ -46,7 +46,7 @@ pnpm dev                         # http://localhost:3000
 
 ## Deploy
 
-The main app deploys to Cloudflare Workers automatically on push to `main` (`.github/workflows/deploy-cloudflare.yml` → `pnpm run deploy`).
+The main app deploys to Cloudflare Workers automatically on push to `main` and once a day at 01:15 UTC (`.github/workflows/deploy-cloudflare.yml`: refresh the puzzle snapshots → `opennextjs-cloudflare build` → `opennextjs-cloudflare deploy`, retried on transient API errors).
 
 ```bash
 # Main app (also runs in CI)

@@ -3,8 +3,8 @@ name: Keepalive
 # GitHub disables scheduled workflows after 60 days of repository inactivity —
 # which is exactly how the freshness check went silent in Aug 2026. This runs
 # monthly, makes one real commit (resetting the 60-day clock for every
-# scheduled workflow in the repo) and re-enables the freshness check in case
-# it already got disabled.
+# scheduled workflow in the repo) and re-enables the freshness check and the
+# daily deploy in case they already got disabled.
 #
 # The commit carries [skip ci] so it does not trigger a Cloudflare redeploy.
 
@@ -36,7 +36,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          for wf in freshness-check.yml keepalive.yml; do
+          for wf in freshness-check.yml deploy-cloudflare.yml keepalive.yml; do
             gh api -X PUT "repos/${{ github.repository }}/actions/workflows/$wf/enable" \
               && echo "enabled: $wf" \
               || echo "already enabled or not disable-able: $wf"

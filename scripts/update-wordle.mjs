@@ -180,23 +180,47 @@ async function backfill(existingDates) {
 }
 
 /**
- * Daily update: fetch today's puzzle if not already present
+ * Daily update: fetch every missing date from the newest stored puzzle
+ * through today, so a missed run (or months without one) leaves no gap.
+ * Also re-checks the last RECHECK_DAYS, so a date that failed once (a
+ * transient NYT/network error) is retried on later runs instead of leaving a
+ * permanent hole. Older history is --backfill's job.
  */
+const RECHECK_DAYS = 30;
+
 async function dailyUpdate(existingDates) {
   const today = new Date().toISOString().split("T")[0];
-  if (existingDates.has(today)) {
-    console.log(`  Today's puzzle (${today}) already in data.`);
+  const recheck = new Date(today + "T00:00:00Z");
+  recheck.setUTCDate(recheck.getUTCDate() - RECHECK_DAYS);
+  const recheckFrom = recheck.toISOString().split("T")[0];
+  const newest = [...existingDates].sort().pop();
+  const start = newest && newest < recheckFrom ? newest : recheckFrom;
+  const dates = [...dateRange(start, today)].filter(
+    (d) => !existingDates.has(d)
+  );
+
+  if (dates.length === 0) {
+    console.log(`  Up to date (newest stored puzzle: ${newest}).`);
     return [];
   }
 
-  console.log(`  Fetching today's puzzle (${today})...`);
-  const puzzle = await fetchPuzzle(today);
-  if (puzzle) {
-    console.log(`  Got puzzle #${puzzle.id}: ${puzzle.answer}`);
-    return [puzzle];
+  console.log(
+    `  Fetching ${dates.length} date(s) (${dates[0]} → ${dates[dates.length - 1]})...`
+  );
+  const puzzles = [];
+  for (const date of dates) {
+    const puzzle = await fetchPuzzle(date);
+    if (puzzle) {
+      puzzles.push(puzzle);
+    } else {
+      console.log(`  No puzzle available for ${date} yet.`);
+    }
+    if (dates.length > 1) {
+      await new Promise((r) => setTimeout(r, REQUEST_DELAY_MS));
+    }
   }
-  console.log(`  No puzzle available for today yet.`);
-  return [];
+  console.log(`  Got ${puzzles.length} puzzle(s).`);
+  return puzzles;
 }
 
 /**
