@@ -11,28 +11,7 @@ import { JsonLd, websiteSchema } from "@/lib/jsonld";
 import { cn } from "@/lib/utils";
 import "@/styles/globals.css";
 import "@/styles/loading.css";
-import { Outfit, Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
-
-const outfit = Outfit({
-  weight: ["400", "500", "600", "700", "800"],
-  subsets: ["latin"],
-  variable: "--font-heading",
-  display: "swap",
-});
-
-const plusJakarta = Plus_Jakarta_Sans({
-  weight: ["300", "400", "500", "600", "700"],
-  subsets: ["latin"],
-  variable: "--font-body",
-  display: "swap",
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  weight: ["400", "500", "600"],
-  subsets: ["latin"],
-  variable: "--font-mono-code",
-  display: "swap",
-});
+import { jetbrainsMono, outfit, plusJakarta } from "@/app/fonts/site";
 
 import { Metadata, Viewport } from "next";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
