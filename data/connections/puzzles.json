@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-03T08:08:24.838Z",
+  "lastUpdated": "2026-11-04T07:30:50.069Z",
   "puzzles": [
     {
       "id": 928,
@@ -29920,6 +29920,101 @@
             {
               "content": "WHELP",
               "position": 12
+            }
+          ],
+          "difficulty": 0
+        }
+      ]
+    },
+    {
+      "id": 1355,
+      "printDate": "2026-11-04",
+      "editor": "Wyna Liu",
+      "categories": [
+        {
+          "title": "TRIANGULAR PRISMS WITH A SHARP EDGE",
+          "cards": [
+            {
+              "content": "DOORSTOP",
+              "position": 10
+            },
+            {
+              "content": "FLATIRON BUILDING",
+              "position": 12
+            },
+            {
+              "content": "PIE SLICE",
+              "position": 15
+            },
+            {
+              "content": "WEDGE",
+              "position": 6
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "WORDS AFTER \"DO NOT\" ON A CARE LABEL",
+          "cards": [
+            {
+              "content": "BLEACH",
+              "position": 7
+            },
+            {
+              "content": "IRON",
+              "position": 2
+            },
+            {
+              "content": "TUMBLE DRY",
+              "position": 14
+            },
+            {
+              "content": "WRING",
+              "position": 5
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "MOVE IDLY, WITH \"AROUND\"",
+          "cards": [
+            {
+              "content": "LOLL",
+              "position": 11
+            },
+            {
+              "content": "POKE",
+              "position": 1
+            },
+            {
+              "content": "PUTTER",
+              "position": 8
+            },
+            {
+              "content": "SHUFFLE",
+              "position": 13
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "FIRE___",
+          "cards": [
+            {
+              "content": "CRACKER",
+              "position": 9
+            },
+            {
+              "content": "FLY",
+              "position": 0
+            },
+            {
+              "content": "WOOD",
+              "position": 4
+            },
+            {
+              "content": "WORKS",
+              "position": 3
             }
           ],
           "difficulty": 0
