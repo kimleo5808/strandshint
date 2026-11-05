@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-04T07:30:50.069Z",
+  "lastUpdated": "2026-11-05T07:55:50.966Z",
   "puzzles": [
     {
       "id": 928,
@@ -30015,6 +30015,101 @@
             {
               "content": "WORKS",
               "position": 3
+            }
+          ],
+          "difficulty": 0
+        }
+      ]
+    },
+    {
+      "id": 1353,
+      "printDate": "2026-11-05",
+      "editor": "Wyna Liu",
+      "categories": [
+        {
+          "title": "KINDS OF HEELS",
+          "cards": [
+            {
+              "content": "KITTEN",
+              "position": 3
+            },
+            {
+              "content": "PLATFORM",
+              "position": 15
+            },
+            {
+              "content": "SPIKE",
+              "position": 6
+            },
+            {
+              "content": "WEDGE",
+              "position": 8
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "FLOWERS",
+          "cards": [
+            {
+              "content": "ANEMONE",
+              "position": 13
+            },
+            {
+              "content": "LOTUS",
+              "position": 10
+            },
+            {
+              "content": "NARCISSUS",
+              "position": 7
+            },
+            {
+              "content": "ROSE",
+              "position": 1
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "TEARDROP-SHAPED THINGS",
+          "cards": [
+            {
+              "content": "PEAR",
+              "position": 5
+            },
+            {
+              "content": "RAINDROP",
+              "position": 0
+            },
+            {
+              "content": "SPEEDBAG",
+              "position": 14
+            },
+            {
+              "content": "UVULA",
+              "position": 11
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "LIQUORS WITH LAST LETTERS CHANGED",
+          "cards": [
+            {
+              "content": "BRANDO",
+              "position": 12
+            },
+            {
+              "content": "GIG",
+              "position": 4
+            },
+            {
+              "content": "RUN",
+              "position": 9
+            },
+            {
+              "content": "WHISKER",
+              "position": 2
             }
           ],
           "difficulty": 0
