@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-05T07:55:50.966Z",
+  "lastUpdated": "2026-11-06T07:56:52.717Z",
   "puzzles": [
     {
       "id": 928,
@@ -30110,6 +30110,101 @@
             {
               "content": "WHISKER",
               "position": 2
+            }
+          ],
+          "difficulty": 0
+        }
+      ]
+    },
+    {
+      "id": 1346,
+      "printDate": "2026-11-06",
+      "editor": "Wyna Liu",
+      "categories": [
+        {
+          "title": "COMPOSITION",
+          "cards": [
+            {
+              "content": "CONSTITUTION",
+              "position": 10
+            },
+            {
+              "content": "FABRIC",
+              "position": 5
+            },
+            {
+              "content": "MAKEUP",
+              "position": 2
+            },
+            {
+              "content": "STRUCTURE",
+              "position": 14
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "COPY",
+          "cards": [
+            {
+              "content": "BACKUP",
+              "position": 0
+            },
+            {
+              "content": "EXTRA",
+              "position": 6
+            },
+            {
+              "content": "REPLACEMENT",
+              "position": 11
+            },
+            {
+              "content": "SPARE",
+              "position": 12
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "KINDS OF TRUCKS",
+          "cards": [
+            {
+              "content": "FLATBED",
+              "position": 4
+            },
+            {
+              "content": "PICKUP",
+              "position": 1
+            },
+            {
+              "content": "SEMI",
+              "position": 9
+            },
+            {
+              "content": "TANKER",
+              "position": 15
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "ENDING IN PARTS OF THE EYE",
+          "cards": [
+            {
+              "content": "HOT ROD",
+              "position": 3
+            },
+            {
+              "content": "OSIRIS",
+              "position": 13
+            },
+            {
+              "content": "TRAFFIC CONE",
+              "position": 8
+            },
+            {
+              "content": "WOOLENS",
+              "position": 7
             }
           ],
           "difficulty": 0
