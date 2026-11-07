@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-06T07:56:52.717Z",
+  "lastUpdated": "2026-11-07T07:12:36.139Z",
   "puzzles": [
     {
       "id": 928,
@@ -30205,6 +30205,101 @@
             {
               "content": "WOOLENS",
               "position": 7
+            }
+          ],
+          "difficulty": 0
+        }
+      ]
+    },
+    {
+      "id": 1350,
+      "printDate": "2026-11-07",
+      "editor": "Wyna Liu",
+      "categories": [
+        {
+          "title": "PIRATE'S PLUNDER",
+          "cards": [
+            {
+              "content": "BOOTY",
+              "position": 15
+            },
+            {
+              "content": "BOUNTY",
+              "position": 9
+            },
+            {
+              "content": "SPOILS",
+              "position": 12
+            },
+            {
+              "content": "TREASURE",
+              "position": 7
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "KINDS OF SHIRTS",
+          "cards": [
+            {
+              "content": "HENLEY",
+              "position": 8
+            },
+            {
+              "content": "POLO",
+              "position": 0
+            },
+            {
+              "content": "RAGLAN",
+              "position": 14
+            },
+            {
+              "content": "RINGER",
+              "position": 5
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "FIRST WORDS OF U.S. STATE NAMES",
+          "cards": [
+            {
+              "content": "NEW",
+              "position": 2
+            },
+            {
+              "content": "NORTH",
+              "position": 10
+            },
+            {
+              "content": "RHODE",
+              "position": 4
+            },
+            {
+              "content": "SOUTH",
+              "position": 13
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "ENDS OF STORM TYPES",
+          "cards": [
+            {
+              "content": "CANE",
+              "position": 11
+            },
+            {
+              "content": "CLONE",
+              "position": 3
+            },
+            {
+              "content": "EASTER",
+              "position": 1
+            },
+            {
+              "content": "SOON",
+              "position": 6
             }
           ],
           "difficulty": 0
