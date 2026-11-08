@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-07T07:12:36.139Z",
+  "lastUpdated": "2026-11-08T07:24:06.778Z",
   "puzzles": [
     {
       "id": 928,
@@ -30300,6 +30300,101 @@
             {
               "content": "SOON",
               "position": 6
+            }
+          ],
+          "difficulty": 0
+        }
+      ]
+    },
+    {
+      "id": 1351,
+      "printDate": "2026-11-08",
+      "editor": "Wyna Liu",
+      "categories": [
+        {
+          "title": "MUSCULAR",
+          "cards": [
+            {
+              "content": "BUILT",
+              "position": 4
+            },
+            {
+              "content": "CUT",
+              "position": 0
+            },
+            {
+              "content": "JACKED",
+              "position": 14
+            },
+            {
+              "content": "RIPPED",
+              "position": 12
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "HAIR SALON SERVICES",
+          "cards": [
+            {
+              "content": "BLOWOUT",
+              "position": 5
+            },
+            {
+              "content": "COLOR",
+              "position": 8
+            },
+            {
+              "content": "EXTENSIONS",
+              "position": 11
+            },
+            {
+              "content": "TRIM",
+              "position": 13
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "THINGS THAT HELP MAKE SENSE OF A SITUATION",
+          "cards": [
+            {
+              "content": "CLARITY",
+              "position": 6
+            },
+            {
+              "content": "CONTEXT",
+              "position": 2
+            },
+            {
+              "content": "INSIGHT",
+              "position": 10
+            },
+            {
+              "content": "PERSPECTIVE",
+              "position": 15
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "VEGETABLE HOMOPHONES",
+          "cards": [
+            {
+              "content": "CARAT",
+              "position": 3
+            },
+            {
+              "content": "CHARRED",
+              "position": 7
+            },
+            {
+              "content": "KORN",
+              "position": 9
+            },
+            {
+              "content": "LEAK",
+              "position": 1
             }
           ],
           "difficulty": 0
