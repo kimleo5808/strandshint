@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-10T08:27:19.438Z",
+  "lastUpdated": "2026-11-11T07:45:42.880Z",
   "puzzles": [
     {
       "id": 928,
@@ -30585,6 +30585,101 @@
             {
               "content": "PROTOZOOLOGY",
               "position": 5
+            }
+          ],
+          "difficulty": 0
+        }
+      ]
+    },
+    {
+      "id": 1354,
+      "printDate": "2026-11-11",
+      "editor": "Wyna Liu",
+      "categories": [
+        {
+          "title": "KINDS OF MEDICINE",
+          "cards": [
+            {
+              "content": "FOLK",
+              "position": 5
+            },
+            {
+              "content": "HERBAL",
+              "position": 1
+            },
+            {
+              "content": "HOLISTIC",
+              "position": 13
+            },
+            {
+              "content": "TRADITIONAL",
+              "position": 10
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "PARTS OF A GOLF COURSE",
+          "cards": [
+            {
+              "content": "GREEN",
+              "position": 4
+            },
+            {
+              "content": "ROUGH",
+              "position": 7
+            },
+            {
+              "content": "SAND TRAP",
+              "position": 12
+            },
+            {
+              "content": "TEE BOX",
+              "position": 15
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "THINGS FILLED WITH AIR",
+          "cards": [
+            {
+              "content": "AIR MATTRESS",
+              "position": 14
+            },
+            {
+              "content": "BUBBLE",
+              "position": 6
+            },
+            {
+              "content": "TIRE",
+              "position": 11
+            },
+            {
+              "content": "WHOOPIE CUSHION",
+              "position": 3
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "ENDING IN PALINDROMES",
+          "cards": [
+            {
+              "content": "AFTERNOON",
+              "position": 8
+            },
+            {
+              "content": "PATOOT",
+              "position": 2
+            },
+            {
+              "content": "RHEOSTATS",
+              "position": 9
+            },
+            {
+              "content": "SHREDDER",
+              "position": 0
             }
           ],
           "difficulty": 0
