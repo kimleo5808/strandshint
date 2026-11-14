@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-13T08:00:51.735Z",
+  "lastUpdated": "2026-11-14T07:37:47.781Z",
   "puzzles": [
     {
       "id": 928,
@@ -30870,6 +30870,101 @@
             {
               "content": "WAVES",
               "position": 6
+            }
+          ],
+          "difficulty": 0
+        }
+      ]
+    },
+    {
+      "id": 1348,
+      "printDate": "2026-11-14",
+      "editor": "Wyna Liu",
+      "categories": [
+        {
+          "title": "CUTTING-EDGE",
+          "cards": [
+            {
+              "content": "ADVANCED",
+              "position": 3
+            },
+            {
+              "content": "FOREMOST",
+              "position": 15
+            },
+            {
+              "content": "MODERN",
+              "position": 10
+            },
+            {
+              "content": "PROGRESSIVE",
+              "position": 5
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "LOCATIONS FOR AN INSTITUTION",
+          "cards": [
+            {
+              "content": "CAMPUS",
+              "position": 14
+            },
+            {
+              "content": "CENTER",
+              "position": 6
+            },
+            {
+              "content": "COMPLEX",
+              "position": 0
+            },
+            {
+              "content": "FACILITY",
+              "position": 9
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "STRATEGY BOARD GAMES",
+          "cards": [
+            {
+              "content": "CHESS",
+              "position": 1
+            },
+            {
+              "content": "GO",
+              "position": 8
+            },
+            {
+              "content": "OTHELLO",
+              "position": 11
+            },
+            {
+              "content": "STRATEGO",
+              "position": 13
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "BABY GEAR WITH FIRST LETTER CHANGED",
+          "cards": [
+            {
+              "content": "BATTLE",
+              "position": 2
+            },
+            {
+              "content": "MARRIAGE",
+              "position": 4
+            },
+            {
+              "content": "MOTTLE",
+              "position": 7
+            },
+            {
+              "content": "TRIB",
+              "position": 12
             }
           ],
           "difficulty": 0
