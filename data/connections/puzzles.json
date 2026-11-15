@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-14T07:37:47.781Z",
+  "lastUpdated": "2026-11-15T07:53:14.159Z",
   "puzzles": [
     {
       "id": 928,
@@ -30965,6 +30965,101 @@
             {
               "content": "TRIB",
               "position": 12
+            }
+          ],
+          "difficulty": 0
+        }
+      ]
+    },
+    {
+      "id": 1365,
+      "printDate": "2026-11-15",
+      "editor": "Wyna Liu",
+      "categories": [
+        {
+          "title": "UNMATCHED",
+          "cards": [
+            {
+              "content": "ALL-TIME",
+              "position": 9
+            },
+            {
+              "content": "HISTORIC",
+              "position": 12
+            },
+            {
+              "content": "RECORD",
+              "position": 3
+            },
+            {
+              "content": "UNPRECEDENTED",
+              "position": 15
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "WEDDING WEBSITE SECTIONS",
+          "cards": [
+            {
+              "content": "DRESS CODE",
+              "position": 7
+            },
+            {
+              "content": "REGISTRY",
+              "position": 4
+            },
+            {
+              "content": "RSVP",
+              "position": 10
+            },
+            {
+              "content": "TRAVEL",
+              "position": 1
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "___ PLANE",
+          "cards": [
+            {
+              "content": "ASTRAL",
+              "position": 13
+            },
+            {
+              "content": "CARTESIAN",
+              "position": 11
+            },
+            {
+              "content": "INCLINED",
+              "position": 6
+            },
+            {
+              "content": "JET",
+              "position": 0
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "ENDING IN VEGETABLES IN THE ALLIUM FAMILY",
+          "cards": [
+            {
+              "content": "ARCHIVE",
+              "position": 5
+            },
+            {
+              "content": "OCTONION",
+              "position": 14
+            },
+            {
+              "content": "RAPSCALLION",
+              "position": 8
+            },
+            {
+              "content": "SLEEK",
+              "position": 2
             }
           ],
           "difficulty": 0
