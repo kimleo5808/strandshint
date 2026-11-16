@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-15T07:53:14.159Z",
+  "lastUpdated": "2026-11-16T08:00:49.971Z",
   "puzzles": [
     {
       "id": 928,
@@ -31060,6 +31060,101 @@
             {
               "content": "SLEEK",
               "position": 2
+            }
+          ],
+          "difficulty": 0
+        }
+      ]
+    },
+    {
+      "id": 1363,
+      "printDate": "2026-11-16",
+      "editor": "Wyna Liu",
+      "categories": [
+        {
+          "title": "SUMMER ___",
+          "cards": [
+            {
+              "content": "BLOCKBUSTER",
+              "position": 5
+            },
+            {
+              "content": "CAMP",
+              "position": 13
+            },
+            {
+              "content": "SAUSAGE",
+              "position": 8
+            },
+            {
+              "content": "SCHOOL",
+              "position": 15
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "SPRING ___",
+          "cards": [
+            {
+              "content": "CHICKEN",
+              "position": 11
+            },
+            {
+              "content": "CLEANING",
+              "position": 12
+            },
+            {
+              "content": "ONION",
+              "position": 4
+            },
+            {
+              "content": "WATER",
+              "position": 2
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "WINTER ___",
+          "cards": [
+            {
+              "content": "GARDEN",
+              "position": 6
+            },
+            {
+              "content": "GLOVES",
+              "position": 9
+            },
+            {
+              "content": "MELON",
+              "position": 3
+            },
+            {
+              "content": "WONDERLAND",
+              "position": 1
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "FALL ___",
+          "cards": [
+            {
+              "content": "ASLEEP",
+              "position": 10
+            },
+            {
+              "content": "FOLIAGE",
+              "position": 7
+            },
+            {
+              "content": "GUY",
+              "position": 14
+            },
+            {
+              "content": "IN LOVE",
+              "position": 0
             }
           ],
           "difficulty": 0
