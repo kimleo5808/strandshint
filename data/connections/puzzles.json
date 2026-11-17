@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-16T08:00:49.971Z",
+  "lastUpdated": "2026-11-17T09:14:54.918Z",
   "puzzles": [
     {
       "id": 928,
@@ -31155,6 +31155,101 @@
             {
               "content": "IN LOVE",
               "position": 0
+            }
+          ],
+          "difficulty": 0
+        }
+      ]
+    },
+    {
+      "id": 1362,
+      "printDate": "2026-11-17",
+      "editor": "Wyna Liu",
+      "categories": [
+        {
+          "title": "CONVENE",
+          "cards": [
+            {
+              "content": "ASSEMBLE",
+              "position": 14
+            },
+            {
+              "content": "COME TOGETHER",
+              "position": 4
+            },
+            {
+              "content": "FLOCK",
+              "position": 2
+            },
+            {
+              "content": "GATHER",
+              "position": 11
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "THINGS IN \"SING A SONG OF SIXPENCE\"",
+          "cards": [
+            {
+              "content": "BLACKBIRD",
+              "position": 1
+            },
+            {
+              "content": "PIE",
+              "position": 6
+            },
+            {
+              "content": "RYE",
+              "position": 9
+            },
+            {
+              "content": "SIXPENCE",
+              "position": 15
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "FILMS WITH \"!\" IN THE TITLE",
+          "cards": [
+            {
+              "content": "AIRPLANE",
+              "position": 3
+            },
+            {
+              "content": "HELP",
+              "position": 10
+            },
+            {
+              "content": "SHAZAM",
+              "position": 12
+            },
+            {
+              "content": "THEM",
+              "position": 5
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "ENDING IN BOWLING TERMS",
+          "cards": [
+            {
+              "content": "KINGPIN",
+              "position": 0
+            },
+            {
+              "content": "MASKED BALL",
+              "position": 13
+            },
+            {
+              "content": "PENNY LANE",
+              "position": 8
+            },
+            {
+              "content": "VALLEY",
+              "position": 7
             }
           ],
           "difficulty": 0
