@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-18T08:34:34.463Z",
+  "lastUpdated": "2026-11-19T08:49:55.909Z",
   "puzzles": [
     {
       "id": 928,
@@ -31345,6 +31345,101 @@
             {
               "content": "VOCAL",
               "position": 11
+            }
+          ],
+          "difficulty": 0
+        }
+      ]
+    },
+    {
+      "id": 1373,
+      "printDate": "2026-11-19",
+      "editor": "Wyna Liu",
+      "categories": [
+        {
+          "title": "MAKE A HOLE IN THE GROUND",
+          "cards": [
+            {
+              "content": "BORE",
+              "position": 7
+            },
+            {
+              "content": "BURROW",
+              "position": 15
+            },
+            {
+              "content": "DIG",
+              "position": 12
+            },
+            {
+              "content": "TUNNEL",
+              "position": 1
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "MATERIALS OBTAINED FROM TREES",
+          "cards": [
+            {
+              "content": "CORK",
+              "position": 3
+            },
+            {
+              "content": "RESIN",
+              "position": 14
+            },
+            {
+              "content": "SAP",
+              "position": 8
+            },
+            {
+              "content": "WOOD",
+              "position": 10
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "PARTS OF AN ELECTRICAL APPLIANCE",
+          "cards": [
+            {
+              "content": "CORD",
+              "position": 2
+            },
+            {
+              "content": "HOUSING",
+              "position": 11
+            },
+            {
+              "content": "PLUG",
+              "position": 9
+            },
+            {
+              "content": "SWITCH",
+              "position": 4
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "START AND END WITH THE SAME THREE LETTERS",
+          "cards": [
+            {
+              "content": "EINSTEIN",
+              "position": 5
+            },
+            {
+              "content": "GALANGAL",
+              "position": 13
+            },
+            {
+              "content": "HOTSHOT",
+              "position": 6
+            },
+            {
+              "content": "UNDERGROUND",
+              "position": 0
             }
           ],
           "difficulty": 0
