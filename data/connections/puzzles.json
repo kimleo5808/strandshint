@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-19T08:49:55.909Z",
+  "lastUpdated": "2026-11-20T08:35:43.534Z",
   "puzzles": [
     {
       "id": 928,
@@ -31440,6 +31440,101 @@
             {
               "content": "UNDERGROUND",
               "position": 0
+            }
+          ],
+          "difficulty": 0
+        }
+      ]
+    },
+    {
+      "id": 1364,
+      "printDate": "2026-11-20",
+      "editor": "Wyna Liu",
+      "categories": [
+        {
+          "title": "PERSON WHO EXCELS AT SOMETHING",
+          "cards": [
+            {
+              "content": "ACE",
+              "position": 13
+            },
+            {
+              "content": "BEAST",
+              "position": 0
+            },
+            {
+              "content": "MAVEN",
+              "position": 15
+            },
+            {
+              "content": "WIZARD",
+              "position": 10
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "NOTICE",
+          "cards": [
+            {
+              "content": "CATCH",
+              "position": 11
+            },
+            {
+              "content": "CLOCK",
+              "position": 7
+            },
+            {
+              "content": "REGISTER",
+              "position": 8
+            },
+            {
+              "content": "SPOT",
+              "position": 1
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "DESCRIPTORS FOR SMALL ANIMALS",
+          "cards": [
+            {
+              "content": "MINIATURE",
+              "position": 12
+            },
+            {
+              "content": "POCKET",
+              "position": 6
+            },
+            {
+              "content": "TEACUP",
+              "position": 4
+            },
+            {
+              "content": "TOY",
+              "position": 3
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "ENDING IN LINGERIE",
+          "cards": [
+            {
+              "content": "CANDELABRA",
+              "position": 2
+            },
+            {
+              "content": "COWSLIP",
+              "position": 5
+            },
+            {
+              "content": "DIPHTHONG",
+              "position": 9
+            },
+            {
+              "content": "STUTTGARTER",
+              "position": 14
             }
           ],
           "difficulty": 0
