@@ -53,6 +53,28 @@ export const BLOG_POSTS: Record<string, RawBlogPost[]> = {
     },
     {
       "locale": "en",
+      "title": "Four Photos, One Word: Make Your Own Picture Puzzle",
+      "description": "Can you find the three-letter word hiding in these four pictures? Try the puzzle, reveal the answer, then make a round of your own with a phone camera.",
+      "image": "/images/photo-word-puzzle-cover.webp",
+      "slug": "/make-a-photo-word-puzzle",
+      "tags": "wordplay,picture puzzles,connections",
+      "date": "2026-11-20T00:00:00.000Z",
+      "visible": "published",
+      "pin": false,
+      "content": "\nLook at the four objects below. Say their names out loud. **Which three-letter word can you hear in all four?**\n\n<img src=\"/images/photo-word-puzzle-clues.webp\" width=\"1000\" height=\"750\" alt=\"Clockwise from top left: a wooden cylinder with handles for flattening dough, a red-striped target at a bowling alley, a blue tack for a noticeboard, and a brass fastener with a coil and a clasp.\" />\n\n<details>\n<summary>Give me a hint</summary>\n\nStart with the kitchen tool. What would you ask someone to pass you if you were about to roll out a pie crust? Keep the last part of its name.\n\n</details>\n\n<details>\n<summary>Reveal the answer</summary>\n\n**PIN.** Across the top are a rolling **pin** and a bowling **pin**. Across the bottom are a safety **pin** and a push**pin**. That last one is easy to call a *thumbtack*. Sometimes the move that solves a word puzzle is finding a second name for something you already recognize.\n\n</details>\n\n## Build a round for a friend\n\nWork backward from a word you can picture in several places. Take *ring*. A key ring from the hall, a napkin ring from the table, a shower curtain ring from the bathroom and an onion ring from lunch would make a whole round. A bell is a tempting fifth clue. It can *ring*, but the other four have *ring* in their names. Save the bell for a round with a different rule.\n\nPhotograph each object on its own. Let the handle, clasp or other telling detail fit inside the frame. In the puzzle above, the little metal point on the blue tack earns its space. Cover it with your thumb and the plastic top starts to look like a board-game piece.\n\n## Turn the photos into a playable grid\n\n1. **Crop while the objects are still separate.** Give each photo the same shape and leave a little space around the edges. A tiny object can fill its square just as comfortably as a large one.\n2. **Check what your collage editor accepts.** If an iPhone photo ends in `.heic` and the editor won't open it, select the file in [HEICHub's HEIC to PNG converter](https://heichub.com/), choose **Convert to PNG**, then download the PNG and add it to the grid. You can skip this step for photos the editor already opens.\n3. **Give the grid a test solve.** Put the four images in two rows, shrink the collage to chat-preview size and ask one person to name what they see. If they say “keys” when you meant “key ring,” retake that shot with one key hanging from a clearly visible ring.\n\nSend the grid and ask, “What word appears in all four names?” Keep the answer for a second message so everyone gets a turn. If you enjoy the moment when four ordinary things suddenly fit together, try the word-based groups in our [Connections solving guide](/blog/how-to-solve-connections).\n",
+      "metadata": {
+        "title": "Four Photos, One Word: Make Your Own Picture Puzzle",
+        "description": "Can you find the three-letter word hiding in these four pictures? Try the puzzle, reveal the answer, then make a round of your own with a phone camera.",
+        "image": "/images/photo-word-puzzle-cover.webp",
+        "slug": "/make-a-photo-word-puzzle",
+        "tags": "wordplay,picture puzzles,connections",
+        "date": "2026-11-20T00:00:00.000Z",
+        "visible": "published",
+        "pin": false
+      }
+    },
+    {
+      "locale": "en",
       "title": "NYT Strands Theme Patterns: 7 Types You'll See in Every Puzzle",
       "description": "Decode the 7 most common NYT Strands theme types — from category themes to pun-based clues to hidden words. Recognize patterns and solve faster.",
       "image": "/images/common-strands-patterns.webp",
