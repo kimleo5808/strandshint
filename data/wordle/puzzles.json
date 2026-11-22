@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-21T08:18:30.265Z",
+  "lastUpdated": "2026-11-22T08:00:30.353Z",
   "puzzles": [
     {
       "id": 2030,
@@ -1763,6 +1763,12 @@
       "id": 4794,
       "printDate": "2026-11-21",
       "answer": "STENT",
+      "editor": "Tracy Bennett"
+    },
+    {
+      "id": 4823,
+      "printDate": "2026-11-22",
+      "answer": "UPEND",
       "editor": "Tracy Bennett"
     }
   ]
