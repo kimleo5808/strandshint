@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-22T08:00:29.748Z",
+  "lastUpdated": "2026-11-23T09:08:35.903Z",
   "puzzles": [
     {
       "id": 928,
@@ -31725,6 +31725,101 @@
             {
               "content": "WEE",
               "position": 7
+            }
+          ],
+          "difficulty": 0
+        }
+      ]
+    },
+    {
+      "id": 1376,
+      "printDate": "2026-11-23",
+      "editor": "Wyna Liu",
+      "categories": [
+        {
+          "title": "TINY AMOUNT",
+          "cards": [
+            {
+              "content": "IOTA",
+              "position": 4
+            },
+            {
+              "content": "MODICUM",
+              "position": 15
+            },
+            {
+              "content": "PARTICLE",
+              "position": 12
+            },
+            {
+              "content": "SHRED",
+              "position": 9
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "INFO ON A NAVIGATION APP",
+          "cards": [
+            {
+              "content": "DISTANCE",
+              "position": 1
+            },
+            {
+              "content": "ETA",
+              "position": 7
+            },
+            {
+              "content": "ROUTE",
+              "position": 14
+            },
+            {
+              "content": "TRAFFIC",
+              "position": 11
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "METAL SUBGENRES",
+          "cards": [
+            {
+              "content": "BLACK",
+              "position": 6
+            },
+            {
+              "content": "DOOM",
+              "position": 3
+            },
+            {
+              "content": "NU",
+              "position": 8
+            },
+            {
+              "content": "THRASH",
+              "position": 10
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "STARTING WITH BABY ANIMALS",
+          "cards": [
+            {
+              "content": "CHICKPEA",
+              "position": 0
+            },
+            {
+              "content": "CUBISM",
+              "position": 13
+            },
+            {
+              "content": "LAMBDA",
+              "position": 2
+            },
+            {
+              "content": "PUPIL",
+              "position": 5
             }
           ],
           "difficulty": 0
