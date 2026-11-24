@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-23T09:08:35.903Z",
+  "lastUpdated": "2026-11-24T10:57:46.918Z",
   "puzzles": [
     {
       "id": 928,
@@ -31819,6 +31819,101 @@
             },
             {
               "content": "PUPIL",
+              "position": 5
+            }
+          ],
+          "difficulty": 0
+        }
+      ]
+    },
+    {
+      "id": 1374,
+      "printDate": "2026-11-24",
+      "editor": "Wyna Liu",
+      "categories": [
+        {
+          "title": "DROP DRAMATICALLY",
+          "cards": [
+            {
+              "content": "BOTTOM OUT",
+              "position": 15
+            },
+            {
+              "content": "CRATER",
+              "position": 3
+            },
+            {
+              "content": "NOSEDIVE",
+              "position": 13
+            },
+            {
+              "content": "TANK",
+              "position": 8
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "THINGS WITH PLEATED FOLDS",
+          "cards": [
+            {
+              "content": "ACCORDION",
+              "position": 4
+            },
+            {
+              "content": "CUPCAKE LINER",
+              "position": 9
+            },
+            {
+              "content": "FIREPLACE BELLOWS",
+              "position": 12
+            },
+            {
+              "content": "PAPER FAN",
+              "position": 1
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "THINGS WITH SLIDES",
+          "cards": [
+            {
+              "content": "MICROSCOPE",
+              "position": 11
+            },
+            {
+              "content": "PLAYGROUND",
+              "position": 0
+            },
+            {
+              "content": "POWERPOINT DECK",
+              "position": 14
+            },
+            {
+              "content": "TROMBONE",
+              "position": 6
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "THINGS THAT FORM CHAINS",
+          "cards": [
+            {
+              "content": "AMINO ACID",
+              "position": 10
+            },
+            {
+              "content": "BIG BOX STORE",
+              "position": 2
+            },
+            {
+              "content": "LINK",
+              "position": 7
+            },
+            {
+              "content": "MOUNTAIN",
               "position": 5
             }
           ],
