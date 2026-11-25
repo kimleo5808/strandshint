@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-24T10:57:46.918Z",
+  "lastUpdated": "2026-11-25T09:52:39.080Z",
   "puzzles": [
     {
       "id": 928,
@@ -31915,6 +31915,101 @@
             {
               "content": "MOUNTAIN",
               "position": 5
+            }
+          ],
+          "difficulty": 0
+        }
+      ]
+    },
+    {
+      "id": 1372,
+      "printDate": "2026-11-25",
+      "editor": "Wyna Liu",
+      "categories": [
+        {
+          "title": "PARTS OF A FREEWAY",
+          "cards": [
+            {
+              "content": "LANE",
+              "position": 14
+            },
+            {
+              "content": "MEDIAN",
+              "position": 11
+            },
+            {
+              "content": "RAMP",
+              "position": 8
+            },
+            {
+              "content": "SHOULDER",
+              "position": 5
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "U-SHAPED THINGS",
+          "cards": [
+            {
+              "content": "HALF-PIPE",
+              "position": 2
+            },
+            {
+              "content": "HORSESHOE",
+              "position": 12
+            },
+            {
+              "content": "NECK PILLOW",
+              "position": 7
+            },
+            {
+              "content": "PARABOLA",
+              "position": 9
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "RUG SPECIFICATIONS",
+          "cards": [
+            {
+              "content": "DIMENSIONS",
+              "position": 3
+            },
+            {
+              "content": "MATERIAL",
+              "position": 13
+            },
+            {
+              "content": "PILE",
+              "position": 1
+            },
+            {
+              "content": "WEAVE",
+              "position": 6
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "DOGS BREEDS MINUS FIRST LETTER",
+          "cards": [
+            {
+              "content": "EAGLE",
+              "position": 0
+            },
+            {
+              "content": "OBERMAN",
+              "position": 15
+            },
+            {
+              "content": "OLLIE",
+              "position": 4
+            },
+            {
+              "content": "OODLE",
+              "position": 10
             }
           ],
           "difficulty": 0
