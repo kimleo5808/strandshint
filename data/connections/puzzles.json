@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-25T09:52:39.080Z",
+  "lastUpdated": "2026-11-26T09:33:07.407Z",
   "puzzles": [
     {
       "id": 928,
@@ -32010,6 +32010,101 @@
             {
               "content": "OODLE",
               "position": 10
+            }
+          ],
+          "difficulty": 0
+        }
+      ]
+    },
+    {
+      "id": 1382,
+      "printDate": "2026-11-26",
+      "editor": "Wyna Liu",
+      "categories": [
+        {
+          "title": "SHADES OF PINK",
+          "cards": [
+            {
+              "content": "BLUSH",
+              "position": 8
+            },
+            {
+              "content": "BUBBLEGUM",
+              "position": 2
+            },
+            {
+              "content": "CARNATION",
+              "position": 5
+            },
+            {
+              "content": "CORAL",
+              "position": 13
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "KINDS OF CARS",
+          "cards": [
+            {
+              "content": "COMPACT",
+              "position": 9
+            },
+            {
+              "content": "CONVERTIBLE",
+              "position": 15
+            },
+            {
+              "content": "HYBRID",
+              "position": 12
+            },
+            {
+              "content": "MANUAL",
+              "position": 11
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "THINGS HOMER SIMPSON LIKES",
+          "cards": [
+            {
+              "content": "BEER",
+              "position": 0
+            },
+            {
+              "content": "BOWLING",
+              "position": 3
+            },
+            {
+              "content": "DONUTS",
+              "position": 7
+            },
+            {
+              "content": "TELEVISION",
+              "position": 10
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "THINGS THAT ARE POPPED",
+          "cards": [
+            {
+              "content": "BOTTLE OF CHAMPAGNE",
+              "position": 1
+            },
+            {
+              "content": "POPCORN",
+              "position": 4
+            },
+            {
+              "content": "THE QUESTION",
+              "position": 14
+            },
+            {
+              "content": "WHEELIE",
+              "position": 6
             }
           ],
           "difficulty": 0
