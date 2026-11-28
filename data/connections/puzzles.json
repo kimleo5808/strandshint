@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-11-27T09:42:13.966Z",
+  "lastUpdated": "2026-11-28T08:56:01.113Z",
   "puzzles": [
     {
       "id": 928,
@@ -32200,6 +32200,101 @@
             {
               "content": "ROYALTY",
               "position": 9
+            }
+          ],
+          "difficulty": 0
+        }
+      ]
+    },
+    {
+      "id": 1379,
+      "printDate": "2026-11-28",
+      "editor": "Wyna Liu",
+      "categories": [
+        {
+          "title": "MILD OATHS",
+          "cards": [
+            {
+              "content": "BLAST",
+              "position": 12
+            },
+            {
+              "content": "DARN",
+              "position": 4
+            },
+            {
+              "content": "FUDGE",
+              "position": 1
+            },
+            {
+              "content": "NUTS",
+              "position": 6
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "EDGE",
+          "cards": [
+            {
+              "content": "BORDER",
+              "position": 11
+            },
+            {
+              "content": "HEM",
+              "position": 3
+            },
+            {
+              "content": "RIM",
+              "position": 14
+            },
+            {
+              "content": "SKIRT",
+              "position": 5
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "SYMBOLS ON A SLOT MACHINE",
+          "cards": [
+            {
+              "content": "BAR",
+              "position": 7
+            },
+            {
+              "content": "BELL",
+              "position": 9
+            },
+            {
+              "content": "CHERRY",
+              "position": 2
+            },
+            {
+              "content": "SEVEN",
+              "position": 15
+            }
+          ],
+          "difficulty": 0
+        },
+        {
+          "title": "SOUL ___",
+          "cards": [
+            {
+              "content": "FOOD",
+              "position": 0
+            },
+            {
+              "content": "MATE",
+              "position": 10
+            },
+            {
+              "content": "MUSIC",
+              "position": 8
+            },
+            {
+              "content": "PATCH",
+              "position": 13
             }
           ],
           "difficulty": 0
